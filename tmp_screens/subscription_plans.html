@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#c7aa00",
+              "tertiary-fixed": "#ffe25f",
+              "primary-fixed-dim": "#ffb1c0",
+              "outline-variant": "#e4bdc3",
+              "outline": "#8f6f74",
+              "primary-container": "#e21364",
+              "on-secondary-fixed": "#410002",
+              "secondary-fixed": "#ffdad6",
+              "on-error": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "surface-container-low": "#f3f2ff",
+              "secondary": "#ae302a",
+              "surface-dim": "#d7d9ea",
+              "inverse-surface": "#2d303d",
+              "on-tertiary-container": "#4b3f00",
+              "tertiary": "#6e5d00",
+              "primary": "#b7004e",
+              "on-tertiary-fixed-variant": "#534600",
+              "inverse-on-surface": "#eff0ff",
+              "primary-fixed": "#ffd9df",
+              "on-surface-variant": "#5b3f44",
+              "surface-container-high": "#e6e7f8",
+              "secondary-fixed-dim": "#ffb4ab",
+              "surface-tint": "#bc0050",
+              "tertiary-fixed-dim": "#e6c500",
+              "surface-bright": "#faf8ff",
+              "error-container": "#ffdad6",
+              "surface-variant": "#e0e1f3",
+              "surface-container-lowest": "#ffffff",
+              "surface": "#faf8ff",
+              "on-primary-fixed-variant": "#90003c",
+              "background": "#faf8ff",
+              "on-surface": "#181b27",
+              "on-secondary": "#ffffff",
+              "on-secondary-container": "#690006",
+              "error": "#ba1a1a",
+              "inverse-primary": "#ffb1c0",
+              "on-secondary-fixed-variant": "#8c1616",
+              "surface-container": "#ebedfe",
+              "on-tertiary-fixed": "#221b00",
+              "surface-container-highest": "#e0e1f3",
+              "on-primary-fixed": "#3f0016",
+              "on-error-container": "#93000a",
+              "secondary-container": "#fc695d",
+              "on-primary": "#ffffff",
+              "on-background": "#181b27",
+              "on-primary-container": "#fffbff"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .premium-gradient {
+            background: linear-gradient(135deg, #b7004e 0%, #e21364 100%);
+        }
+        .glass-header {
+            background: rgba(250, 248, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full flex justify-between items-center px-6 h-16 bg-[#faf8ff]/70 dark:bg-slate-950/70 backdrop-blur-md z-50 shadow-[0px_20px_40px_rgba(24,27,39,0.04)]">
+<div class="flex items-center gap-4">
+<button class="text-[#FF3278] active:scale-95 duration-200">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold text-lg tracking-tight text-[#FF3278]">Luna Wellness</h1>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container">
+<img alt="User profile" data-alt="Close-up portrait of a smiling woman with clear skin and soft lighting, professional and wellness-oriented photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPHtHFFGyGicUzeHV_uL-igqESLUiyXnJOf8DEA4QqWTPLGIZVpD5GRL0yAlVIKquMjmD2mau1yvGZCoBHDcmYhx9yRQOkJ3bl-wZz-sUVtSyoi_2kdDPvi6xC5ycvpb99k9XnLgU3Pab4B_rLkJxIHIdVP-XYc0eoLuMS7xc0xxiEZI6RRzzYaZo_oxOJ0v_kYsb7-Qfh70AlU6I-W6HXXG0kBgUMEgCn3tLLid-Di8MTiDk1KDHHUumfIXZsvCLKeJPd-csXB_g"/>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-5xl mx-auto">
+<!-- Hero Section -->
+<section class="mb-12 text-center md:text-left">
+<h2 class="font-headline text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-on-surface">Elevate Your <span class="text-primary italic">Wellbeing</span></h2>
+<p class="text-on-surface-variant max-w-xl text-lg mb-8 leading-relaxed">Choose the path that aligns with your hormonal health goals. From essential tracking to AI-driven mastery.</p>
+<!-- Billing Toggle -->
+<div class="inline-flex p-1 bg-surface-container-low rounded-full mb-12">
+<button class="px-6 py-2 rounded-full text-sm font-semibold bg-surface-container-lowest shadow-sm text-on-surface">Monthly</button>
+<button class="px-6 py-2 rounded-full text-sm font-semibold text-on-surface-variant hover:text-on-surface transition-colors">Quarterly <span class="text-[10px] ml-1 px-2 py-0.5 premium-gradient text-white rounded-full">SAVE 20%</span></button>
+<button class="px-6 py-2 rounded-full text-sm font-semibold text-on-surface-variant hover:text-on-surface transition-colors">Yearly</button>
+</div>
+</section>
+<!-- Pricing Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 items-stretch">
+<!-- Basic Plan -->
+<div class="bg-surface-container-lowest rounded-lg p-8 flex flex-col transition-all hover:translate-y-[-4px]">
+<div class="mb-8">
+<span class="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant font-bold mb-2 block">Foundation</span>
+<h3 class="font-headline text-3xl font-bold mb-4">Basic</h3>
+<div class="flex items-baseline gap-1">
+<span class="text-4xl font-black tracking-tighter">$0</span>
+<span class="text-on-surface-variant font-medium">/month</span>
+</div>
+</div>
+<div class="space-y-5 mb-10 flex-grow">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span class="text-on-surface">Cycle &amp; Symptom Tracking</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span class="text-on-surface">Basic Mood Journal</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span class="text-on-surface">Community Forum Access</span>
+</div>
+<div class="flex items-center gap-3 opacity-40">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">do_not_disturb_on</span>
+<span class="text-on-surface-variant italic">AI Wellness Coaching</span>
+</div>
+</div>
+<button class="w-full py-4 rounded-full font-bold bg-surface-container-highest text-on-surface-variant transition-all active:scale-[0.98]">
+                    Current Plan
+                </button>
+</div>
+<!-- Premium Plan (Highlighted) -->
+<div class="premium-gradient rounded-lg p-8 flex flex-col text-white relative shadow-2xl transition-all hover:translate-y-[-4px]">
+<div class="absolute top-0 right-12 transform -translate-y-1/2 bg-tertiary-fixed text-on-tertiary-fixed px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider shadow-lg">
+                    Most Popular
+                </div>
+<div class="mb-8">
+<span class="font-label text-xs uppercase tracking-[0.2em] text-white/80 font-bold mb-2 block">The Full Journey</span>
+<h3 class="font-headline text-3xl font-bold mb-4">Premium</h3>
+<div class="flex items-baseline gap-1">
+<span class="text-4xl font-black tracking-tighter">$14.99</span>
+<span class="text-white/80 font-medium">/month</span>
+</div>
+</div>
+<div class="space-y-5 mb-10 flex-grow">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-white text-xl" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-semibold">AI Coach: 24/7 Support</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-white text-xl" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-semibold">Priority Doctor Consultations</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-white text-xl" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-semibold">Monthly Hormone Bio-Reports</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-white text-xl" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-semibold">Personalized Diet &amp; Fitness Plan</span>
+</div>
+</div>
+<button class="w-full py-4 rounded-full font-bold bg-white text-primary shadow-xl transition-all hover:bg-surface-bright active:scale-[0.98]">
+                    Start 7-Day Free Trial
+                </button>
+</div>
+</div>
+<!-- Detailed Comparison Table (Bento Style) -->
+<section class="mb-20">
+<h4 class="font-headline text-2xl font-bold mb-8">Feature Deep-Dive</h4>
+<div class="bg-surface-container-low rounded-lg overflow-hidden">
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-surface-container text-left">
+<th class="p-6 font-headline font-bold text-on-surface-variant">Feature</th>
+<th class="p-6 font-headline font-bold text-center">Basic</th>
+<th class="p-6 font-headline font-bold text-center text-primary">Premium</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr>
+<td class="p-6 text-on-surface font-medium">Smart AI Coaching</td>
+<td class="p-6 text-center text-on-surface-variant opacity-40">No</td>
+<td class="p-6 text-center text-primary font-bold">Unlimited</td>
+</tr>
+<tr>
+<td class="p-6 text-on-surface font-medium">Hormone Health Reports</td>
+<td class="p-6 text-center text-on-surface-variant">Summaries Only</td>
+<td class="p-6 text-center text-primary font-bold">Deep Insights</td>
+</tr>
+<tr>
+<td class="p-6 text-on-surface font-medium">Dietary Bio-Syncing</td>
+<td class="p-6 text-center text-on-surface-variant opacity-40">No</td>
+<td class="p-6 text-center text-primary font-bold">Daily Guidance</td>
+</tr>
+<tr>
+<td class="p-6 text-on-surface font-medium">Priority Expert Access</td>
+<td class="p-6 text-center text-on-surface-variant opacity-40">No</td>
+<td class="p-6 text-center text-primary font-bold">Included</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Satisfaction Guarantee -->
+<div class="bg-surface-container-highest/30 p-8 rounded-lg flex flex-col md:flex-row items-center gap-6 mb-24">
+<div class="bg-white p-4 rounded-full shadow-sm">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div>
+<h5 class="font-headline text-xl font-bold mb-1">Risk-Free Wellness</h5>
+<p class="text-on-surface-variant">Try Luna Premium for 7 days. If you're not feeling more in tune with your body, cancel anytime with one click.</p>
+</div>
+</div>
+</main>
+<!-- Floating Action Button (AI Coach Contextual) -->
+<button class="fixed bottom-24 right-6 w-14 h-14 premium-gradient text-white rounded-full flex items-center justify-center shadow-2xl active:scale-90 transition-transform z-50">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</button>
+<!-- NavigationDrawer (Hidden by default, structure for layout) -->
+<aside class="hidden fixed inset-0 z-[60] bg-black/20 backdrop-blur-sm">
+<div class="flex flex-col p-6 w-80 bg-[#ffffff] dark:bg-slate-900 rounded-r-[2rem] h-full shadow-2xl">
+<div class="flex items-center gap-4 mb-12">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img alt="User avatar" data-alt="Close-up portrait of a smiling woman with clear skin and soft lighting, professional and wellness-oriented photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMRycPankhDCYTxTvPS3wGM2v7OYGUkb4f38-uEP_F2f6k6fvW2K9sGXv7X3MXawtfrbVtjjNGw6LCkQY7-YTDEKFvKAnjEDQFNeXSJzYDhi88dT2vbCeOX_4cGSh6ksmSpG-pKDsTLSYamHWbpYuCi9b3LA-09NUgR0voUgVQ9SXJl-cqkFuYF-ofN5RRzRvRYj77ce5U6wOfEo4ppvT8M6JKHfveEVT-c_-EY9Nn8UyAcnK8cUVbsDcxRm-Gqo3w6J4yKHwEHhI"/>
+</div>
+<div>
+<h4 class="font-headline font-bold text-[#FF3278]">Luna User</h4>
+<p class="text-xs text-on-surface-variant">Premium Member</p>
+</div>
+</div>
+<nav class="space-y-4">
+<a class="flex items-center gap-4 px-4 py-3 bg-[#f3f2ff] dark:bg-slate-800 text-[#FF3278] font-bold rounded-xl transition-transform hover:translate-x-2" href="#">
+<span class="material-symbols-outlined">workspace_premium</span> Subscription
+                </a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#181b27] dark:text-slate-300 transition-transform hover:translate-x-2" href="#">
+<span class="material-symbols-outlined">smart_toy</span> AI Coach Settings
+                </a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#181b27] dark:text-slate-300 transition-transform hover:translate-x-2" href="#">
+<span class="material-symbols-outlined">help</span> Help Center
+                </a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#181b27] dark:text-slate-300 transition-transform hover:translate-x-2" href="#">
+<span class="material-symbols-outlined">logout</span> Logout
+                </a>
+</nav>
+</div>
+</aside>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-[#faf8ff]/70 dark:bg-slate-900/70 backdrop-blur-md rounded-t-[2rem] shadow-[0px_-10px_30px_rgba(24,27,39,0.03)]">
+<a class="flex flex-col items-center justify-center text-[#181b27] dark:text-slate-400 px-4 py-2 hover:bg-[#f3f2ff] dark:hover:bg-slate-800 rounded-full transition-transform active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#181b27] dark:text-slate-400 px-4 py-2 hover:bg-[#f3f2ff] dark:hover:bg-slate-800 rounded-full transition-transform active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Fitness</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#181b27] dark:text-slate-400 px-4 py-2 hover:bg-[#f3f2ff] dark:hover:bg-slate-800 rounded-full transition-transform active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">restaurant</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Diet</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#181b27] dark:text-slate-400 px-4 py-2 hover:bg-[#f3f2ff] dark:hover:bg-slate-800 rounded-full transition-transform active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Community</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#f3f2ff] dark:bg-slate-800 text-[#FF3278] rounded-full px-4 py-2 scale-110 transition-transform active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Luna Wellness - Medical Support</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#d7d9ea",
+              "on-primary-fixed-variant": "#90003c",
+              "on-secondary-fixed-variant": "#8c1616",
+              "secondary-fixed-dim": "#ffb4ab",
+              "on-tertiary-fixed": "#221b00",
+              "on-primary-fixed": "#3f0016",
+              "inverse-primary": "#ffb1c0",
+              "tertiary-fixed": "#ffe25f",
+              "inverse-surface": "#2d303d",
+              "on-surface": "#181b27",
+              "surface-bright": "#faf8ff",
+              "outline-variant": "#e4bdc3",
+              "primary-container": "#e21364",
+              "surface-variant": "#e0e1f3",
+              "on-secondary": "#ffffff",
+              "on-primary": "#ffffff",
+              "surface-tint": "#bc0050",
+              "surface-container-highest": "#e0e1f3",
+              "error": "#ba1a1a",
+              "primary-fixed": "#ffd9df",
+              "on-tertiary": "#ffffff",
+              "on-error": "#ffffff",
+              "on-background": "#181b27",
+              "secondary-container": "#fc695d",
+              "primary": "#b7004e",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-low": "#f3f2ff",
+              "on-secondary-fixed": "#410002",
+              "inverse-on-surface": "#eff0ff",
+              "on-primary-container": "#fffbff",
+              "primary-fixed-dim": "#ffb1c0",
+              "tertiary-fixed-dim": "#e6c500",
+              "surface-container": "#ebedfe",
+              "on-secondary-container": "#690006",
+              "on-tertiary-container": "#4b3f00",
+              "tertiary": "#6e5d00",
+              "surface": "#faf8ff",
+              "secondary": "#ae302a",
+              "outline": "#8f6f74",
+              "on-error-container": "#93000a",
+              "background": "#faf8ff",
+              "tertiary-container": "#c7aa00",
+              "surface-container-high": "#e6e7f8",
+              "secondary-fixed": "#ffdad6",
+              "error-container": "#ffdad6",
+              "on-tertiary-fixed-variant": "#534600",
+              "on-surface-variant": "#5b3f44"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        -webkit-tap-highlight-color: transparent;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-[#faf8ff]/70 backdrop-blur-md shadow-[0px_20px_40px_rgba(24,27,39,0.04)]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#FF3278] text-2xl" data-icon="bubble_chart">bubble_chart</span>
+<h1 class="font-headline font-extrabold text-xl tracking-tight text-[#FF3278]">Luna Wellness</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<img alt="User Profile" data-alt="Close-up portrait of a serene young woman with natural look in soft daylight against a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfwgf8goAjohPzqKe_SIdv4k1aVAhWANqQst85ExRsuW0v6V3-CCVIOwxz4thkPdeCs99_UaeoMYTkesk9RCBw3HO3Db158uFZ7O5CIiXaxCyHglP4ZicZIk1iH27SufCsc2dV4onOUHRirvWWQ33wiWqr0NKs7Z2cDgUeDQQw7xCMzzq6TtkqCkaRp2rVwlX4g0EscYT6hjQOp7q0k96-a1yxIyofIYdlLjKQArt9jz-qytyR1kRBdC8W2KQ0OaQtXYmm8glXBHw"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-24 pb-32 px-6 max-w-5xl mx-auto">
+<!-- Header Section: Editorial Vitality -->
+<section class="mb-12">
+<p class="font-label text-primary font-bold uppercase tracking-[0.2em] text-[10px] mb-2">Medical Support</p>
+<h2 class="font-headline text-4xl md:text-5xl font-extrabold text-on-surface leading-tight max-w-2xl">
+                Expert care for your <span class="text-primary italic">hormonal journey</span>.
+            </h2>
+</section>
+<!-- Search and Filter Bar -->
+<div class="flex flex-col md:flex-row gap-4 mb-10 items-center justify-between">
+<div class="relative w-full md:max-w-md">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant/60" data-icon="search">search</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-high rounded-full border-none focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Search by name or condition" type="text"/>
+</div>
+<div class="flex gap-3 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+<button class="px-6 py-3 rounded-full bg-primary text-white font-semibold text-sm whitespace-nowrap">All</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-high text-on-surface-variant font-medium text-sm hover:bg-surface-container-highest transition-colors whitespace-nowrap">Gynecology</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-high text-on-surface-variant font-medium text-sm hover:bg-surface-container-highest transition-colors whitespace-nowrap">Endocrinology</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-high text-on-surface-variant font-medium text-sm hover:bg-surface-container-highest transition-colors whitespace-nowrap">Nutrition</button>
+</div>
+</div>
+<!-- Doctor Grid: Asymmetric Bento Grid Style -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Doctor Card 1 -->
+<div class="bg-surface-container-lowest rounded-lg p-6 flex flex-col transition-all hover:shadow-[0px_20px_40px_rgba(24,27,39,0.06)] group">
+<div class="flex justify-between items-start mb-6">
+<div class="relative">
+<div class="w-20 h-20 rounded-xl overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500">
+<img alt="Dr. Sarah Chen" data-alt="Professional female doctor with stethoscope in a bright clinical setting with warm natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeRbreWupvcWqHHugYeCNj8xhNEUOBJNPOcJieAM8nQQAUUinL3yZlEv6u7_KTE5bQ_Q_eJ5E2B1XCxIt8KUygENHSCBQqLfcfZYIrzVUlGLiVwOjAyr1Z5u2SZ9qmwN_JCmMp9Jm1qHaM7BRbpFsC-QK9kA57F8ti3I9CQYQivo1mA-OJDMjUJ7fiFc-BW6oV1W7xnReT3zdUU3kpmx6jGayU3h3eadNRf9tmrHBafUnCcFnjg2bxk2PSG--Fr3yIbFfVHTcL0K4"/>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-green-500 w-4 h-4 rounded-full border-4 border-white"></div>
+</div>
+<div class="bg-surface-container-low px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-tertiary text-lg" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold font-label">4.9</span>
+</div>
+</div>
+<span class="font-label text-[10px] text-primary font-bold uppercase tracking-wider mb-1">Gynecologist</span>
+<h3 class="font-headline text-xl font-bold mb-2">Dr. Sarah Chen</h3>
+<p class="text-on-surface-variant text-sm mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="work_history">work_history</span>
+                    12 years experience
+                </p>
+<div class="mt-auto flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 bg-green-50 text-green-700 text-[10px] font-bold rounded-md uppercase tracking-wide">Available Today</span>
+</div>
+<button class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-white rounded-full font-bold text-sm hover:scale-[1.02] transition-transform flex items-center justify-center gap-2">
+                        Book Consultation
+                        <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Doctor Card 2 -->
+<div class="bg-surface-container-lowest rounded-lg p-6 flex flex-col transition-all hover:shadow-[0px_20px_40px_rgba(24,27,39,0.06)] group md:mt-8">
+<div class="flex justify-between items-start mb-6">
+<div class="relative">
+<div class="w-20 h-20 rounded-xl overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500">
+<img alt="Dr. Marcus Thorne" data-alt="Male physician with friendly expression in professional medical attire against soft-focus office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIAHfAmPx8RI6qMPCrG8lSbgu69SaAz73SVX0IdKLJV_QoJRPW9Ls3l4MvkhaIlhNugj07ozuPyaTdTrwUp2ttVgauE_fI3Bl5D0TwlRLK525DMWW8nG4NHfhmtNeaRSnZi1rEQgBmR1npTWnYvetgbVezA9bRyNNIlqp7fEsqMHkrO2XJPdFydgFjQ0rilC6d_BZX8Cm1UTlnJqvZLdmovpDkB1okwjIOeHNIUtVwJeNQlU9klWgKGV7w9GFhtJEQOgohP5UlQDU"/>
+</div>
+</div>
+<div class="bg-surface-container-low px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-tertiary text-lg" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold font-label">4.8</span>
+</div>
+</div>
+<span class="font-label text-[10px] text-primary font-bold uppercase tracking-wider mb-1">Endocrinologist</span>
+<h3 class="font-headline text-xl font-bold mb-2">Dr. Marcus Thorne</h3>
+<p class="text-on-surface-variant text-sm mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="work_history">work_history</span>
+                    15 years experience
+                </p>
+<div class="mt-auto flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 bg-surface-container-high text-on-surface-variant text-[10px] font-bold rounded-md uppercase tracking-wide">Next: Tomorrow</span>
+</div>
+<button class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-white rounded-full font-bold text-sm hover:scale-[1.02] transition-transform flex items-center justify-center gap-2">
+                        Book Consultation
+                        <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Doctor Card 3 -->
+<div class="bg-surface-container-lowest rounded-lg p-6 flex flex-col transition-all hover:shadow-[0px_20px_40px_rgba(24,27,39,0.06)] group">
+<div class="flex justify-between items-start mb-6">
+<div class="relative">
+<div class="w-20 h-20 rounded-xl overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500">
+<img alt="Elena Rodriguez" data-alt="Warm and approachable female nutritionist in modern bright kitchen environment, soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeCtCUt82APrEEi3B5OL8A3PxAkkMxzZDTz5NfUMxGP37mTa18FDYwLYdhpoqsKFryUZj4Bxs_TleomW8A0pHecaUxDpFqjCzQSNoUMQ4rEaLot328EkBiHrRaztOciMI50EjHwnkBwk1u4dSxV_FE0aJqnC6nLffnGdQzAMEyosmHP919yzm-Bg9Q4-oUPlM7n0BoiuJgvGKJRtwwv8yqrtlP5z1CAGUClROPhrogTLxgHBG3-OvasjLknrhKvZwgkVLTLXcUbPs"/>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-green-500 w-4 h-4 rounded-full border-4 border-white"></div>
+</div>
+<div class="bg-surface-container-low px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-tertiary text-lg" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold font-label">5.0</span>
+</div>
+</div>
+<span class="font-label text-[10px] text-primary font-bold uppercase tracking-wider mb-1">Nutrition Specialist</span>
+<h3 class="font-headline text-xl font-bold mb-2">Elena Rodriguez</h3>
+<p class="text-on-surface-variant text-sm mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="work_history">work_history</span>
+                    8 years experience
+                </p>
+<div class="mt-auto flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 bg-green-50 text-green-700 text-[10px] font-bold rounded-md uppercase tracking-wide">Available Today</span>
+</div>
+<button class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-white rounded-full font-bold text-sm hover:scale-[1.02] transition-transform flex items-center justify-center gap-2">
+                        Book Consultation
+                        <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Doctor Card 4 (Small Bento Item) -->
+<div class="bg-surface-container-low rounded-lg p-6 flex flex-col justify-center items-center text-center lg:col-span-2">
+<span class="material-symbols-outlined text-4xl text-primary mb-4" data-icon="clinical_notes">clinical_notes</span>
+<h4 class="font-headline text-lg font-bold mb-2">Can't find the right specialist?</h4>
+<p class="text-sm text-on-surface-variant max-w-sm mb-6">Our intake team can help match you with a provider tailored to your specific hormonal profile and health goals.</p>
+<button class="px-8 py-3 bg-surface-container-highest text-primary font-bold rounded-full hover:bg-surface-container transition-colors">Speak to an Intake Specialist</button>
+</div>
+<!-- Card 5 -->
+<div class="bg-surface-container-lowest rounded-lg p-6 flex flex-col transition-all hover:shadow-[0px_20px_40px_rgba(24,27,39,0.06)] group md:-mt-8">
+<div class="flex justify-between items-start mb-6">
+<div class="relative">
+<div class="w-20 h-20 rounded-xl overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500">
+<img alt="Dr. Julian Kim" data-alt="Portrait of a professional male endocrinologist in a sleek modern medical office with soft blue accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaOXYhUF1T7Pn2SfVIekevQGYCJ7RwJVL7Q8g6BLBSnYaa0dGqDF3dRtQEGwp03Wz02dRShneDf5i-bm66iDFu5uJsmazWBbOTVEW_tV-ne0M7EBp6ZCeJuk_O1EFLIy3nyBphbvr_GkxhHgIns8eSoTbiTCLpCJ5X1xcxTW8ePaLGCoY3da2YUqit1MUf0SiHtJVWZhVcDP0lSlNC_jRDBEb8Q3w71cVTa55mhOWtOuwXdNEiQ2VItYKxfG9lwMtamJmw9lX_EHE"/>
+</div>
+</div>
+<div class="bg-surface-container-low px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-tertiary text-lg" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold font-label">4.7</span>
+</div>
+</div>
+<span class="font-label text-[10px] text-primary font-bold uppercase tracking-wider mb-1">Fertility Expert</span>
+<h3 class="font-headline text-xl font-bold mb-2">Dr. Julian Kim</h3>
+<p class="text-on-surface-variant text-sm mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="work_history">work_history</span>
+                    10 years experience
+                </p>
+<div class="mt-auto flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 bg-surface-container-high text-on-surface-variant text-[10px] font-bold rounded-md uppercase tracking-wide">Next: Monday</span>
+</div>
+<button class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-white rounded-full font-bold text-sm hover:scale-[1.02] transition-transform flex items-center justify-center gap-2">
+                        Book Consultation
+                        <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- NavigationDrawer (AI Coach Button) -->
+<div class="fixed bottom-24 right-6 z-[60] flex items-center justify-center">
+<button class="bg-gradient-to-br from-[#FF3278] to-[#e21364] text-white rounded-full w-14 h-14 flex items-center justify-center shadow-xl hover:brightness-110 hover:scale-105 active:animate-pulse transition-all">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+</button>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-white/70 backdrop-blur-md rounded-t-[2rem] shadow-[0px_-10px_30px_rgba(24,27,39,0.03)]">
+<div class="flex flex-col items-center justify-center text-slate-400 px-4 py-2 hover:text-[#FF3278] transition-all">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label font-medium text-[10px] uppercase tracking-wider mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 px-4 py-2 hover:text-[#FF3278] transition-all">
+<span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+<span class="font-label font-medium text-[10px] uppercase tracking-wider mt-1">Fitness</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 px-4 py-2 hover:text-[#FF3278] transition-all">
+<span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
+<span class="font-label font-medium text-[10px] uppercase tracking-wider mt-1">Diet</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 px-4 py-2 hover:text-[#FF3278] transition-all">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label font-medium text-[10px] uppercase tracking-wider mt-1">Community</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 px-4 py-2 hover:text-[#FF3278] transition-all">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label font-medium text-[10px] uppercase tracking-wider mt-1">Profile</span>
+</div>
+</nav>
+</body></html>

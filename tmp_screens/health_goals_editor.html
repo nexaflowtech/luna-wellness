@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#ffd9df",
+              "surface": "#faf8ff",
+              "on-primary-fixed": "#3f0016",
+              "on-surface": "#181b27",
+              "surface-bright": "#faf8ff",
+              "on-tertiary-container": "#4b3f00",
+              "surface-container": "#ebedfe",
+              "primary-container": "#e21364",
+              "on-primary-fixed-variant": "#90003c",
+              "surface-tint": "#bc0050",
+              "on-primary": "#ffffff",
+              "error": "#ba1a1a",
+              "inverse-primary": "#ffb1c0",
+              "surface-container-low": "#f3f2ff",
+              "surface-dim": "#d7d9ea",
+              "on-error": "#ffffff",
+              "on-surface-variant": "#5b3f44",
+              "on-primary-container": "#fffbff",
+              "inverse-surface": "#2d303d",
+              "tertiary-fixed-dim": "#e6c500",
+              "tertiary-fixed": "#ffe25f",
+              "primary": "#b7004e",
+              "outline-variant": "#e4bdc3",
+              "on-background": "#181b27",
+              "surface-container-high": "#e6e7f8",
+              "secondary-fixed": "#ffdad6",
+              "on-tertiary-fixed": "#221b00",
+              "error-container": "#ffdad6",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary": "#ffffff",
+              "background": "#faf8ff",
+              "on-secondary-fixed-variant": "#8c1616",
+              "on-tertiary": "#ffffff",
+              "secondary": "#ae302a",
+              "secondary-fixed-dim": "#ffb4ab",
+              "on-secondary-fixed": "#410002",
+              "surface-container-highest": "#e0e1f3",
+              "on-secondary-container": "#690006",
+              "primary-fixed-dim": "#ffb1c0",
+              "outline": "#8f6f74",
+              "inverse-on-surface": "#eff0ff",
+              "surface-variant": "#e0e1f3",
+              "secondary-container": "#fc695d",
+              "on-tertiary-fixed-variant": "#534600",
+              "on-error-container": "#93000a",
+              "tertiary": "#6e5d00",
+              "tertiary-container": "#c7aa00"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body min-h-screen pb-32">
+<header class="fixed top-0 w-full flex justify-between items-center px-6 h-16 bg-[#faf8ff]/70 dark:bg-[#181b27]/70 backdrop-blur-md z-50 shadow-[0px_20px_40px_rgba(24,27,39,0.04)]">
+<div class="flex items-center gap-4">
+<button class="text-on-surface hover:opacity-80 transition-opacity active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold text-lg tracking-tight text-[#b7004e] dark:text-[#ff3278]">Hormonal Goals</h1>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant/15">
+<img alt="Luna User" class="w-full h-full object-cover" data-alt="Close-up portrait of a young woman with a calm expression, soft natural lighting, editorial photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2oDUkjmE5zxCeODlr6nqoax8K8GYUoDouCzKSUUMbnn7V5ASWtWQbcoOkhMFgUo3rRO97T1xzVCLnoM-PLAw3EgP3RsGICIfrI4IpVuk2EPUWQT3ZDR7gnG3lTLHUdaD3N6Q-uW_-48wmz32Avo-BGiv6VLhXAXNyJTEKGMPstkOg2i4prG4HfZZov0ZI46ExWv6psAw_zpoO8uIb_-clr1aCm6_2SqzvRdLAMV0cdov0rdJhMVzkam_9_M5a8GYW6j3DFGyzF4s"/>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-2xl mx-auto">
+<header class="mb-10">
+<h2 class="font-headline text-3xl font-extrabold tracking-tight mb-3 text-on-surface">Refine your focus</h2>
+<p class="text-on-surface-variant leading-relaxed text-lg">Select the primary areas where you want Luna to tailor your daily insights and supplement recommendations.</p>
+</header>
+<div class="grid gap-6">
+<!-- Goal Card: PCOS -->
+<div class="group relative overflow-hidden bg-surface-container-lowest rounded-lg p-6 shadow-[0px_20px_40px_rgba(24,27,39,0.02)] border border-outline-variant/10 transition-all hover:shadow-lg">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl" data-icon="medical_services">medical_services</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-xl">PCOS Management</h3>
+<span class="text-[10px] uppercase tracking-widest font-bold text-tertiary">Recommended for you</span>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">Personalized support for insulin sensitivity, androgen balance, and managing metabolic health through cycle-synced nutrition.</p>
+</div>
+<!-- Goal Card: Thyroid -->
+<div class="group relative overflow-hidden bg-surface-container-lowest rounded-lg p-6 shadow-[0px_20px_40px_rgba(24,27,39,0.02)] border border-outline-variant/10 transition-all hover:shadow-lg">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl" data-icon="vital_signs">vital_signs</span>
+</div>
+<h3 class="font-headline font-bold text-xl">Thyroid Support</h3>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">Focus on optimizing iodine and selenium intake while monitoring temperature patterns to support healthy metabolism and energy levels.</p>
+</div>
+<!-- Goal Card: Weight Loss -->
+<div class="group relative overflow-hidden bg-surface-container-lowest rounded-lg p-6 shadow-[0px_20px_40px_rgba(24,27,39,0.02)] border border-outline-variant/10 transition-all hover:shadow-lg">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl" data-icon="fitness_center">fitness_center</span>
+</div>
+<h3 class="font-headline font-bold text-xl">Weight Loss</h3>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">Strategic movement plans that work with your fluctuating hormones to maximize fat oxidation without causing cortisol spikes.</p>
+</div>
+<!-- Goal Card: Cycle Regularity -->
+<div class="group relative overflow-hidden bg-surface-container-lowest rounded-lg p-6 shadow-[0px_20px_40px_rgba(24,27,39,0.02)] border border-outline-variant/10 transition-all hover:shadow-lg">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl" data-icon="calendar_month">calendar_month</span>
+</div>
+<h3 class="font-headline font-bold text-xl">Cycle Regularity</h3>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">Address spotting, irregular lengths, or missing periods through nutrient-dense protocols designed to support the hypothalamic-pituitary-ovarian axis.</p>
+</div>
+<!-- Goal Card: Skin Health -->
+<div class="group relative overflow-hidden bg-surface-container-lowest rounded-lg p-6 shadow-[0px_20px_40px_rgba(24,27,39,0.02)] border border-outline-variant/10 transition-all hover:shadow-lg">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl" data-icon="spa">spa</span>
+</div>
+<h3 class="font-headline font-bold text-xl">Skin Health</h3>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">Target hormonal acne and skin elasticity by synchronizing your skincare active ingredients with your estrogen and progesterone peaks.</p>
+</div>
+</div>
+<div class="mt-12 p-8 bg-surface-container-low rounded-lg relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-headline font-bold text-lg mb-2">Scientific Integrity</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Luna's protocols are developed by leading endocrinologists. These selections modify your baseline physiological model, ensuring every recommendation is rooted in your specific hormonal landscape.</p>
+</div>
+<div class="absolute -right-10 -bottom-10 opacity-5">
+<span class="material-symbols-outlined text-[160px]" data-icon="biotech">biotech</span>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-xl px-6 pb-10 pt-4 flex flex-col gap-4">
+<button class="w-full h-14 rounded-full bg-gradient-to-r from-primary to-primary-container text-white font-headline font-bold text-lg flex items-center justify-center gap-2 shadow-xl shadow-primary/20 active:scale-[0.98] transition-all">
+            Save Changes
+            <span class="material-symbols-outlined" data-icon="done_all">done_all</span>
+</button>
+<button class="w-full py-2 text-on-surface-variant font-medium text-sm text-center hover:text-on-surface transition-colors">
+            Reset to default profile
+        </button>
+</div>
+<!-- Background Decoration -->
+<div class="fixed top-0 right-0 -z-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
+<div class="fixed bottom-0 left-0 -z-10 w-80 h-80 bg-secondary/5 rounded-full blur-3xl pointer-events-none -translate-x-1/2 translate-y-1/2"></div>
+</body></html>

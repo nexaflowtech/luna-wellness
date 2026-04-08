@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#ffd9df",
+              "surface": "#faf8ff",
+              "on-primary-fixed": "#3f0016",
+              "on-surface": "#181b27",
+              "surface-bright": "#faf8ff",
+              "on-tertiary-container": "#4b3f00",
+              "surface-container": "#ebedfe",
+              "primary-container": "#e21364",
+              "on-primary-fixed-variant": "#90003c",
+              "surface-tint": "#bc0050",
+              "on-primary": "#ffffff",
+              "error": "#ba1a1a",
+              "inverse-primary": "#ffb1c0",
+              "surface-container-low": "#f3f2ff",
+              "surface-dim": "#d7d9ea",
+              "on-error": "#ffffff",
+              "on-surface-variant": "#5b3f44",
+              "on-primary-container": "#fffbff",
+              "inverse-surface": "#2d303d",
+              "tertiary-fixed-dim": "#e6c500",
+              "tertiary-fixed": "#ffe25f",
+              "primary": "#b7004e",
+              "outline-variant": "#e4bdc3",
+              "on-background": "#181b27",
+              "surface-container-high": "#e6e7f8",
+              "secondary-fixed": "#ffdad6",
+              "on-tertiary-fixed": "#221b00",
+              "error-container": "#ffdad6",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary": "#ffffff",
+              "background": "#faf8ff",
+              "on-secondary-fixed-variant": "#8c1616",
+              "on-tertiary": "#ffffff",
+              "secondary": "#ae302a",
+              "secondary-fixed-dim": "#ffb4ab",
+              "on-secondary-fixed": "#410002",
+              "surface-container-highest": "#e0e1f3",
+              "on-secondary-container": "#690006",
+              "primary-fixed-dim": "#ffb1c0",
+              "outline": "#8f6f74",
+              "inverse-on-surface": "#eff0ff",
+              "surface-variant": "#e0e1f3",
+              "secondary-container": "#fc695d",
+              "on-tertiary-fixed-variant": "#534600",
+              "on-error-container": "#93000a",
+              "tertiary": "#6e5d00",
+              "tertiary-container": "#c7aa00"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-glass {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .premium-gradient {
+            background: linear-gradient(135deg, #b7004e 0%, #e21364 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full flex justify-between items-center px-6 h-16 bg-[#faf8ff]/70 backdrop-blur-md z-50 shadow-[0px_20px_40px_rgba(24,27,39,0.04)]">
+<button class="text-[#181b27] hover:opacity-80 transition-opacity active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold text-lg tracking-tight text-[#b7004e] italic text-2xl font-black">Luna</h1>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img alt="Anjali R." class="w-full h-full object-cover" data-alt="close-up portrait of a serene young woman with warm skin tones and dark hair, soft natural lighting in a wellness studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuKmLXm6q52ryj9qKNah9YeJolGGsfg7MbpMhnzbjeeAYRsZpRPdQAXid_yrF_34IX8akplBuOexLvcLPZnuV8by_WpRNctfGSu_ZY9D8QuNM0m0rnAvZ739rt8UCZUp4mtd8nioLyLU_mqfKtu0LthhmCAL4nlKfY91rVzWINZm_4EfKRycgkya6YdkFwoniiIQb796N75CWfTqDcT_7gTrjkSarQtd2w4FjKKPcT5e3P33K7_QYjlHUbu78_bCfHS_h4DVkd3h4"/>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-2xl mx-auto">
+<!-- Profile Hero Section -->
+<section class="mb-12 flex flex-col items-center text-center">
+<div class="relative mb-6">
+<div class="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-primary to-secondary-container">
+<div class="w-full h-full rounded-full overflow-hidden border-4 border-surface">
+<img alt="Anjali R." class="w-full h-full object-cover" data-alt="professional portrait of a young woman smiling gently, soft lighting, minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvKD0wWB9q4jZYce_vXPqW-vlBRitbEMMbrOsPpSt6wU6seayX7pwHsgghyIZJ9SwmR75JgIftjOWRxrINBvkwB9xF3w9qqmF6UW_eAMg7sHAIy9IAyvx2vyRsX0EYxJTKelb1015rzKmAVbX6EhRTTCbbICh0SwHC0BxJ6sa6CBUHzY6FP1IWZg8X_hvWdzC14H0eYasIW-wgKpItcB3duKUa69WoNO9h3r-loUDoM_DfAeXb23IvHWI3WJRvT_9dOQxJugASzW4"/>
+</div>
+</div>
+<div class="absolute bottom-1 right-1 bg-primary text-white p-2 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-sm" data-icon="edit" style="font-variation-settings: 'FILL' 1;">edit</span>
+</div>
+</div>
+<h2 class="font-headline text-3xl font-extrabold tracking-tight mb-1 text-on-surface">Anjali R.</h2>
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container-low border border-primary/10">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-xs font-bold tracking-widest uppercase text-primary">Premium Member</span>
+</div>
+</section>
+<!-- Stats Bento Grid -->
+<section class="grid grid-cols-2 gap-4 mb-12">
+<div class="bg-surface-container-lowest p-6 rounded-lg flex flex-col justify-between h-32 shadow-sm">
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Current Phase</span>
+<div class="flex items-end justify-between">
+<span class="font-headline text-2xl font-bold text-primary">Follicular</span>
+<span class="material-symbols-outlined text-primary-container opacity-40 text-3xl" data-icon="wb_sunny">wb_sunny</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg flex flex-col justify-between h-32 shadow-sm">
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Luna Score</span>
+<div class="flex items-end justify-between">
+<span class="font-headline text-2xl font-bold text-tertiary">92</span>
+<span class="material-symbols-outlined text-tertiary-container opacity-40 text-3xl" data-icon="auto_awesome">auto_awesome</span>
+</div>
+</div>
+</section>
+<!-- Menu List -->
+<section class="space-y-3">
+<a class="group flex items-center justify-between p-5 bg-surface-container-low rounded-lg transition-all hover:bg-surface-container-high active:scale-[0.98]" href="#">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined" data-icon="fingerprint">fingerprint</span>
+</div>
+<span class="font-semibold text-on-surface">Health Profile</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</a>
+<a class="group flex items-center justify-between p-5 bg-surface-container-low rounded-lg transition-all hover:bg-surface-container-high active:scale-[0.98]" href="#">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined" data-icon="target">target</span>
+</div>
+<span class="font-semibold text-on-surface">Health Goals</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</a>
+<a class="group flex items-center justify-between p-5 bg-surface-container-low rounded-lg transition-all hover:bg-surface-container-high active:scale-[0.98]" href="#">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined" data-icon="watch_glance">watch</span>
+</div>
+<span class="font-semibold text-on-surface">Connected Wearables</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</a>
+<a class="group flex items-center justify-between p-5 bg-surface-container-low rounded-lg transition-all hover:bg-surface-container-high active:scale-[0.98]" href="#">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+</div>
+<span class="font-semibold text-on-surface">Notification Preferences</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</a>
+<a class="group flex items-center justify-between p-5 bg-surface-container-low rounded-lg transition-all hover:bg-surface-container-high active:scale-[0.98]" href="#">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+</div>
+<span class="font-semibold text-on-surface">Privacy Settings</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</a>
+<a class="group flex items-center justify-between p-5 bg-surface-container-low rounded-lg transition-all hover:bg-surface-container-high active:scale-[0.98]" href="#">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</div>
+<span class="font-semibold text-on-surface">Help &amp; Support</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</a>
+<div class="pt-8">
+<button class="w-full flex items-center justify-center gap-3 p-5 text-error font-bold rounded-lg border border-error/10 hover:bg-error/5 transition-colors">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    Log Out
+                </button>
+</div>
+</section>
+</main>
+<!-- Floating AI Coach Button -->
+<button class="fixed bottom-28 right-6 w-14 h-14 premium-gradient text-white rounded-full shadow-[0px_20px_40px_rgba(183,0,78,0.3)] z-40 flex items-center justify-center active:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined" data-icon="smart_toy" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-[#faf8ff]/70 backdrop-blur-md rounded-t-[2rem] shadow-[0px_-10px_30px_rgba(24,27,39,0.03)]">
+<a class="flex flex-col items-center justify-center text-[#181b27]/60 px-4 py-1.5 hover:text-[#b7004e] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#181b27]/60 px-4 py-1.5 hover:text-[#b7004e] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Cycle</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#181b27]/60 px-4 py-1.5 hover:text-[#b7004e] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Coach</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#181b27]/60 px-4 py-1.5 hover:text-[#b7004e] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#f3f2ff] text-[#b7004e] rounded-full px-4 py-1.5 transition-all scale-110" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Find Your Specialist | Luna Wellness</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#c7aa00",
+              "inverse-primary": "#ffb1c0",
+              "on-primary-fixed": "#3f0016",
+              "surface": "#faf8ff",
+              "on-secondary-fixed": "#410002",
+              "surface-bright": "#faf8ff",
+              "on-primary-container": "#fffbff",
+              "error-container": "#ffdad6",
+              "tertiary-fixed-dim": "#e6c500",
+              "error": "#ba1a1a",
+              "on-primary": "#ffffff",
+              "tertiary": "#6e5d00",
+              "outline-variant": "#e4bdc3",
+              "outline": "#8f6f74",
+              "secondary-fixed": "#ffdad6",
+              "primary-container": "#e21364",
+              "on-secondary-fixed-variant": "#8c1616",
+              "surface-variant": "#e0e1f3",
+              "primary-fixed-dim": "#ffb1c0",
+              "on-primary-fixed-variant": "#90003c",
+              "on-tertiary-container": "#4b3f00",
+              "on-error": "#ffffff",
+              "tertiary-fixed": "#ffe25f",
+              "surface-dim": "#d7d9ea",
+              "surface-container-high": "#e6e7f8",
+              "on-tertiary": "#ffffff",
+              "on-secondary": "#ffffff",
+              "on-surface": "#181b27",
+              "surface-container": "#ebedfe",
+              "on-tertiary-fixed-variant": "#534600",
+              "primary-fixed": "#ffd9df",
+              "secondary-container": "#fc695d",
+              "inverse-on-surface": "#eff0ff",
+              "surface-container-lowest": "#ffffff",
+              "on-surface-variant": "#5b3f44",
+              "secondary": "#ae302a",
+              "on-tertiary-fixed": "#221b00",
+              "primary": "#b7004e",
+              "on-error-container": "#93000a",
+              "surface-tint": "#bc0050",
+              "on-background": "#181b27",
+              "on-secondary-container": "#690006",
+              "background": "#faf8ff",
+              "secondary-fixed-dim": "#ffb4ab",
+              "inverse-surface": "#2d303d",
+              "surface-container-low": "#f3f2ff",
+              "surface-container-highest": "#e0e1f3"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf8ff;
+            color: #181b27;
+        }
+        h1, h2, h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#faf8ff]/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(24,27,39,0.04)]">
+<div class="flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<img alt="User Profile Portrait" class="w-full h-full object-cover" data-alt="Portrait of a smiling young woman with warm lighting and a soft focus indoor background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkbCuo3rFMUqKiOwdkis73h0GwyxAxNghzF4ETErIA87UEgpqIR56e7yf4Yu9q3cFeqccsgB9Y0HzKA1aj4AVyNzK78gErHKnWtsXkNyp-5nHVTNh-KBD8hEzFX0VSKBLoP-FujrDKpjs0Mw53kJORhAfl4opWcKe8P49FnJtVaLU2tJfkHvaTf53bYI4Z0i7PZ6lh41t1ZGZECXowcWhpycmrEtNI8hAaLNn0hfZZ_7XYuicJwleGbt95QPsESzfU315mGQpVgCw"/>
+</div>
+<span class="text-xl font-extrabold text-[#b7004e] tracking-tight">Luna Wellness</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center text-[#181b27] hover:opacity-80 transition-opacity active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-5xl mx-auto">
+<!-- Hero Section -->
+<section class="mb-10">
+<h1 class="text-4xl font-extrabold text-on-surface tracking-tight mb-2">Find Your Specialist</h1>
+<p class="text-on-surface-variant text-lg">Curated experts dedicated to your hormonal health and wellness journey.</p>
+</section>
+<!-- Search and Filters -->
+<div class="mb-8 flex flex-col gap-6">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-12 pr-6 py-4 bg-surface-container-high rounded-full border-none focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all placeholder:text-outline" placeholder="Search by name or expertise..." type="text"/>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-3 overflow-x-auto hide-scrollbar pb-2">
+<button class="px-6 py-2 rounded-full bg-primary text-white font-semibold text-sm whitespace-nowrap">All</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-surface-container-high font-semibold text-sm whitespace-nowrap transition-colors">Gynecologists</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-surface-container-high font-semibold text-sm whitespace-nowrap transition-colors">Nutritionists</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-surface-container-high font-semibold text-sm whitespace-nowrap transition-colors">Fitness Coaches</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-surface-container-high font-semibold text-sm whitespace-nowrap transition-colors">Mental Health</button>
+</div>
+</div>
+<!-- Coach Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Coach Card 1 -->
+<div class="bg-surface-container-lowest rounded-lg p-6 flex flex-col items-center text-center group hover:shadow-[0px_20px_40px_rgba(24,27,39,0.06)] transition-all duration-300">
+<div class="relative mb-4">
+<div class="w-32 h-32 rounded-full p-1 bg-gradient-to-br from-primary to-secondary-container">
+<img alt="Dr. Ananya Sharma" class="w-full h-full object-cover rounded-full" data-alt="Professional female doctor in a white coat smiling confidently in a bright medical office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClL16qZeQvHBK4yfCtGadplVtH3GNF7aKQeRdqsEEPR7pFMoVexdfcLPYLpZtYaEwbOIfMNN8Q1m_kRd5zqu2mWWl2zpCBRJQZvsZiqRKL40lDxSQ5pKnQAo-bUdijIpl9Cg45ZPSaj_OgogLlZoorV0MohHIVBCiD3hk69aBT7PMkABYiJx2hefTsSpglnFL0n2q7s8cTR15fnT4hy08hfLpo3V52E9-i2PggaXQriJBQ5CNGlY8lk2vwCu6gtqRsVNIPoJq0N-Q"/>
+</div>
+<div class="absolute bottom-1 right-1 w-8 h-8 bg-tertiary-fixed flex items-center justify-center rounded-full border-4 border-surface-container-lowest shadow-sm">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-sm" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1">Dr. Ananya Sharma</h3>
+<p class="text-primary font-semibold text-sm mb-4">PCOS Specialist</p>
+<div class="flex items-center gap-4 mb-6 w-full justify-center">
+<div class="text-center">
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Experience</p>
+<p class="text-on-surface font-bold">10+ Years</p>
+</div>
+<div class="h-8 w-[1px] bg-surface-variant"></div>
+<div class="text-center">
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Rating</p>
+<div class="flex items-center text-on-surface font-bold">
+                            4.9 <span class="material-symbols-outlined text-tertiary text-xs ml-0.5" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<button class="w-full py-3 bg-gradient-to-br from-primary to-primary-container text-white font-bold rounded-full transition-all active:scale-95">Match Now</button>
+</div>
+<!-- Coach Card 2 -->
+<div class="bg-surface-container-lowest rounded-lg p-6 flex flex-col items-center text-center group hover:shadow-[0px_20px_40px_rgba(24,27,39,0.06)] transition-all duration-300">
+<div class="relative mb-4">
+<div class="w-32 h-32 rounded-full p-1 bg-surface-container">
+<img alt="Elena Rodriguez" class="w-full h-full object-cover rounded-full" data-alt="Professional woman nutritionist smiling warmly, wearing business casual attire in a modern studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3oWOCvvxiMuaHCngouOWsZZJowT6YuJo4CEtqB1oyQ8t1hgK4YFX3Qni0ca-AuAn_TMoqFuqKl5kRrtwrgONGnawEQROEcELYlmmt0vmzDhlQhqpi4jSLnosu0kUvcLo2UdqmFWTKUR_Jj-EjXr07pGGwbHVJ7l1oS462KpLFB5H4mG6UtxpaIzJm04EkCecsBJ3ZAmiW6H0HpTU28QxTicBVBNVNePwovtYFGy7YAV7J0pT94mjUm4E7s3xtUzwGHRPShatpGSQ"/>
+</div>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1">Elena Rodriguez</h3>
+<p class="text-primary font-semibold text-sm mb-4">Functional Nutritionist</p>
+<div class="flex items-center gap-4 mb-6 w-full justify-center">
+<div class="text-center">
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Experience</p>
+<p class="text-on-surface font-bold">8 Years</p>
+</div>
+<div class="h-8 w-[1px] bg-surface-variant"></div>
+<div class="text-center">
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Patients</p>
+<p class="text-on-surface font-bold">1.2k+</p>
+</div>
+</div>
+<button class="w-full py-3 bg-surface-container-highest text-primary font-bold rounded-full transition-all active:scale-95">View Profile</button>
+</div>
+<!-- Coach Card 3 -->
+<div class="bg-surface-container-lowest rounded-lg p-6 flex flex-col items-center text-center group hover:shadow-[0px_20px_40px_rgba(24,27,39,0.06)] transition-all duration-300">
+<div class="relative mb-4">
+<div class="w-32 h-32 rounded-full p-1 bg-surface-container">
+<img alt="Marcus Chen" class="w-full h-full object-cover rounded-full" data-alt="Fitness coach in athletic wear posing in a bright gym setting with a supportive and energetic expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiWdbVNY6urYpIlm7C4BquituDt0S-Lx4aSVVBe3CsHtquFlMF89ozkk918X4PzoC8n5Vq1ICoTStV3KL7FnwYH0KAlUxzi2BkuQ0S4DT4vSXxa7WuDejgxiB3ZcZa9YgM0LCuqSakjFlWSwH8ds8VXNptkaEk8PkSf5BW7J0MEDQAvrE7IDOh6_rfbdNyLo-ffuI64kSrNUXXuB2Wk0PI-cvz9lWmNAn7jRXcp-o8VPSrCwj2Z1rt5K05d6jZ8gxLQL4TnD5Li-8"/>
+</div>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1">Marcus Chen</h3>
+<p class="text-primary font-semibold text-sm mb-4">Hormonal Fitness Coach</p>
+<div class="flex items-center gap-4 mb-6 w-full justify-center">
+<div class="text-center">
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Experience</p>
+<p class="text-on-surface font-bold">12 Years</p>
+</div>
+<div class="h-8 w-[1px] bg-surface-variant"></div>
+<div class="text-center">
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Style</p>
+<p class="text-on-surface font-bold">Adaptive</p>
+</div>
+</div>
+<button class="w-full py-3 bg-surface-container-highest text-primary font-bold rounded-full transition-all active:scale-95">View Profile</button>
+</div>
+<!-- Coach Card 4 -->
+<div class="bg-surface-container-lowest rounded-lg p-6 flex flex-col items-center text-center group hover:shadow-[0px_20px_40px_rgba(24,27,39,0.06)] transition-all duration-300">
+<div class="relative mb-4">
+<div class="w-32 h-32 rounded-full p-1 bg-surface-container">
+<img alt="Sarah Jenkins" class="w-full h-full object-cover rounded-full" data-alt="Calm and professional therapist sitting in a cozy consultation room with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAC-Q2auiizDPJ5dX-0BHMRzcDIUFHepKTQRNJGl35WwkUsVr7U-9wfU6GgiPIqivUnB-DWMweW150xvTvQl_rnTRGa_J7Pn44KF9uraBk3nMklS0VVHghcWeZnf0phWBU050w4C0nxdSltvwNThDvMNk6t0UkG0MxQuzCb-BTh6si2zwVowj6XcTL6yGNyfQXCSfdv_tmCDNNm25xTXnW3T8lsDnBoKdxNAOWGQty0Axf5frWHnmE9wEpfTr9_0L1HP4NzagZU6i4"/>
+</div>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1">Sarah Jenkins</h3>
+<p class="text-primary font-semibold text-sm mb-4">Endocrinology Specialist</p>
+<div class="flex items-center gap-4 mb-6 w-full justify-center">
+<div class="text-center">
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Experience</p>
+<p class="text-on-surface font-bold">15+ Years</p>
+</div>
+<div class="h-8 w-[1px] bg-surface-variant"></div>
+<div class="text-center">
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Board Cert</p>
+<p class="text-on-surface font-bold">ABIM</p>
+</div>
+</div>
+<button class="w-full py-3 bg-surface-container-highest text-primary font-bold rounded-full transition-all active:scale-95">View Profile</button>
+</div>
+<!-- Featured Insight Bento -->
+<div class="lg:col-span-2 bg-gradient-to-br from-[#b7004e] to-[#e21364] rounded-lg p-8 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+<div class="relative z-10 flex-1">
+<h3 class="text-2xl font-bold text-white mb-3">Can't decide on a specialist?</h3>
+<p class="text-white/80 mb-6">Take our 2-minute "Luna Match" assessment and let our AI find the perfect professional for your cycle and health goals.</p>
+<button class="px-8 py-3 bg-white text-primary font-extrabold rounded-full shadow-lg hover:scale-105 transition-transform">Start Assessment</button>
+</div>
+<div class="relative z-10 w-48 h-48 hidden md:block">
+<div class="absolute inset-0 bg-white/20 rounded-full animate-pulse"></div>
+<div class="absolute inset-4 bg-white/30 rounded-full"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-6xl" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+</div>
+<!-- Abstract deco -->
+<div class="absolute -right-20 -bottom-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+<div class="absolute -left-20 -top-20 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+</div>
+</div>
+</main>
+<!-- Floating AI Button -->
+<button class="fixed right-6 bottom-28 w-14 h-14 bg-gradient-to-br from-primary to-primary-container text-white rounded-full shadow-[0px_20px_40px_rgba(183,0,78,0.3)] z-40 flex items-center justify-center hover:scale-110 active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="smart_toy" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-[#faf8ff]/70 backdrop-blur-xl z-50 rounded-t-[2rem] shadow-[0px_-10px_30px_rgba(24,27,39,0.03)]">
+<div class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] px-4 py-2 opacity-60 hover:opacity-100 transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] px-4 py-2 opacity-60 hover:opacity-100 transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider">Messages</span>
+</div>
+<!-- Active Tab: Coaches -->
+<div class="flex flex-col items-center justify-center bg-gradient-to-br from-[#b7004e] to-[#e21364] text-white rounded-full px-5 py-2 scale-110 active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-0.5" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider">Coaches</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] px-4 py-2 opacity-60 hover:opacity-100 transition-all active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider">Profile</span>
+</div>
+</nav>
+</body></html>

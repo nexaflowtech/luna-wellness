@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Luna Wellness - Goal Selection</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<!-- Fonts: Plus Jakarta Sans & Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#FF3278",
+              "surface": "#FCFBFF",
+              "on-surface": "#1A1416",
+              "on-surface-variant": "#534346",
+              "surface-container": "#F5F3F7",
+              "surface-container-low": "#F1EEF3",
+              "surface-container-lowest": "#FFFFFF",
+              "outline-variant": "#E9DFE1",
+              "accent-subtle": "rgba(255, 50, 120, 0.05)",
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans", "sans-serif"],
+              "body": ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              "DEFAULT": "1.25rem",
+              "lg": "1.5rem",
+              "xl": "2.25rem",
+              "full": "9999px"
+            },
+            boxShadow: {
+              'premium': '0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 8px -1px rgba(0, 0, 0, 0.03)',
+              'selected': '0 10px 25px -5px rgba(255, 50, 120, 0.15)',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        -webkit-tap-highlight-color: transparent;
+      }
+      h1, h2, h3 {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+      .safe-bottom {
+        padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .goal-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .goal-card:active {
+        transform: scale(0.98);
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col selection:bg-primary/10">
+<!-- Top Navigation -->
+<header class="bg-surface/80 backdrop-blur-xl sticky top-0 z-50 flex justify-between items-center px-6 py-4 w-full">
+<button class="w-10 h-10 -ml-2 rounded-full flex items-center justify-center text-on-surface/70 active:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[28px]">arrow_back</span>
+</button>
+<div class="text-primary font-headline font-extrabold text-xl tracking-tight">Luna</div>
+<div class="w-10"></div>
+</header>
+<main class="flex-grow flex flex-col items-center px-6 pt-6 pb-52 max-w-2xl mx-auto w-full">
+<!-- Header Section -->
+<div class="text-center mb-10">
+<h1 class="text-[32px] leading-[1.15] font-extrabold text-on-surface tracking-tight mb-4">What brings you to Luna?</h1>
+<p class="text-on-surface-variant text-[15px] font-medium max-w-[280px] mx-auto leading-relaxed opacity-80">Select your primary health focus so we can tailor your wellness journey.</p>
+</div>
+<!-- Gender Segmented Control (Pill Style) -->
+<div class="w-full mb-12 bg-surface-container-low p-1.5 rounded-full flex gap-1.5">
+<button class="gender-tab flex-1 py-3.5 text-[15px] font-bold rounded-full transition-all duration-300 bg-primary text-white shadow-md shadow-primary/20" id="btn-female" onclick="switchGender('female')">Female</button>
+<button class="gender-tab flex-1 py-3.5 text-[15px] font-bold rounded-full transition-all duration-300 text-on-surface-variant hover:bg-surface-container-lowest" id="btn-male" onclick="switchGender('male')">Male</button>
+<button class="gender-tab flex-1 py-3.5 text-[15px] font-bold rounded-full transition-all duration-300 text-on-surface-variant hover:bg-surface-container-lowest" id="btn-other" onclick="switchGender('other')">Other</button>
+</div>
+<!-- Recommended Section Label -->
+<div class="w-full mb-6" id="recommended-header">
+<h2 class="text-[11px] font-extrabold uppercase tracking-[0.15em] text-primary/70 px-1">Recommended for you</h2>
+</div>
+<!-- Dynamic Goals Container -->
+<div class="grid grid-cols-1 gap-4 w-full" id="goals-container">
+<!-- Goals injected by JS -->
+</div>
+<p class="text-center mt-12 text-[13px] text-on-surface-variant/50 font-medium">You can change these later in your profile settings</p>
+</main>
+<!-- Sticky Bottom Navigation -->
+<div class="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-surface via-surface to-transparent pt-16 z-40 safe-bottom">
+<div class="max-w-2xl mx-auto flex flex-col items-center">
+<p class="text-[13px] font-bold text-primary mb-5 transition-all duration-300 transform translate-y-2 opacity-0" id="selection-counter">0 goals selected</p>
+<button class="w-full bg-primary text-white font-extrabold py-5 rounded-full text-[17px] shadow-xl shadow-primary/25 hover:brightness-105 active:scale-[0.97] transition-all duration-200 tracking-wider uppercase">
+            Continue
+        </button>
+<button class="mt-5 text-on-surface-variant/60 text-[14px] font-bold hover:text-primary transition-colors active:opacity-50">
+            Skip for now
+        </button>
+</div>
+</div>
+<script>
+    const goalsData = {
+        female: [
+            { id: 'pcos', title: 'PCOS', desc: 'Manage symptoms & restore balance', icon: 'ovary', recommended: true },
+            { id: 'cycle', title: 'Cycle Regulation', desc: 'Sync with your natural rhythm', icon: 'calendar_today', recommended: true },
+            { id: 'weight', title: 'Weight Loss', desc: 'Sustainable health-focused goals', icon: 'straighten' },
+            { id: 'thyroid', title: 'Thyroid', desc: 'Optimize energy and metabolism', icon: 'vital_signs' },
+            { id: 'post', title: 'Post-pregnancy recovery', desc: 'Gentle healing for new mothers', icon: 'child_care' },
+            { id: 'hormone', title: 'Hormone balance', desc: 'Regulate endocrine health', icon: 'monitoring' },
+            { id: 'fertility', title: 'Fertility support', icon: 'eco' }
+        ],
+        male: [
+            { id: 'weight', title: 'Weight loss', desc: 'Sustainable health-focused goals', icon: 'straighten', recommended: true },
+            { id: 'muscle', title: 'Muscle gain', desc: 'Strength and hypertrophy training', icon: 'fitness_center', recommended: true },
+            { id: 'energy', title: 'Energy optimization', desc: 'Combat fatigue and boost vitality', icon: 'bolt' },
+            { id: 'thyroid', title: 'Thyroid', desc: 'Metabolic health and focus', icon: 'vital_signs' },
+            { id: 'testo', title: 'Testosterone balance', desc: 'Natural hormone optimization', icon: 'male' },
+            { id: 'stress', title: 'Stress management', desc: 'Cortisol control and resilience', icon: 'psychology' },
+            { id: 'sleep', title: 'Sleep improvement', icon: 'bedtime' }
+        ],
+        other: [
+            { id: 'weight', title: 'Weight Loss', desc: 'Personalized weight management', icon: 'straighten', recommended: true },
+            { id: 'fitness', title: 'Fitness improvement', desc: 'General strength and endurance', icon: 'sprint', recommended: true },
+            { id: 'energy', title: 'Energy boost', desc: 'Daily vitality and mental clarity', icon: 'battery_very_low' },
+            { id: 'stress', title: 'Stress management', desc: 'Mental well-being and balance', icon: 'self_improvement' },
+            { id: 'sleep', title: 'Sleep optimization', desc: 'Better quality rest routines', icon: 'dark_mode' },
+            { id: 'lifestyle', title: 'Lifestyle correction', icon: 'auto_awesome' }
+        ]
+    };
+
+    // Semantic Icon Mapping overrides
+    const iconMap = {
+        'pcos': 'vital_signs', // hormone balance
+        'cycle': 'calendar_month', // cycle calendar
+        'weight': 'straighten', // body measurement
+        'thyroid': 'pulmonology', // endocrine/gland approx
+        'post': 'child_care', // mother & baby
+        'hormone': 'monitoring', // hormone chart
+        'fertility': 'eco' // fertility leaf
+    };
+
+    let selectedGoals = new Set();
+    let currentGender = 'female';
+
+    function switchGender(gender) {
+        if (currentGender === gender) return;
+        currentGender = gender;
+        selectedGoals.clear();
+        
+        // Update tabs UI
+        document.querySelectorAll('.gender-tab').forEach(btn => {
+            btn.classList.remove('bg-primary', 'text-white', 'shadow-md', 'shadow-primary/20');
+            btn.classList.add('text-on-surface-variant', 'hover:bg-surface-container-lowest');
+        });
+        const activeBtn = document.getElementById(`btn-${gender}`);
+        activeBtn.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-lowest');
+        activeBtn.classList.add('bg-primary', 'text-white', 'shadow-md', 'shadow-primary/20');
+
+        renderGoals();
+        updateCounter();
+    }
+
+    function toggleGoal(id) {
+        if (selectedGoals.has(id)) {
+            selectedGoals.delete(id);
+        } else {
+            selectedGoals.add(id);
+        }
+        renderGoals();
+        updateCounter();
+    }
+
+    function updateCounter() {
+        const count = selectedGoals.size;
+        const counter = document.getElementById('selection-counter');
+        counter.innerText = `${count} goal${count !== 1 ? 's' : ''} selected`;
+        
+        if (count > 0) {
+            counter.classList.remove('translate-y-2', 'opacity-0');
+        } else {
+            counter.classList.add('translate-y-2', 'opacity-0');
+        }
+    }
+
+    function renderGoals() {
+        const container = document.getElementById('goals-container');
+        const data = goalsData[currentGender];
+        
+        const sortedData = [
+            ...data.filter(g => g.recommended),
+            ...data.filter(g => !g.recommended)
+        ];
+
+        container.innerHTML = sortedData.map((goal, index) => {
+            const isSelected = selectedGoals.has(goal.id);
+            const isRecommended = goal.recommended;
+            const iconName = iconMap[goal.id] || goal.icon;
+            
+            let divider = '';
+            if (index > 0 && !isRecommended && sortedData[index-1].recommended) {
+                divider = `<div class="w-full mt-8 mb-4 border-t border-outline-variant/30 pt-8"><h2 class="text-[11px] font-extrabold uppercase tracking-[0.15em] text-on-surface-variant/40 px-1">Other Focus Areas</h2></div>`;
+            }
+
+            const cardClasses = isSelected 
+                ? 'bg-primary/[0.04] border-primary shadow-selected' 
+                : (isRecommended ? 'bg-accent-subtle border-transparent' : 'bg-surface-container-lowest border-transparent');
+
+            return `
+                ${divider}
+                <div onclick="toggleGoal('${goal.id}')" 
+                     class="goal-card group relative border-2 transition-all duration-300 rounded-xl p-5 flex items-center justify-between cursor-pointer shadow-premium ${cardClasses}">
+                    <div class="flex items-center gap-4">
+                        <div class="${isSelected ? 'bg-primary text-white scale-110' : 'bg-primary/10 text-primary'} w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300">
+                            <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' ${isSelected ? 1 : 0}">
+                                ${iconName}
+                            </span>
+                        </div>
+                        <div class="pr-4">
+                            <h3 class="text-[16px] font-bold font-headline leading-tight text-on-surface">${goal.title}</h3>
+                            ${goal.desc ? `<p class="text-[13px] text-on-surface-variant font-medium leading-snug mt-1 opacity-70">${goal.desc}</p>` : ''}
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${isSelected ? 'border-primary bg-primary' : 'border-outline-variant'}">
+                            <span class="material-symbols-outlined text-[16px] text-white ${isSelected ? 'opacity-100 scale-100' : 'opacity-0 scale-50'} transition-all duration-300 font-bold">check</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // Initial render
+    renderGoals();
+    updateCounter();
+</script>
+</body></html>

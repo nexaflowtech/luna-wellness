@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fitness Dashboard - Luna Wellness</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed": "#ffe25f",
+              "surface-container-highest": "#e0e1f3",
+              "error": "#ba1a1a",
+              "tertiary": "#6e5d00",
+              "on-surface-variant": "#5b3f44",
+              "on-secondary-fixed": "#410002",
+              "background": "#faf8ff",
+              "surface-variant": "#e0e1f3",
+              "on-error": "#ffffff",
+              "on-secondary": "#ffffff",
+              "on-tertiary-fixed": "#221b00",
+              "on-secondary-fixed-variant": "#8c1616",
+              "on-secondary-container": "#690006",
+              "on-primary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed-dim": "#ffb1c0",
+              "on-tertiary": "#ffffff",
+              "secondary-fixed": "#ffdad6",
+              "primary-fixed": "#ffd9df",
+              "surface-bright": "#faf8ff",
+              "on-background": "#181b27",
+              "tertiary-container": "#c7aa00",
+              "secondary-container": "#fc695d",
+              "on-primary-fixed-variant": "#90003c",
+              "surface-dim": "#d7d9ea",
+              "on-surface": "#181b27",
+              "primary": "#b7004e",
+              "outline-variant": "#e4bdc3",
+              "inverse-primary": "#ffb1c0",
+              "surface-container-low": "#f3f2ff",
+              "outline": "#8f6f74",
+              "secondary-fixed-dim": "#ffb4ab",
+              "surface-tint": "#bc0050",
+              "tertiary-fixed-dim": "#e6c500",
+              "surface": "#faf8ff",
+              "on-primary-container": "#fffbff",
+              "inverse-on-surface": "#eff0ff",
+              "secondary": "#ae302a",
+              "on-primary-fixed": "#3f0016",
+              "on-tertiary-fixed-variant": "#534600",
+              "surface-container": "#ebedfe",
+              "on-error-container": "#93000a",
+              "surface-container-high": "#e6e7f8",
+              "error-container": "#ffdad6",
+              "on-tertiary-container": "#4b3f00",
+              "primary-container": "#e21364",
+              "inverse-surface": "#2d303d"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar { display: none; }
+        .glass-card {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-fixed-dim">
+<!-- Top Navigation -->
+<header class="bg-[#faf8ff]/70 backdrop-blur-xl docked full-width top-0 sticky z-50 transition-colors shadow-[0_20px_40px_rgba(24,27,39,0.04)]">
+<div class="flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#b7004e] hover:opacity-80 transition-opacity cursor-pointer">arrow_back</span>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold text-lg tracking-tight text-[#b7004e]">Luna Wellness</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#b7004e] hover:opacity-80 transition-opacity cursor-pointer">account_circle</span>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 pt-8 pb-32">
+<!-- Hero Section: Featured Workout -->
+<section class="mb-12">
+<div class="relative overflow-hidden rounded-lg h-[400px] flex items-end group">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Woman practicing yoga in a sunlit studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3G3Sufdzrp_Q43z5RwfUNCipv4-a2Lbd58syie0DKGtjxcxerhM6-eHYMKGd_vcdhVMLH5YnW2eyFJ6HQVg_FTr-Umc1sOy642GorTmhUpLNCRNlgDeoJ3QyOHcUVamCoVBZdei2HZFP49Af2JvGBvUhWKEcSCud5F_HVTvYSZ2av-u85KnhJ80WFclPQ6oa0Qj6ko-zZbaXM8wcmetlqp_hMSbiNCpC9JRqjmhmcgnFEHjJ9rDRk71aSStG3blcYCP-kT5ijKEo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/90 via-on-surface/20 to-transparent"></div>
+<div class="relative p-8 md:p-12 w-full max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 backdrop-blur-md text-primary-fixed-dim text-xs font-bold uppercase tracking-widest mb-4">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-fixed-dim animate-pulse"></span>
+                        Featured Session
+                    </div>
+<h2 class="font-headline text-4xl md:text-5xl font-extrabold text-surface-container-lowest leading-tight mb-4">Post-Cycle Revitalizing Flow</h2>
+<p class="text-surface-variant/80 text-lg mb-8 max-w-lg">A 25-minute gentle yoga sequence designed to optimize recovery during your follicular phase.</p>
+<div class="flex items-center gap-4">
+<button class="bg-gradient-to-tr from-[#b7004e] to-[#e21364] text-white px-8 py-4 rounded-full font-bold shadow-lg flex items-center gap-2 hover:scale-105 transition-transform active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                            Start Workout
+                        </button>
+<button class="bg-surface-container-lowest/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/10 transition-colors">
+                            Save for Later
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Categories Bento Grid -->
+<section class="mb-16">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h3 class="font-headline text-2xl font-bold tracking-tight">Explore Training</h3>
+<p class="text-on-surface-variant/60">Tailored to your current hormonal energy levels</p>
+</div>
+<button class="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all">
+                    View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<!-- Zumba -->
+<div class="bg-surface-container-low rounded-lg p-6 flex flex-col items-center text-center group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">celebration</span>
+</div>
+<span class="font-headline font-bold text-on-surface">Zumba</span>
+<span class="text-xs text-on-surface-variant/60 uppercase mt-1 tracking-widest">High Energy</span>
+</div>
+<!-- Yoga -->
+<div class="bg-surface-container-low rounded-lg p-6 flex flex-col items-center text-center group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-16 h-16 rounded-full bg-tertiary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-tertiary text-3xl">self_improvement</span>
+</div>
+<span class="font-headline font-bold text-on-surface">Yoga</span>
+<span class="text-xs text-on-surface-variant/60 uppercase mt-1 tracking-widest">Mindful</span>
+</div>
+<!-- HIIT -->
+<div class="bg-surface-container-low rounded-lg p-6 flex flex-col items-center text-center group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-16 h-16 rounded-full bg-secondary-container/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary text-3xl">bolt</span>
+</div>
+<span class="font-headline font-bold text-on-surface">HIIT</span>
+<span class="text-xs text-on-surface-variant/60 uppercase mt-1 tracking-widest">Metabolic</span>
+</div>
+<!-- Strength -->
+<div class="bg-surface-container-low rounded-lg p-6 flex flex-col items-center text-center group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-16 h-16 rounded-full bg-outline/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-outline text-3xl">fitness_center</span>
+</div>
+<span class="font-headline font-bold text-on-surface">Strength</span>
+<span class="text-xs text-on-surface-variant/60 uppercase mt-1 tracking-widest">Power</span>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+<!-- Weekly Activity Chart -->
+<div class="lg:col-span-2">
+<div class="bg-surface-container-lowest rounded-lg p-8 shadow-[0_20px_40px_rgba(24,27,39,0.04)]">
+<div class="flex justify-between items-center mb-10">
+<h3 class="font-headline text-xl font-bold">Activity Progress</h3>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-container-low rounded-md text-xs font-bold text-on-surface-variant">WEEKLY</span>
+<span class="px-3 py-1 hover:bg-surface-container-low rounded-md text-xs font-bold text-on-surface-variant/40 cursor-pointer">MONTHLY</span>
+</div>
+</div>
+<div class="flex items-end justify-between h-48 gap-4 px-2">
+<div class="flex flex-col items-center gap-3 flex-1">
+<div class="w-full bg-surface-container-high rounded-t-full relative group">
+<div class="absolute bottom-0 w-full bg-primary/20 rounded-t-full" style="height: 40%"></div>
+<div class="h-32"></div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant/40 uppercase tracking-tighter">Mon</span>
+</div>
+<div class="flex flex-col items-center gap-3 flex-1">
+<div class="w-full bg-surface-container-high rounded-t-full relative">
+<div class="absolute bottom-0 w-full bg-primary/40 rounded-t-full" style="height: 65%"></div>
+<div class="h-32"></div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant/40 uppercase tracking-tighter">Tue</span>
+</div>
+<div class="flex flex-col items-center gap-3 flex-1">
+<div class="w-full bg-surface-container-high rounded-t-full relative">
+<div class="absolute bottom-0 w-full bg-primary/60 rounded-t-full" style="height: 25%"></div>
+<div class="h-32"></div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant/40 uppercase tracking-tighter">Wed</span>
+</div>
+<div class="flex flex-col items-center gap-3 flex-1">
+<div class="w-full bg-surface-container-high rounded-t-full relative">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-full shadow-lg" style="height: 90%"></div>
+<div class="h-32"></div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant/40 uppercase tracking-tighter">Thu</span>
+</div>
+<div class="flex flex-col items-center gap-3 flex-1">
+<div class="w-full bg-surface-container-high rounded-t-full relative">
+<div class="absolute bottom-0 w-full bg-primary/30 rounded-t-full" style="height: 55%"></div>
+<div class="h-32"></div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant/40 uppercase tracking-tighter">Fri</span>
+</div>
+<div class="flex flex-col items-center gap-3 flex-1">
+<div class="w-full bg-surface-container-high rounded-t-full relative">
+<div class="absolute bottom-0 w-full bg-primary/10 rounded-t-full" style="height: 15%"></div>
+<div class="h-32"></div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant/40 uppercase tracking-tighter">Sat</span>
+</div>
+<div class="flex flex-col items-center gap-3 flex-1">
+<div class="w-full bg-surface-container-high rounded-t-full relative">
+<div class="absolute bottom-0 w-full bg-primary/20 rounded-t-full" style="height: 30%"></div>
+<div class="h-32"></div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant/40 uppercase tracking-tighter">Sun</span>
+</div>
+</div>
+<div class="mt-10 grid grid-cols-3 gap-4">
+<div class="p-4 rounded-md bg-surface-container-low">
+<span class="block text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest mb-1">Calories</span>
+<span class="text-xl font-headline font-bold text-on-surface">2,480</span>
+</div>
+<div class="p-4 rounded-md bg-surface-container-low">
+<span class="block text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest mb-1">Duration</span>
+<span class="text-xl font-headline font-bold text-on-surface">184<small class="text-sm font-normal ml-1">min</small></span>
+</div>
+<div class="p-4 rounded-md bg-surface-container-low">
+<span class="block text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest mb-1">Avg Heart</span>
+<span class="text-xl font-headline font-bold text-on-surface">112<small class="text-sm font-normal ml-1">bpm</small></span>
+</div>
+</div>
+</div>
+</div>
+<!-- Recommended Sidebar Carousel -->
+<div class="space-y-6">
+<h3 class="font-headline text-xl font-bold">Recommended for You</h3>
+<div class="space-y-4">
+<!-- Rec Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative rounded-md overflow-hidden h-32 mb-3">
+<img class="w-full h-full object-cover transition-transform group-hover:scale-110" data-alt="Person lifting kettlebell in modern gym" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhHu-MA54LC8v0uGzIw9ov4qa5q6IbdvxcKLhEtaBKDsUoZFC9UQ4vhvgnkH3GVpOlqIHMMDDwk9NJXRJiH9i0fjTxlCHKXTnid__PlrNkmT9Lqpm7Se0cb0meULdf4jfPWwXOiDspJwbZ8LYtAccphVTqRCQfvT2cXEeAf1SNOC8O64kuZb0ugBNFC4fcskVhahylRdsJu6It3fHbxXgk_9qi0V25w1_vsT5DSZGtAvYM6XBFILovcl5vPQIf_oHguowdrs2VGGg"/>
+<div class="absolute top-2 right-2 px-2 py-1 bg-surface-container-lowest/80 backdrop-blur-md rounded text-[10px] font-black uppercase">15 min</div>
+</div>
+<h4 class="font-headline font-bold text-on-surface leading-tight group-hover:text-primary transition-colors">Core &amp; Stability Foundations</h4>
+<p class="text-sm text-on-surface-variant/60">Low Impact • Strength Training</p>
+</div>
+<!-- Rec Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative rounded-md overflow-hidden h-32 mb-3">
+<img class="w-full h-full object-cover transition-transform group-hover:scale-110" data-alt="Woman stretching after a workout session" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB46oYHGrekXfqZQ1VwEBzyy7znn3gphUQQk7U0FDPE6YQjnasH5lOq_-ANxg0AezZOQ7O76cz7V8zyRzf7yMb04IwMkjWYSqqp75qLQQACSJ4WoZCEZhV6F780y8B8Nv8sMUpw0Tp1s3l5P8LFKgK6WIQ1tp4irFcG0juu1gVd6yeGbRPqVKAvn6zZ-r2lp-0WcL75afgrD_T6g0am6Z4Mncpc2iSWFrUPabHm8SdphyDH8cCqCmxq3hMKtoIEpsB0V4UBiUUd30"/>
+<div class="absolute top-2 right-2 px-2 py-1 bg-surface-container-lowest/80 backdrop-blur-md rounded text-[10px] font-black uppercase">45 min</div>
+</div>
+<h4 class="font-headline font-bold text-on-surface leading-tight group-hover:text-primary transition-colors">Morning Vinyasa Surge</h4>
+<p class="text-sm text-on-surface-variant/60">High Energy • Yoga</p>
+</div>
+<!-- Rec Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative rounded-md overflow-hidden h-32 mb-3">
+<img class="w-full h-full object-cover transition-transform group-hover:scale-110" data-alt="Person performing high intensity interval training" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwf2eu0tQ_VhqH0rrqhyeyPBczaCEfySaqTD-yf7TIgi9bP4FjptApLR8_Bo9vYtaiNyC2rYfP3-EQQrXrSlFf1tl0zrByy6n1Uz54nvdej_8k3PZBVjScqGT9uGGIAL6MERWKk7dEI_lCXUDEja1QTV-mtA50UHkt3R9v1Sra1q48gQs063_4OKI6hSVEAtvRtWVgPqnNkOXrNA6nMsL0OZf9qEWYh3rc-GgdI1qD9CCvPFNvh9SyJeplM916Q9Bg1pxiG2fUa1o"/>
+<div class="absolute top-2 right-2 px-2 py-1 bg-surface-container-lowest/80 backdrop-blur-md rounded text-[10px] font-black uppercase">20 min</div>
+</div>
+<h4 class="font-headline font-bold text-on-surface leading-tight group-hover:text-primary transition-colors">HIIT: Tabata Burner</h4>
+<p class="text-sm text-on-surface-variant/60">High Intensity • HIIT</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating AI Coach Button -->
+<button class="fixed right-8 bottom-28 z-50 group flex items-center gap-3">
+<div class="bg-on-surface text-surface-container-lowest px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-lg font-bold text-sm pointer-events-none">
+            Ask Luna Coach
+        </div>
+<div class="w-16 h-16 bg-gradient-to-tr from-[#b7004e] to-[#e21364] rounded-full flex items-center justify-center text-white shadow-xl hover:scale-110 transition-transform active:scale-90">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-end px-4 pb-6 pt-2 bg-[#faf8ff]/70 dark:bg-[#181b27]/70 backdrop-blur-xl rounded-t-[2.5rem] z-50 shadow-[0_-10px_40px_rgba(24,27,39,0.06)]">
+<div class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] opacity-50 p-2 hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined mb-1">home_health</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-gradient-to-tr from-[#b7004e] to-[#e21364] text-white rounded-full p-3 w-14 h-14 -translate-y-2 shadow-lg hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider mt-1 hidden">Fitness</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] opacity-50 p-2 hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined mb-1">restaurant</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider">Diet</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] opacity-50 p-2 hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined mb-1">group</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider">Community</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] opacity-50 p-2 hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider">Profile</span>
+</div>
+</nav>
+</body></html>

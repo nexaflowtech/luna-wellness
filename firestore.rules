@@ -1,0 +1,101 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── User profile and all sub-collections ──────────────────────────────
+    match /users/{userId}/{document=**} {
+      allow read, write: if request.auth != null
+                         && request.auth.uid == userId;
+    }
+
+    // ── Goal selections ──────────────────────────────────────────────────
+    match /goalSelections/{userId} {
+      allow read, write: if request.auth != null
+                         && request.auth.uid == userId;
+    }
+
+    // ── Cycle tracking ───────────────────────────────────────────────────
+    match /cycleTracking/{docId} {
+      allow read, write: if request.auth != null
+                         && resource.data.uid == request.auth.uid;
+      allow create: if request.auth != null
+                    && request.resource.data.uid == request.auth.uid;
+    }
+
+    // ── Hormone reports ───────────────────────────────────────────────────
+    match /hormoneReports/{docId} {
+      allow read, write: if request.auth != null
+                         && resource.data.uid == request.auth.uid;
+      allow create: if request.auth != null
+                    && request.resource.data.uid == request.auth.uid;
+    }
+
+    // ── Diet plans ────────────────────────────────────────────────────────
+    match /dietPlans/{docId} {
+      allow read, write: if request.auth != null
+                         && resource.data.uid == request.auth.uid;
+      allow create: if request.auth != null
+                    && request.resource.data.uid == request.auth.uid;
+    }
+
+    // ── Workouts ──────────────────────────────────────────────────────────
+    match /workouts/{docId} {
+      allow read, write: if request.auth != null
+                         && resource.data.uid == request.auth.uid;
+      allow create: if request.auth != null
+                    && request.resource.data.uid == request.auth.uid;
+    }
+
+    // ── Progress tracking ─────────────────────────────────────────────────
+    match /progressTracking/{docId} {
+      allow read, write: if request.auth != null
+                         && resource.data.uid == request.auth.uid;
+      allow create: if request.auth != null
+                    && request.resource.data.uid == request.auth.uid;
+    }
+
+    // ── Doctor appointments ───────────────────────────────────────────────
+    match /doctorAppointments/{docId} {
+      allow read, write: if request.auth != null
+                         && resource.data.uid == request.auth.uid;
+      allow create: if request.auth != null
+                    && request.resource.data.uid == request.auth.uid;
+    }
+
+    // ── Lab reports ───────────────────────────────────────────────────────
+    match /labReports/{docId} {
+      allow read, write: if request.auth != null
+                         && resource.data.uid == request.auth.uid;
+      allow create: if request.auth != null
+                    && request.resource.data.uid == request.auth.uid;
+    }
+
+    // ── AI Coach chats ────────────────────────────────────────────────────
+    match /coachChats/{chatId}/{document=**} {
+      allow read, write: if request.auth != null
+                         && chatId.matches(request.auth.uid + '_.*');
+    }
+
+    // ── Community posts — read by all authenticated users ─────────────────
+    match /communityPosts/{postId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+                    && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if request.auth != null
+                            && resource.data.uid == request.auth.uid;
+    }
+
+    // ── Subscriptions ─────────────────────────────────────────────────────
+    match /subscriptions/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      // Write only via backend/Cloud Functions
+      allow write: if false;
+    }
+
+    // ── Deny all other documents ──────────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

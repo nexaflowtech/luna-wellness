@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Luna Wellness - Community</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-dim": "#d7d9ea",
+                        "on-primary-fixed-variant": "#90003c",
+                        "on-secondary-fixed-variant": "#8c1616",
+                        "secondary-fixed-dim": "#ffb4ab",
+                        "on-tertiary-fixed": "#221b00",
+                        "on-primary-fixed": "#3f0016",
+                        "inverse-primary": "#ffb1c0",
+                        "tertiary-fixed": "#ffe25f",
+                        "inverse-surface": "#2d303d",
+                        "on-surface": "#181b27",
+                        "surface-bright": "#faf8ff",
+                        "outline-variant": "#e4bdc3",
+                        "primary-container": "#e21364",
+                        "surface-variant": "#e0e1f3",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#bc0050",
+                        "surface-container-highest": "#e0e1f3",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#ffd9df",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-background": "#181b27",
+                        "secondary-container": "#fc695d",
+                        "primary": "#b7004e",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f3f2ff",
+                        "on-secondary-fixed": "#410002",
+                        "inverse-on-surface": "#eff0ff",
+                        "on-primary-container": "#fffbff",
+                        "primary-fixed-dim": "#ffb1c0",
+                        "tertiary-fixed-dim": "#e6c500",
+                        "surface-container": "#ebedfe",
+                        "on-secondary-container": "#690006",
+                        "on-tertiary-container": "#4b3f00",
+                        "tertiary": "#6e5d00",
+                        "surface": "#faf8ff",
+                        "secondary": "#ae302a",
+                        "outline": "#8f6f74",
+                        "on-error-container": "#93000a",
+                        "background": "#faf8ff",
+                        "tertiary-container": "#c7aa00",
+                        "surface-container-high": "#e6e7f8",
+                        "secondary-fixed": "#ffdad6",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#534600",
+                        "on-surface-variant": "#5b3f44"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf8ff;
+            color: #181b27;
+        }
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background selection:bg-primary-fixed">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-[#faf8ff]/70 backdrop-blur-md shadow-[0px_20px_40px_rgba(24,27,39,0.04)]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#FF3278] text-2xl" data-icon="bubble_chart">bubble_chart</span>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold text-xl tracking-tight text-[#FF3278]">Luna Wellness</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface" data-icon="search">search</span>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="User Profile" data-alt="Close up portrait of a smiling woman with warm lighting and a soft natural background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJwq_c0x_ZoR1k-q_AfZ1G8Uvq88BYdNMYWaCVQ4Dm4ud0ktz-JeDsMXML337KWQj_Vj88DKaKzjOBUM2SWzc6rNj3ONjPxTO8uFX4yqzJo4CwIxj2GUbgx51CBsvhc4SNLcVWNVghQbT1adgnDTOS3iYIibEkz-F1naDTolYqt9C_KLQYziHfQ55QNDDbLz31Mwl5U8ayHY79LMkUZZsNBKDoXQirdRWsvj9_l0ShEZ3Rd84Vowgx-2BNWK8pj74SOfDH9TUOfTU"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-7xl mx-auto">
+<!-- Announcements Hero -->
+<section class="mb-12">
+<div class="relative overflow-hidden rounded-lg bg-gradient-to-br from-primary to-primary-container p-8 text-white shadow-xl">
+<div class="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="max-w-xl">
+<span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold tracking-widest uppercase mb-4">Expert Live Session</span>
+<h2 class="font-headline text-3xl md:text-4xl font-extrabold leading-tight mb-4">Hormonal Balance Q&amp;A with Dr. Mehta</h2>
+<p class="font-body text-white/90 text-lg mb-6">Join us this Thursday at 6:00 PM for an exclusive session on managing cycle transitions and metabolic health.</p>
+<button class="bg-surface-container-lowest text-primary px-8 py-3 rounded-full font-bold shadow-lg hover:scale-105 transition-transform">Reserve My Seat</button>
+</div>
+<div class="hidden md:block w-48 h-48 rounded-full border-8 border-white/10 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Professional female doctor with a kind expression in a clinical setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACl8L3_Kk3xXozMG-hshioyrx9K9qmFRw5Rw0Ev6p_XXUB-eh5Pd4-xkBvP4jk2Wi66KZTBlSGFUhin-4H1C0bTyE1R1LIpknlBKgE6OcTtOt86fz7n1k3bdLB2r9FAK4LRaoLffF_CdqHXVUgJEaXOuLogE1HiTnUMDKs9jhZfjL1HWbpjvuuHhKoIZZqYT4qH5_QPE0EudV0hMvIKiYhHntrpzMa-1e9lfL-5EKpPb1RiB07NMuEKieYosWH8cS-Liqpa6drbRU"/>
+</div>
+</div>
+<!-- Abstract blobs -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-24 -left-24 w-64 h-64 bg-black/5 rounded-full blur-3xl"></div>
+</div>
+</section>
+<div class="flex flex-col lg:flex-row gap-12">
+<!-- Left Column: Discussion Feed -->
+<div class="flex-1">
+<!-- Category Filters -->
+<div class="flex gap-4 overflow-x-auto pb-6 hide-scrollbar">
+<button class="flex-none px-6 py-2 bg-primary text-white rounded-full font-medium text-sm shadow-md">All Posts</button>
+<button class="flex-none px-6 py-2 bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors rounded-full font-medium text-sm">PCOS</button>
+<button class="flex-none px-6 py-2 bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors rounded-full font-medium text-sm">Thyroid</button>
+<button class="flex-none px-6 py-2 bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors rounded-full font-medium text-sm">Wellness</button>
+<button class="flex-none px-6 py-2 bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors rounded-full font-medium text-sm">Fertility</button>
+<button class="flex-none px-6 py-2 bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors rounded-full font-medium text-sm">Nutrition</button>
+</div>
+<!-- Feed Posts -->
+<div class="space-y-8">
+<!-- Post Card 1 -->
+<article class="bg-surface-container-lowest rounded-lg p-6 shadow-[0px_20px_40px_rgba(24,27,39,0.03)] group">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img data-alt="Portrait of a young woman with a peaceful expression in a garden" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQZT_oXnudyVUw57UyRbET4EmmqYGlzzZfJ8Ze8Cl_5k_BEcJ5b0diUQyJvIvFxkgWBKEvKzptPGl1M9lH8pS_q5NvJvJXaMdekQOgv4isAHJerqqVg60uOx_P8n3iFwR8DKw1G_Qq9BPq61yNLQwfaqzfEbCUDZ2eMEomYYO4YjLCuW_QXMqNMl5YR0yKqT9GwQMtrsT3o44KPxL40kEP94W9qh8Cse0yNpFESuEuLxPZ5V9tYHmnQBuvEpOeYBolSD95L-CwFlM"/>
+</div>
+<div>
+<h4 class="font-bold text-sm">Maya R.</h4>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">2 hours ago • <span class="text-primary font-bold">PCOS</span></p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer" data-icon="more_horiz">more_horiz</span>
+</div>
+<h3 class="font-headline text-xl font-bold mb-3 leading-snug">Found a breakfast routine that finally keeps my energy stable!</h3>
+<p class="font-body text-on-surface-variant mb-6 leading-relaxed">After months of crashing at 11 AM, switching to high protein savory breakfasts has been a game changer for my insulin levels. Anyone else tried this?</p>
+<div class="flex items-center justify-between pt-6 border-t border-surface-container-low">
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-2 group/btn">
+<span class="material-symbols-outlined text-on-surface-variant group-hover/btn:text-primary transition-colors" data-icon="favorite">favorite</span>
+<span class="text-xs font-medium text-on-surface-variant">42</span>
+</button>
+<button class="flex items-center gap-2 group/btn">
+<span class="material-symbols-outlined text-on-surface-variant group-hover/btn:text-primary transition-colors" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-xs font-medium text-on-surface-variant">12</span>
+</button>
+<button class="flex items-center gap-2 group/btn">
+<span class="material-symbols-outlined text-on-surface-variant group-hover/btn:text-primary transition-colors" data-icon="share">share</span>
+</button>
+</div>
+<button class="group/btn">
+<span class="material-symbols-outlined text-on-surface-variant group-hover/btn:text-primary transition-colors" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+</article>
+<!-- Post Card 2 (Image Focus) -->
+<article class="bg-surface-container-lowest rounded-lg overflow-hidden shadow-[0px_20px_40px_rgba(24,27,39,0.03)]">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img data-alt="Close up of a woman with curly hair smiling in bright morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTYU-q0zUDgptyhghS54ve3DaUxCeiECfWcO4xL11zbi42HeehKe2lHOSbMh3m8cpEN0RckK_wuIFSJtOoEL4Wm6sMtl5Up39sCzpIVZenWSrZy7EwGRQVQsbn-3adk9g1fQH8J8k8iVUWK8WhzhZYUloAXOfUQHz4_MhZCpiolhgKoAZ9t9qAbcBWrOEJJHgj1u958gTwxDH8Tn48y4uV5bwX75YMUcZpLpsux_ZROs9UbiGb1JGAefEy_CuaUVqyXEjDk3cq8hs"/>
+</div>
+<div>
+<h4 class="font-bold text-sm">Elena S.</h4>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">5 hours ago • <span class="text-primary font-bold">Wellness</span></p>
+</div>
+</div>
+<p class="font-body text-on-surface mb-4">Sunset yoga to regulate my nervous system. Taking 10 minutes for yourself isn't selfish, it's essential. ✨</p>
+</div>
+<div class="h-64 w-full">
+<img class="w-full h-full object-cover" data-alt="Woman doing yoga on a mat at sunset with golden light and orange sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXdxxCyjto0hc2_RGJYfnvsapVfiTMM6ioQo_i777wLNxsHo9Mn0zmZOxcVe68Y5DKSh_tHnOY6gwhBni6Ta93KMqp1X95aVx5qQLnokvd6Wnw6eJ9F5X5nd2eelL9IHixmFsBlkDn1jrA5z1Mt7jAVcEdPtL2SML9WPRLkQzcH02LMqqZGU3RgQHHMMmqaLOQG1EkB4vn6CVXadHkdjOlryRdiCWjGqB4TNKRHtDnOOlNasNq9MFgV8v7XH14cfPGBYUqQDh7cdo"/>
+</div>
+<div class="p-6 flex items-center justify-between">
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-2 group/btn">
+<span class="material-symbols-outlined text-primary" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-xs font-medium text-on-surface">128</span>
+</button>
+<button class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-xs font-medium text-on-surface-variant">8</span>
+</button>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="bookmark">bookmark</span>
+</div>
+</article>
+</div>
+</div>
+<!-- Right Column: Success Stories & Sidebar -->
+<aside class="w-full lg:w-80 space-y-8">
+<div>
+<h3 class="font-headline text-lg font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary" data-icon="star">star</span>
+                        Success Stories
+                    </h3>
+<div class="space-y-6">
+<!-- Success Story 1 -->
+<div class="bg-surface-container-low rounded-lg p-4 relative group">
+<span class="absolute -top-3 left-4 bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">Inspiring</span>
+<div class="mt-2 flex flex-col gap-3">
+<div class="w-full h-40 rounded-md overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Smiling woman looking confident in a sunlit indoor environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFWxXg2BdaQddKTBUmpOQnmd2_kuuF1OwNuzhnf9-I_T_-RFZ56Sohd8zZ_tiCnXICJRpoTkI_kTTC9bmDVFrTW9x-bkT7BxOZfedJXcby7hS5Wht18xNhIJN8x9GmnXMSUG24jKdKyYMXel4UNMIeHlQ1au5SSYi_6GLhzvwrQ_pSB4-nZBRx6DVXThSuKVy7R6bXqvdfumPgw3pQPAEknGkAF7CjBqaJbiTo2jeNAY6jGUcpUSU8_C5K19Wk86fasRQHut-0ysA"/>
+</div>
+<h4 class="font-bold text-sm">"I regained my cycle after 2 years!"</h4>
+<p class="text-xs text-on-surface-variant line-clamp-2">"Following the Luna nutrition guide helped me understand my body in a way I never did before..."</p>
+<a class="text-xs font-bold text-primary flex items-center gap-1" href="#">Read Full Story <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span></a>
+</div>
+</div>
+<!-- Success Story 2 -->
+<div class="bg-surface-container-low rounded-lg p-4 relative group">
+<span class="absolute -top-3 left-4 bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">Inspiring</span>
+<div class="mt-2 flex flex-col gap-3">
+<div class="w-full h-40 rounded-md overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Woman working happily at a bright home office desk with plants" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJAcD6INXfBrfcNXScix8tEJwKUaMdOTHcLsSxqUn6x2mwTo910YZpcp7HKqEkUWZj05NxGeqy7Th-hHq2MxI7BbuPVeXrxx6BVDUxxnQoxlGFG5Qc-9O9BGD5smOc6MIAYmyRWqzRxC47isOXANgc7gNAuhufBXjIK7-81vjxkfpiAg0QoNxraaHlSNojHDsgsmJk6rh-m5d0TOMcPs_crb7a6Bx-qW0f4BR4E9furV1R753m6eVcnDNC-MosKnH76OZCsBetpl0"/>
+</div>
+<h4 class="font-bold text-sm">Managing Thyroid &amp; Career</h4>
+<p class="text-xs text-on-surface-variant line-clamp-2">"Sarah shares her journey of balancing a high-stress job while optimizing her endocrine health."</p>
+<a class="text-xs font-bold text-primary flex items-center gap-1" href="#">Read Full Story <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span></a>
+</div>
+</div>
+</div>
+</div>
+<!-- Community Guidelines Card -->
+<div class="bg-[#faf8ff] border-2 border-surface-container-high rounded-lg p-6">
+<h4 class="font-bold text-sm mb-4">Safe Space Promise</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-4">This is a women-only community. We prioritize empathy, medical accuracy, and supportive dialogue. No unsolicited advice.</p>
+<div class="flex flex-wrap gap-2">
+<span class="text-[10px] bg-surface-container px-2 py-1 rounded font-medium">#Support</span>
+<span class="text-[10px] bg-surface-container px-2 py-1 rounded font-medium">#Privacy</span>
+<span class="text-[10px] bg-surface-container px-2 py-1 rounded font-medium">#Empower</span>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- NavigationDrawer (AI Coach Button) -->
+<div class="fixed bottom-24 right-6 z-[60] flex items-center justify-center">
+<button class="fixed bottom-24 right-6 rounded-full w-14 h-14 bg-gradient-to-br from-[#FF3278] to-[#e21364] text-white shadow-xl hover:brightness-110 hover:scale-105 active:animate-pulse flex items-center justify-center transition-all">
+<span class="material-symbols-outlined text-2xl" data-icon="smart_toy">smart_toy</span>
+</button>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-white/70 backdrop-blur-md rounded-t-[2rem] shadow-[0px_-10px_30px_rgba(24,27,39,0.03)]">
+<div class="flex flex-col items-center justify-center text-slate-400 px-4 py-2 hover:text-[#FF3278] transition-colors">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 px-4 py-2 hover:text-[#FF3278] transition-colors">
+<span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider mt-1">Fitness</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 px-4 py-2 hover:text-[#FF3278] transition-colors">
+<span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider mt-1">Diet</span>
+</div>
+<!-- ACTIVE TAB -->
+<div class="flex flex-col items-center justify-center bg-[#f3f2ff] text-[#FF3278] rounded-full px-4 py-2 scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider mt-1">Community</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 px-4 py-2 hover:text-[#FF3278] transition-colors">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider mt-1">Profile</span>
+</div>
+</nav>
+</body></html>

@@ -1,57 +1,69 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import { Stack } from 'expo-router';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 import 'react-native-reanimated';
+import '../global.css';
 
-import { useColorScheme } from '@/components/useColorScheme';
+import { AuthProvider, useAuth } from '@/src/context/AuthContext';
+import { UserProvider } from '@/src/context/UserContext';
+import { ThemeProvider } from '@/src/context/ThemeContext';
+import { registerPushToken, scheduleDailyReminders } from '@/src/services/notificationService';
 
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from 'expo-router';
-
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
-};
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
+
+function AuthGate() {
+  const {
+    user,
+  } = useAuth();
+
+  useEffect(() => {
+    if (!user) return;
+    registerPushToken(user.uid).catch(() => undefined);
+    scheduleDailyReminders().catch(() => undefined);
+  }, [user]);
+
+  return null;
+}
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
 
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
     if (error) throw error;
   }, [error]);
 
   useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
+    if (loaded) SplashScreen.hideAsync();
   }, [loaded]);
 
-  if (!loaded) {
-    return null;
-  }
-
-  return <RootLayoutNav />;
-}
-
-function RootLayoutNav() {
-  const colorScheme = useColorScheme();
+  if (!loaded) return null;
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
+    <ThemeProvider>
+      <AuthProvider>
+        <UserProvider>
+          <AuthGate />
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="index" />
+            <Stack.Screen name="(auth)" />
+            <Stack.Screen name="(onboarding)" />
+            <Stack.Screen name="(program)" />
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="(secondary)" />
+
+            {/* Legacy groups kept for compatibility with existing UI files */}
+            <Stack.Screen name="(app)" />
+            <Stack.Screen name="(setup)" />
+            <Stack.Screen name="(modals)" options={{ presentation: 'modal' }} />
+            <Stack.Screen name="login" />
+            <Stack.Screen name="modal" />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+        </UserProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

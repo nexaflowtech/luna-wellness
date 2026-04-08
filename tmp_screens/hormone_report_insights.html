@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hormonal Insights | Luna Wellness</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed-dim": "#ffb4ab",
+                        "tertiary-fixed-dim": "#e6c500",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#90003c",
+                        "inverse-primary": "#ffb1c0",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e6e7f8",
+                        "on-primary-fixed": "#3f0016",
+                        "on-primary-container": "#fffbff",
+                        "primary-fixed": "#ffd9df",
+                        "primary-fixed-dim": "#ffb1c0",
+                        "surface": "#faf8ff",
+                        "secondary": "#ae302a",
+                        "on-surface-variant": "#5b3f44",
+                        "tertiary": "#6e5d00",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#faf8ff",
+                        "outline-variant": "#e4bdc3",
+                        "tertiary-container": "#c7aa00",
+                        "tertiary-fixed": "#ffe25f",
+                        "on-tertiary-fixed": "#221b00",
+                        "on-tertiary-container": "#4b3f00",
+                        "surface-container": "#ebedfe",
+                        "on-tertiary-fixed-variant": "#534600",
+                        "on-surface": "#181b27",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffdad6",
+                        "secondary-container": "#fc695d",
+                        "on-secondary-container": "#690006",
+                        "primary": "#b7004e",
+                        "surface-variant": "#e0e1f3",
+                        "surface-tint": "#bc0050",
+                        "background": "#faf8ff",
+                        "on-secondary-fixed-variant": "#8c1616",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f3f2ff",
+                        "surface-container-highest": "#e0e1f3",
+                        "inverse-surface": "#2d303d",
+                        "inverse-on-surface": "#eff0ff",
+                        "surface-dim": "#d7d9ea",
+                        "outline": "#8f6f74",
+                        "on-secondary-fixed": "#410002",
+                        "on-background": "#181b27",
+                        "primary-container": "#e21364"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-line-rule { border: none !important; }
+        .glass-card {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased pb-32">
+<!-- Top App Bar -->
+<nav class="fixed top-0 w-full z-50 bg-[#faf8ff]/70 backdrop-blur-md flex justify-between items-center px-6 py-4 w-full no-line-rule">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+<span class="font-headline font-black text-[#b7004e] tracking-tight text-xl">Luna Wellness</span>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="Close up portrait of a serene woman with natural lighting and soft focus greenery in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBplifVIh3RPqoDhHJxwfCOjgK6OG_CFKustj3ZbcN5ohSH6fOYD3lOTgOX2IsIJj0zlChkmwW4cSbQ6DhMaKTVJvGAkzgwOOAzMZdrxjhvK4nV9HNoOhBCPil_ldFV2fVbMUVbxvX7bHrEjjUNjPpGEs5Q5u7vRk4_lGOC_lrCi_agv7glU6ZBzxGoYFjjh7ZCleAjWl9H9G4c0tK_v8J0jiG-OZC_-Xc1F6dwfbnn70ZBSkZDNZSIOFt92m7unhoQTL-R-8tUGns"/>
+</div>
+</nav>
+<main class="max-w-5xl mx-auto px-6 pt-24 space-y-8">
+<!-- Header -->
+<header class="space-y-2">
+<h1 class="font-headline font-extrabold text-4xl tracking-tight text-on-surface">Your Hormonal Insights</h1>
+<p class="text-on-surface-variant opacity-70">Based on your latest cycle laboratory results from Oct 12, 2023.</p>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Overall Score Gauge -->
+<div class="lg:col-span-4 bg-surface-container-low rounded-lg p-8 flex flex-col items-center justify-center text-center">
+<h3 class="font-headline font-bold text-xl mb-6">Balance Score</h3>
+<div class="relative w-48 h-48 flex items-center justify-center">
+<!-- Circular Gauge Logic -->
+<svg class="w-full h-full -rotate-90">
+<circle class="text-surface-container-high" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-width="12"></circle>
+<circle cx="96" cy="96" fill="transparent" r="88" stroke="url(#gauge-gradient)" stroke-dasharray="552.92" stroke-dashoffset="138" stroke-linecap="round" stroke-width="12"></circle>
+<defs>
+<lineargradient id="gauge-gradient" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#b7004e"></stop>
+<stop offset="100%" stop-color="#e21364"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline font-black text-4xl text-primary">74%</span>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Attention Needed</span>
+</div>
+</div>
+<p class="mt-6 text-sm text-on-surface-variant leading-relaxed">Your balance is slightly below the optimal range for this phase of your cycle.</p>
+</div>
+<!-- AI Insight Card -->
+<div class="lg:col-span-8 bg-gradient-to-br from-primary to-primary-container rounded-lg p-8 text-white relative overflow-hidden flex flex-col justify-between">
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-headline font-bold text-lg">AI Health Insight</span>
+</div>
+<p class="font-headline font-semibold text-2xl leading-snug max-w-xl">
+                        "Your Estrogen/Progesterone ratio indicates a slight imbalance. This might explain your recent energy dips."
+                    </p>
+</div>
+<div class="mt-8 flex items-center gap-4 relative z-10">
+<button class="bg-surface-container-lowest text-primary font-bold px-6 py-3 rounded-full hover:opacity-90 transition-opacity">Read Full Analysis</button>
+<span class="text-sm opacity-80">Updated 2h ago</span>
+</div>
+<!-- Abstract Shape Decoration -->
+<div class="absolute -right-12 -bottom-12 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+</div>
+<!-- Hormone Value Cards Grid -->
+<div class="lg:col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Estrogen -->
+<div class="bg-surface-container-lowest p-6 rounded-md shadow-sm border border-outline-variant/10">
+<div class="flex justify-between items-start mb-4">
+<span class="text-sm font-bold text-on-surface-variant uppercase tracking-wider">Estrogen</span>
+<span class="flex items-center text-primary">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_upward">arrow_upward</span>
+<span class="text-xs font-bold">12%</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-headline font-extrabold text-3xl">215</span>
+<span class="text-on-surface-variant text-sm">pg/mL</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden relative">
+<div class="absolute inset-y-0 left-1/4 right-1/4 bg-tertiary/20"></div> <!-- Normal Range Indicator -->
+<div class="h-full bg-primary rounded-full" style="width: 65%;"></div>
+</div>
+<div class="flex justify-between mt-2">
+<span class="text-[10px] text-on-surface-variant opacity-50">Low</span>
+<span class="text-[10px] text-on-surface-variant opacity-50 font-bold">In Range</span>
+<span class="text-[10px] text-on-surface-variant opacity-50">High</span>
+</div>
+</div>
+<!-- Progesterone -->
+<div class="bg-surface-container-lowest p-6 rounded-md shadow-sm border border-outline-variant/10">
+<div class="flex justify-between items-start mb-4">
+<span class="text-sm font-bold text-on-surface-variant uppercase tracking-wider">Progesterone</span>
+<span class="flex items-center text-error">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_downward">arrow_downward</span>
+<span class="text-xs font-bold">5%</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-headline font-extrabold text-3xl">8.4</span>
+<span class="text-on-surface-variant text-sm">ng/mL</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden relative">
+<div class="absolute inset-y-0 left-1/3 right-1/4 bg-tertiary/20"></div>
+<div class="h-full bg-error rounded-full" style="width: 25%;"></div>
+</div>
+<div class="flex justify-between mt-2 text-[10px] text-on-surface-variant opacity-50 uppercase font-bold tracking-tighter">
+<span>Low</span>
+<span>Normal</span>
+<span>High</span>
+</div>
+</div>
+<!-- LH -->
+<div class="bg-surface-container-lowest p-6 rounded-md shadow-sm border border-outline-variant/10">
+<div class="flex justify-between items-start mb-4">
+<span class="text-sm font-bold text-on-surface-variant uppercase tracking-wider">LH</span>
+<span class="flex items-center text-on-surface-variant opacity-40">
+<span class="material-symbols-outlined text-sm" data-icon="horizontal_rule">horizontal_rule</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-headline font-extrabold text-3xl">12.2</span>
+<span class="text-on-surface-variant text-sm">mIU/mL</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden relative">
+<div class="h-full bg-tertiary-container rounded-full" style="width: 45%;"></div>
+</div>
+<div class="flex justify-between mt-2 text-[10px] text-on-surface-variant opacity-50 uppercase font-bold tracking-tighter">
+<span>Optimal</span>
+</div>
+</div>
+<!-- FSH -->
+<div class="bg-surface-container-lowest p-6 rounded-md shadow-sm border border-outline-variant/10">
+<div class="flex justify-between items-start mb-4">
+<span class="text-sm font-bold text-on-surface-variant uppercase tracking-wider">FSH</span>
+<span class="flex items-center text-primary">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_upward">arrow_upward</span>
+<span class="text-xs font-bold">2%</span>
+</span>
+</div>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-headline font-extrabold text-3xl">6.1</span>
+<span class="text-on-surface-variant text-sm">mIU/mL</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden relative">
+<div class="h-full bg-primary rounded-full" style="width: 52%;"></div>
+</div>
+<div class="flex justify-between mt-2 text-[10px] text-on-surface-variant opacity-50 uppercase font-bold tracking-tighter">
+<span>Stable</span>
+</div>
+</div>
+</div>
+<!-- Trend Chart Container -->
+<div class="lg:col-span-12 bg-surface-container-low rounded-lg p-8">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h3 class="font-headline font-bold text-xl">Monthly Hormone Trends</h3>
+<p class="text-sm text-on-surface-variant">Comparing Estrogen vs Progesterone over 90 days</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-xs font-semibold">Estrogen</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-tertiary"></div>
+<span class="text-xs font-semibold">Progesterone</span>
+</div>
+</div>
+</div>
+<!-- Mock Chart Visualization -->
+<div class="h-64 w-full relative">
+<svg class="w-full h-full" viewbox="0 0 800 200">
+<!-- Grid lines -->
+<line class="text-on-surface/5" stroke="currentColor" x1="0" x2="800" y1="0" y2="0"></line>
+<line class="text-on-surface/5" stroke="currentColor" x1="0" x2="800" y1="100" y2="100"></line>
+<line class="text-on-surface/5" stroke="currentColor" x1="0" x2="800" y1="200" y2="200"></line>
+<!-- Area Gradients -->
+<defs>
+<lineargradient id="area-estrogen" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#b7004e" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#b7004e" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<!-- Trend Lines -->
+<path d="M0,150 Q100,120 200,160 T400,100 T600,130 T800,80" fill="none" stroke="#b7004e" stroke-linecap="round" stroke-width="3"></path>
+<path d="M0,180 Q100,170 200,190 T400,160 T600,185 T800,170" fill="none" stroke="#6e5d00" stroke-dasharray="8 4" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<div class="flex justify-between mt-4 text-xs font-bold text-on-surface-variant/50 uppercase tracking-widest px-2">
+<span>August</span>
+<span>September</span>
+<span>October (Current)</span>
+</div>
+</div>
+</div>
+<!-- CTA Section -->
+<div class="lg:col-span-12 flex flex-col md:flex-row gap-4 items-center justify-center py-8">
+<button class="flex items-center gap-2 bg-surface-container-highest text-on-surface font-bold px-8 py-4 rounded-full hover:bg-surface-container-high transition-colors w-full md:w-auto">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                    Download PDF Report
+                </button>
+<button class="flex items-center gap-2 bg-surface-container-highest text-on-surface font-bold px-8 py-4 rounded-full hover:bg-surface-container-high transition-colors w-full md:w-auto">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+                    Share with Doctor
+                </button>
+<button class="flex items-center gap-2 bg-gradient-to-br from-primary to-primary-container text-white font-bold px-10 py-4 rounded-full shadow-lg hover:scale-[1.02] transition-transform w-full md:w-auto">
+<span class="material-symbols-outlined" data-icon="event">event</span>
+                    Book Consultation
+                </button>
+</div>
+</div>
+</main>
+<!-- Floating AI Coach -->
+<button class="fixed bottom-28 right-6 w-14 h-14 bg-primary rounded-full shadow-xl flex items-center justify-center text-white hover:scale-110 transition-transform z-40">
+<span class="material-symbols-outlined" data-icon="smart_toy" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-[#faf8ff]/70 backdrop-blur-md z-50 rounded-t-[2rem] no-line-rule shadow-[0px_-10px_30px_rgba(24,27,39,0.04)]">
+<div class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] opacity-50 p-2">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] opacity-50 p-2">
+<span class="material-symbols-outlined" data-icon="exercise">exercise</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Fitness</span>
+</div>
+<!-- Active Tab: Profile/Reports usually fall under profile or a dedicated tracker -->
+<div class="flex flex-col items-center justify-center bg-gradient-to-br from-[#b7004e] to-[#e21364] text-white rounded-full p-3 scale-110 -translate-y-2 transition-all">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Profile</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] opacity-50 p-2">
+<span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Diet</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] opacity-50 p-2">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Community</span>
+</div>
+</nav>
+</body></html>

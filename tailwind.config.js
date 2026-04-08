@@ -1,0 +1,70 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  // NOTE: Update this to include the paths to all of your component files.
+  content: ["./app/**/*.{js,jsx,ts,tsx}", "./src/**/*.{js,jsx,ts,tsx}"],
+  presets: [require("nativewind/preset")],
+  theme: {
+    extend: {
+      colors: {
+        "surface-container-highest": "#e0e1f3",
+        "surface-dim": "#d7d9ea",
+        "on-surface": "#181b27",
+        "on-primary-fixed-variant": "#90003c",
+        "inverse-primary": "#ffb1c0",
+        "surface-variant": "#e0e1f3",
+        "on-background": "#181b27",
+        "on-tertiary-fixed": "#221b00",
+        "primary-fixed": "#ffd9df",
+        "on-tertiary-fixed-variant": "#534600",
+        "tertiary-container": "#c7aa00",
+        "primary-container": "#e21364",
+        "on-secondary": "#ffffff",
+        "on-secondary-container": "#690006",
+        "tertiary-fixed-dim": "#e6c500",
+        "on-secondary-fixed-variant": "#8c1616",
+        "on-error-container": "#93000a",
+        "on-primary-container": "#fffbff",
+        "surface-bright": "#faf8ff",
+        "on-tertiary-container": "#4b3f00",
+        "surface": "#faf8ff",
+        "on-primary-fixed": "#3f0016",
+        "inverse-on-surface": "#eff0ff",
+        "surface-container-low": "#f3f2ff",
+        "inverse-surface": "#2d303d",
+        "background": "#faf8ff",
+        "secondary-fixed": "#ffdad6",
+        "primary-fixed-dim": "#ffb1c0",
+        "secondary": "#ae302a",
+        "outline": "#8f6f74",
+        "on-primary": "#ffffff",
+        "surface-container-high": "#e6e7f8",
+        "on-error": "#ffffff",
+        "error": "#ba1a1a",
+        "tertiary-fixed": "#ffe25f",
+        "surface-container": "#ebedfe",
+        "surface-tint": "#bc0050",
+        "primary": "#b7004e",
+        "secondary-fixed-dim": "#ffb4ab",
+        "error-container": "#ffdad6",
+        "outline-variant": "#e4bdc3",
+        "on-secondary-fixed": "#410002",
+        "secondary-container": "#fc695d",
+        "tertiary": "#6e5d00",
+        "surface-container-lowest": "#ffffff",
+        "on-surface-variant": "#5b3f44",
+        "on-tertiary": "#ffffff"
+      },
+      fontFamily: {
+        "headline": ["System", "sans-serif"],
+        "body": ["System", "sans-serif"],
+        "label": ["System", "sans-serif"]
+      },
+      borderRadius: {
+        "lg": "32px",
+        "xl": "48px",
+        "full": "9999px"
+      }
+    },
+  },
+  plugins: [],
+}

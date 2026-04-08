@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Luna Wellness - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#e0e1f3",
+              "surface-dim": "#d7d9ea",
+              "on-surface": "#181b27",
+              "on-primary-fixed-variant": "#90003c",
+              "inverse-primary": "#ffb1c0",
+              "surface-variant": "#e0e1f3",
+              "on-background": "#181b27",
+              "on-tertiary-fixed": "#221b00",
+              "primary-fixed": "#ffd9df",
+              "on-tertiary-fixed-variant": "#534600",
+              "tertiary-container": "#c7aa00",
+              "primary-container": "#e21364",
+              "on-secondary": "#ffffff",
+              "on-secondary-container": "#690006",
+              "tertiary-fixed-dim": "#e6c500",
+              "on-secondary-fixed-variant": "#8c1616",
+              "on-error-container": "#93000a",
+              "on-primary-container": "#fffbff",
+              "surface-bright": "#faf8ff",
+              "on-tertiary-container": "#4b3f00",
+              "surface": "#faf8ff",
+              "on-primary-fixed": "#3f0016",
+              "inverse-on-surface": "#eff0ff",
+              "surface-container-low": "#f3f2ff",
+              "inverse-surface": "#2d303d",
+              "background": "#faf8ff",
+              "secondary-fixed": "#ffdad6",
+              "primary-fixed-dim": "#ffb1c0",
+              "secondary": "#ae302a",
+              "outline": "#8f6f74",
+              "on-primary": "#ffffff",
+              "surface-container-high": "#e6e7f8",
+              "on-error": "#ffffff",
+              "error": "#ba1a1a",
+              "tertiary-fixed": "#ffe25f",
+              "surface-container": "#ebedfe",
+              "surface-tint": "#bc0050",
+              "primary": "#b7004e",
+              "secondary-fixed-dim": "#ffb4ab",
+              "error-container": "#ffdad6",
+              "outline-variant": "#e4bdc3",
+              "on-secondary-fixed": "#410002",
+              "secondary-container": "#fc695d",
+              "tertiary": "#6e5d00",
+              "surface-container-lowest": "#ffffff",
+              "on-surface-variant": "#5b3f44",
+              "on-tertiary": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-fixed antialiased">
+<!-- Onboarding Flow Navigation (Skip Option) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-end items-center px-8 py-8">
+<button class="text-primary font-headline font-bold text-sm tracking-wide hover:opacity-70 transition-opacity">
+            Skip
+        </button>
+</header>
+<main class="min-h-screen flex flex-col relative overflow-hidden">
+<!-- Background Artistic Elements -->
+<div class="absolute top-[-10%] right-[-10%] w-[300px] h-[300px] bg-primary-fixed/20 blur-[100px] rounded-full"></div>
+<div class="absolute bottom-[20%] left-[-5%] w-[250px] h-[250px] bg-secondary-container/10 blur-[80px] rounded-full"></div>
+<!-- Visual Content Section (Asymmetric Editorial Layout) -->
+<div class="flex-grow flex flex-col justify-center px-6 pt-16">
+<div class="relative w-full aspect-[4/5] max-w-md mx-auto">
+<!-- Main Image Card -->
+<div class="w-full h-full rounded-lg overflow-hidden shadow-[0_20px_40px_rgba(24,27,39,0.06)] relative z-10">
+<img alt="Woman in peaceful meditation" class="w-full h-full object-cover" data-alt="Serene young woman practicing mindful meditation in a soft-lit, airy wellness studio with warm morning sunlight and neutral textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC497eSksgB3ru_p6LBJNvLgRaSSE7-zPYC6tAohVUFAkEnfphPql3sFmP2l27rCS5U8I_jJ8SIC_v6-k_VprWzRDRxAkquFVY3ApolVB8l9LuD-GFqnwGPmwSM6geYL775mk2cULdEGi96AHaE7fWsWYzIUkWOOKnxnhD7PHE9CWoR5L3Y7A4LQ2UV0VeZJmxVrQCOCOnhskAH3REbTEzgcY5T0mc66ZNmgMnPVHISGstMKeWexzcE1KnNRG9G1lwVrAr2NK-0bzU"/>
+</div>
+<!-- Floating Editorial Badge -->
+<div class="absolute -bottom-6 -right-4 glass-card p-6 rounded-lg shadow-xl z-20 flex items-center gap-4 max-w-[200px]">
+<div class="w-12 h-12 bg-gradient-to-tr from-primary to-primary-container rounded-full flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">spa</span>
+</div>
+<p class="font-headline font-bold text-xs leading-tight text-on-surface">
+                        Holistic Insights 
+                        <span class="block text-[10px] font-medium opacity-60">Daily Guidance</span>
+</p>
+</div>
+</div>
+<!-- Content Area -->
+<div class="mt-16 text-center max-w-xl mx-auto">
+<!-- Branding Anchor -->
+<div class="flex items-center justify-center gap-2 mb-6">
+<span class="w-8 h-[2px] bg-primary-container/30"></span>
+<span class="font-headline font-black italic text-primary tracking-tighter text-lg">Luna Wellness</span>
+<span class="w-8 h-[2px] bg-primary-container/30"></span>
+</div>
+<h1 class="font-headline font-extrabold text-4xl sm:text-5xl text-on-surface tracking-tight leading-[1.1] mb-6">
+                    Your Personal AI Coach for <span class="text-primary italic">Hormonal Health.</span>
+</h1>
+<p class="text-on-surface-variant text-lg leading-relaxed max-w-sm mx-auto px-4">
+                    Understand your cycle, optimize your vitality, and find balance with editorial-grade wellness intelligence.
+                </p>
+</div>
+</div>
+<!-- Footer / Controls Section -->
+<div class="px-8 pb-12 pt-8 flex flex-col items-center gap-10">
+<!-- Step Indicators -->
+<div class="flex gap-3">
+<div class="h-1.5 w-8 rounded-full bg-gradient-to-r from-primary to-primary-container"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-surface-container-highest"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-surface-container-highest"></div>
+</div>
+<!-- Primary Action -->
+<button class="group w-full max-w-md bg-gradient-to-tr from-primary to-primary-container text-white py-5 px-8 rounded-full font-headline font-bold text-lg flex items-center justify-center gap-3 shadow-lg active:scale-95 transition-all duration-150">
+<span>Next</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<!-- Decorative Visual Flow -->
+<div class="w-24 h-1 bg-surface-container-high rounded-full opacity-50"></div>
+</div>
+</main>
+<!-- Shell Suppression: This is an onboarding screen, navigation components are excluded by rule. -->
+</body></html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#c7aa00",
+              "tertiary-fixed": "#ffe25f",
+              "primary-fixed-dim": "#ffb1c0",
+              "outline-variant": "#e4bdc3",
+              "outline": "#8f6f74",
+              "primary-container": "#e21364",
+              "on-secondary-fixed": "#410002",
+              "secondary-fixed": "#ffdad6",
+              "on-error": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "surface-container-low": "#f3f2ff",
+              "secondary": "#ae302a",
+              "surface-dim": "#d7d9ea",
+              "inverse-surface": "#2d303d",
+              "on-tertiary-container": "#4b3f00",
+              "tertiary": "#6e5d00",
+              "primary": "#b7004e",
+              "on-tertiary-fixed-variant": "#534600",
+              "inverse-on-surface": "#eff0ff",
+              "primary-fixed": "#ffd9df",
+              "on-surface-variant": "#5b3f44",
+              "surface-container-high": "#e6e7f8",
+              "secondary-fixed-dim": "#ffb4ab",
+              "surface-tint": "#bc0050",
+              "tertiary-fixed-dim": "#e6c500",
+              "surface-bright": "#faf8ff",
+              "error-container": "#ffdad6",
+              "surface-variant": "#e0e1f3",
+              "surface-container-lowest": "#ffffff",
+              "surface": "#faf8ff",
+              "on-primary-fixed-variant": "#90003c",
+              "background": "#faf8ff",
+              "on-surface": "#181b27",
+              "on-secondary": "#ffffff",
+              "on-secondary-container": "#690006",
+              "error": "#ba1a1a",
+              "inverse-primary": "#ffb1c0",
+              "on-secondary-fixed-variant": "#8c1616",
+              "surface-container": "#ebedfe",
+              "on-tertiary-fixed": "#221b00",
+              "surface-container-highest": "#e0e1f3",
+              "on-primary-fixed": "#3f0016",
+              "on-error-container": "#93000a",
+              "secondary-container": "#fc695d",
+              "on-primary": "#ffffff",
+              "on-background": "#181b27",
+              "on-primary-container": "#fffbff"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .headline-font {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<header class="fixed top-0 w-full flex justify-between items-center px-6 h-16 bg-[#faf8ff]/70 dark:bg-slate-950/70 backdrop-blur-md z-50 shadow-[0px_20px_40px_rgba(24,27,39,0.04)]">
+<div class="flex items-center gap-3">
+<button class="hover:opacity-80 transition-opacity active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[#FF3278]" data-icon="menu">menu</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold text-lg tracking-tight text-[#181b27] dark:text-slate-400">Luna Wellness</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-[#FF3278] font-black italic tracking-tighter text-xl">Luna AI</span>
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border-2 border-primary/10">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="professional headshot of a serene woman with glowing skin, soft studio lighting, high-end wellness aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlLZP79ztlfb2W5d8WaRZSQPwD3ib8XJEDS2gqiOSHe_jVcp7aaKeKtz2tnqDBs5XrINLxIqSmn0RjxVcJybUAUrz0bS5P3jCTeZz1rBSGvm0dWhGkGGGZDmS6zgqHKfrQxHQGAB444ckqQnLzW3UdTRqFMZ3LpiEFGSZwvwStu5E72mdy_9UObmZKBErl7EzcnBT5PvHTp-O5tZsqeQpsPWFCIQAOyudGz663W2SC9wFt-hJ6grT3Psuc2CBmv0HC4rxiY9lm7fI"/>
+</div>
+</div>
+</header>
+<main class="flex-1 mt-16 mb-24 max-w-4xl mx-auto w-full px-6 py-8 flex flex-col gap-8">
+<div class="flex flex-col gap-6">
+<div class="flex items-end gap-3 max-w-[85%]">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white text-sm" data-icon="smart_toy">smart_toy</span>
+</div>
+<div class="bg-surface-container-low p-5 rounded-t-xl rounded-br-xl text-on-surface text-sm leading-relaxed shadow-sm">
+                    Hello! I'm <span class="font-bold text-primary">Luna AI</span>. I've been analyzing your cycle patterns. Based on your current follicular phase, your estrogen is rising. This is a great time for high-intensity movement and nutrient-dense greens.
+                </div>
+</div>
+<div class="w-full pl-11">
+<div class="bg-surface-container-lowest border border-outline-variant/15 rounded-lg p-6 flex flex-col md:flex-row gap-6 items-center shadow-[0px_10px_30px_rgba(24,27,39,0.03)]">
+<div class="w-full md:w-32 h-32 rounded-md overflow-hidden shrink-0">
+<img alt="Lifestyle Tip" class="w-full h-full object-cover" data-alt="vibrant bowl of kale, avocado, and pumpkin seeds on a minimalist ceramic plate with soft natural window light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6wX1Xb3RwZyPGh0a_bUDnw1QvSwGiomFyPprFLMgl6K7OlLvxzVDFPZaB0JSIBXyQ5fSHFf-GjwNuV3An91cjyRfTJtIzZr4XKUIRtCTNCy8xTYzHZD-HPetlFUeLGLAaU1INOrXEDaDJ_v_iLkrLjkp6t8KqA8fl8IOZobe9ikxZUhoSbwmmo8gBXbrLBBPvcnJ-Iqsrf9d7UPjNA5GBDUD-r0ViS0G9KAu522A0F7730uTD3Q_dlGlyNohmRv-j8nk9VtoVKII"/>
+</div>
+<div class="flex-1 space-y-2">
+<span class="inline-block px-3 py-1 bg-secondary-container/10 text-secondary text-[10px] font-bold uppercase tracking-widest rounded-full">Phase Recommendation</span>
+<h3 class="headline-font text-lg font-bold text-on-surface">Boost Your Estrogen Metabolism</h3>
+<p class="text-sm text-on-surface-variant">Adding cruciferous vegetables like broccoli sprouts or kale today helps your liver process rising hormones efficiently, keeping your skin clear and energy stable.</p>
+<button class="mt-2 text-primary text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all">
+                            View Full Meal Plan <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex justify-end gap-3 max-w-[85%] ml-auto">
+<div class="bg-primary text-on-primary p-5 rounded-t-xl rounded-bl-xl text-sm leading-relaxed shadow-lg">
+                    That sounds great. I've been feeling a bit bloated lately, though. Is that normal for this phase?
+                </div>
+</div>
+<div class="flex items-end gap-3 max-w-[85%]">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white text-sm" data-icon="smart_toy">smart_toy</span>
+</div>
+<div class="bg-surface-container-low p-5 rounded-t-xl rounded-br-xl text-on-surface text-sm leading-relaxed shadow-sm">
+                    Minor bloating during the late follicular phase can happen as estrogen peaks. Try increasing your water intake and focusing on magnesium-rich snacks like pumpkin seeds. Would you like a list of magnesium-dense foods?
+                </div>
+</div>
+</div>
+<div class="mt-auto pt-8 flex flex-col gap-4">
+<div class="flex flex-wrap gap-2 justify-center px-4">
+<button class="px-5 py-2.5 bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-xs font-medium rounded-full transition-colors border border-outline-variant/10">
+                    What should I eat today for my PCOS?
+                </button>
+<button class="px-5 py-2.5 bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-xs font-medium rounded-full transition-colors border border-outline-variant/10">
+                    Why is my energy low today?
+                </button>
+<button class="px-5 py-2.5 bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-xs font-medium rounded-full transition-colors border border-outline-variant/10">
+                    Is caffeine okay today?
+                </button>
+</div>
+<div class="relative group">
+<div class="absolute inset-0 bg-primary/5 rounded-full blur-xl group-focus-within:bg-primary/10 transition-colors"></div>
+<div class="relative bg-surface-container-lowest border border-outline-variant/20 rounded-full flex items-center px-6 py-3 shadow-sm focus-within:ring-2 ring-primary/20 transition-all">
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface text-sm placeholder:text-on-surface-variant/50" placeholder="Ask Luna AI anything..." type="text"/>
+<button class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white active:scale-90 transition-transform shadow-md">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-[#faf8ff]/70 dark:bg-slate-900/70 backdrop-blur-md shadow-[0px_-10px_30px_rgba(24,27,39,0.03)] rounded-t-[2rem]">
+<a class="flex flex-col items-center justify-center text-[#181b27] dark:text-slate-400 px-4 py-2 hover:bg-[#f3f2ff] dark:hover:bg-slate-800 rounded-full active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#181b27] dark:text-slate-400 px-4 py-2 hover:bg-[#f3f2ff] dark:hover:bg-slate-800 rounded-full active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Fitness</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#181b27] dark:text-slate-400 px-4 py-2 hover:bg-[#f3f2ff] dark:hover:bg-slate-800 rounded-full active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Diet</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#f3f2ff] dark:bg-slate-800 text-[#FF3278] rounded-full px-4 py-2 scale-110 transition-transform shadow-sm" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Community</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#181b27] dark:text-slate-400 px-4 py-2 hover:bg-[#f3f2ff] dark:hover:bg-slate-800 rounded-full active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Luna Wellness | Lab Test Module</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed-dim": "#ffb4ab",
+                        "tertiary-fixed-dim": "#e6c500",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#90003c",
+                        "inverse-primary": "#ffb1c0",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e6e7f8",
+                        "on-primary-fixed": "#3f0016",
+                        "on-primary-container": "#fffbff",
+                        "primary-fixed": "#ffd9df",
+                        "primary-fixed-dim": "#ffb1c0",
+                        "surface": "#faf8ff",
+                        "secondary": "#ae302a",
+                        "on-surface-variant": "#5b3f44",
+                        "tertiary": "#6e5d00",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#faf8ff",
+                        "outline-variant": "#e4bdc3",
+                        "tertiary-container": "#c7aa00",
+                        "tertiary-fixed": "#ffe25f",
+                        "on-tertiary-fixed": "#221b00",
+                        "on-tertiary-container": "#4b3f00",
+                        "surface-container": "#ebedfe",
+                        "on-tertiary-fixed-variant": "#534600",
+                        "on-surface": "#181b27",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffdad6",
+                        "secondary-container": "#fc695d",
+                        "on-secondary-container": "#690006",
+                        "primary": "#b7004e",
+                        "surface-variant": "#e0e1f3",
+                        "surface-tint": "#bc0050",
+                        "background": "#faf8ff",
+                        "on-secondary-fixed-variant": "#8c1616",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f3f2ff",
+                        "surface-container-highest": "#e0e1f3",
+                        "inverse-surface": "#2d303d",
+                        "inverse-on-surface": "#eff0ff",
+                        "surface-dim": "#d7d9ea",
+                        "outline": "#8f6f74",
+                        "on-secondary-fixed": "#410002",
+                        "on-background": "#181b27",
+                        "primary-container": "#e21364"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<header class="fixed top-0 w-full z-50 bg-[#faf8ff]/70 dark:bg-[#181b27]/70 backdrop-blur-md flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#FF3278]">menu</span>
+<h1 class="font-headline font-black text-[#b7004e] tracking-tight text-lg">Luna Wellness</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img alt="User profile avatar" data-alt="Professional studio portrait of a young woman with a warm smile, soft cinematic lighting, neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9cbrKWCsKSFOuI4CDaNk2RErWzLcOVEHKo1ZHo09qJXt1qKOJcEYcjs04LuX0qVHhXB9S6a7LAFpQPVVCLHADycgNDLMz6xXaD-LQ51XBG7sVeL5nqNbdXsRjKq3nGhQULnhw02DOd8kn_OxD1FVFqYFXI1xvCKKMvwsJ_I1s89fuYb41_nR72blBLl4dwNOQ2m5LZpHQTvuOSt0tg-vu-2NJJ0lsxXH-G4HwTpdYegSzJBlMGg-dnJdwIdlS9HsuvDJ_GXmC34s"/>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-4xl mx-auto">
+<section class="mb-8">
+<h2 class="font-headline text-3xl font-bold tracking-tight mb-2">Hormone Health Labs</h2>
+<p class="text-on-surface-variant opacity-80 mb-6">Precise insights from the comfort of your home.</p>
+<div class="relative mb-8">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary opacity-60">search</span>
+<input class="w-full bg-surface-container-high border-none rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary/20 placeholder:text-on-surface-variant/50" placeholder="Search for specific tests..." type="text"/>
+</div>
+<div class="flex gap-3 overflow-x-auto no-scrollbar mb-4">
+<button class="bg-primary text-white px-6 py-2.5 rounded-full font-semibold whitespace-nowrap">All</button>
+<button class="bg-surface-container-low text-on-surface-variant px-6 py-2.5 rounded-full font-semibold whitespace-nowrap hover:bg-surface-container-high transition-colors">PCOS</button>
+<button class="bg-surface-container-low text-on-surface-variant px-6 py-2.5 rounded-full font-semibold whitespace-nowrap hover:bg-surface-container-high transition-colors">Thyroid</button>
+<button class="bg-surface-container-low text-on-surface-variant px-6 py-2.5 rounded-full font-semibold whitespace-nowrap hover:bg-surface-container-high transition-colors">Weight Loss</button>
+</div>
+</section>
+<section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+<div class="bg-surface-container-lowest rounded-lg p-6 flex flex-col justify-between transition-all hover:translate-y-[-4px]">
+<div>
+<div class="flex justify-between items-start mb-4">
+<span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Best Seller</span>
+<h3 class="text-2xl font-bold text-primary">$189</h3>
+</div>
+<h4 class="font-headline text-xl font-bold mb-2 text-on-surface">PCOS Diagnostic Panel</h4>
+<p class="text-sm text-on-surface-variant mb-6">Comprehensive screening for hormonal imbalances related to polycystic ovaries.</p>
+<div class="space-y-3 mb-8">
+<div class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-tertiary text-lg">biotech</span>
+<span>24 Key Biomarkers</span>
+</div>
+<div class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-tertiary text-lg">home_health</span>
+<span>Free Home Collection</span>
+</div>
+<div class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-tertiary text-lg">description</span>
+<span>Digital Doctor Consult</span>
+</div>
+</div>
+</div>
+<button class="w-full bg-gradient-to-br from-[#b7004e] to-[#e21364] text-white py-4 rounded-full font-bold shadow-sm active:scale-95 transition-transform">View Details</button>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-6 flex flex-col justify-between transition-all hover:translate-y-[-4px]">
+<div>
+<div class="flex justify-between items-start mb-4">
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Comprehensive</span>
+<h3 class="text-2xl font-bold text-primary">$249</h3>
+</div>
+<h4 class="font-headline text-xl font-bold mb-2 text-on-surface">Advanced Hormonal Profile</h4>
+<p class="text-sm text-on-surface-variant mb-6">A deep dive into 42 markers including Cortisol, AMH, and Insulin sensitivity.</p>
+<div class="space-y-3 mb-8">
+<div class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-tertiary text-lg">biotech</span>
+<span>42 Key Biomarkers</span>
+</div>
+<div class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-tertiary text-lg">history</span>
+<span>Fast 24hr Results</span>
+</div>
+<div class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-tertiary text-lg">trending_up</span>
+<span>Cycle Mapping Included</span>
+</div>
+</div>
+</div>
+<button class="w-full bg-surface-container-highest text-primary py-4 rounded-full font-bold active:scale-95 transition-transform">View Details</button>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-6 flex flex-col justify-between transition-all hover:translate-y-[-4px] md:col-span-2">
+<div class="flex flex-col md:flex-row gap-8">
+<div class="flex-1">
+<div class="flex justify-between items-start mb-4">
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Focused Care</span>
+<h3 class="text-2xl font-bold text-primary">$120</h3>
+</div>
+<h4 class="font-headline text-xl font-bold mb-2 text-on-surface">Thyroid Care Panel</h4>
+<p class="text-sm text-on-surface-variant mb-6">Essential panel tracking TSH, T3, T4 and Antibodies to monitor metabolic health.</p>
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-tertiary text-lg">biotech</span>
+<span>8 Key Biomarkers</span>
+</div>
+<div class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-tertiary text-lg">verified</span>
+<span>Endocrinologist Review</span>
+</div>
+</div>
+</div>
+<div class="md:w-1/3 flex items-end">
+<button class="w-full bg-surface-container-highest text-primary py-4 rounded-full font-bold active:scale-95 transition-transform">View Details</button>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-surface-container-low rounded-lg p-8 relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-headline text-2xl font-bold mb-6">Why Test with Luna?</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex gap-4">
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div>
+<h5 class="font-bold text-on-surface mb-1">NABL Certified Labs</h5>
+<p class="text-xs text-on-surface-variant leading-relaxed">We partner only with gold-standard diagnostic centers ensuring 99.9% accuracy.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">house_siding</span>
+</div>
+<div>
+<h5 class="font-bold text-on-surface mb-1">Home Sample Collection</h5>
+<p class="text-xs text-on-surface-variant leading-relaxed">Certified phlebotomists arrive at your doorstep in sterilized clinical gear.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+<div>
+<h5 class="font-bold text-on-surface mb-1">Actionable Insights</h5>
+<p class="text-xs text-on-surface-variant leading-relaxed">More than just data—get lifestyle and diet recommendations mapped to your results.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div>
+<h5 class="font-bold text-on-surface mb-1">Privacy First</h5>
+<p class="text-xs text-on-surface-variant leading-relaxed">Your data is encrypted and shared only with our clinical review board.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute -right-20 -bottom-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+</section>
+</main>
+<div class="fixed bottom-28 right-6 z-50">
+<button class="w-16 h-16 bg-gradient-to-br from-[#b7004e] to-[#e21364] rounded-full flex items-center justify-center text-white shadow-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</button>
+</div>
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-[#faf8ff]/70 dark:bg-[#181b27]/70 backdrop-blur-md z-50 rounded-t-[2rem] shadow-[0px_-10px_30px_rgba(24,27,39,0.04)]">
+<div class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] opacity-50 p-2 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">home</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] opacity-50 p-2 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">exercise</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Fitness</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] opacity-50 p-2 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">restaurant</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Diet</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] opacity-50 p-2 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">group</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Community</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] opacity-50 p-2 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">person</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Profile</span>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Doctor Profile - Luna Wellness</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-dim": "#d7d9ea",
+                        "on-primary-fixed-variant": "#90003c",
+                        "on-secondary-fixed-variant": "#8c1616",
+                        "secondary-fixed-dim": "#ffb4ab",
+                        "on-tertiary-fixed": "#221b00",
+                        "on-primary-fixed": "#3f0016",
+                        "inverse-primary": "#ffb1c0",
+                        "tertiary-fixed": "#ffe25f",
+                        "inverse-surface": "#2d303d",
+                        "on-surface": "#181b27",
+                        "surface-bright": "#faf8ff",
+                        "outline-variant": "#e4bdc3",
+                        "primary-container": "#e21364",
+                        "surface-variant": "#e0e1f3",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#bc0050",
+                        "surface-container-highest": "#e0e1f3",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#ffd9df",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-background": "#181b27",
+                        "secondary-container": "#fc695d",
+                        "primary": "#b7004e",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f3f2ff",
+                        "on-secondary-fixed": "#410002",
+                        "inverse-on-surface": "#eff0ff",
+                        "on-primary-container": "#fffbff",
+                        "primary-fixed-dim": "#ffb1c0",
+                        "tertiary-fixed-dim": "#e6c500",
+                        "surface-container": "#ebedfe",
+                        "on-secondary-container": "#690006",
+                        "on-tertiary-container": "#4b3f00",
+                        "tertiary": "#6e5d00",
+                        "surface": "#faf8ff",
+                        "secondary": "#ae302a",
+                        "outline": "#8f6f74",
+                        "on-error-container": "#93000a",
+                        "background": "#faf8ff",
+                        "tertiary-container": "#c7aa00",
+                        "surface-container-high": "#e6e7f8",
+                        "secondary-fixed": "#ffdad6",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#534600",
+                        "on-surface-variant": "#5b3f44"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-[#faf8ff]/70 backdrop-blur-md shadow-[0px_20px_40px_rgba(24,27,39,0.04)]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#FF3278] text-2xl" data-icon="bubble_chart">bubble_chart</span>
+<span class="font-['Plus_Jakarta_Sans'] font-bold text-xl tracking-tight text-[#FF3278]">Luna Wellness</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex gap-8 text-[#181b27] font-medium">
+<a class="hover:opacity-80 transition-opacity" href="#">Home</a>
+<a class="text-[#FF3278]" href="#">Fitness</a>
+<a class="hover:opacity-80 transition-opacity" href="#">Diet</a>
+<a class="hover:opacity-80 transition-opacity" href="#">Community</a>
+</div>
+<img alt="User Profile" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container/20" data-alt="Professional headshot of a smiling young woman with warm lighting and a soft blurred background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgdWQrpjVmZ48Lom9R0ZAb9zofGGPD7TzeHfCPgzVg12n_Pb-anACU43-IaxpeMzIQe8ShPTYIADTOstgN_K2Q5pgs650IUJttAtBFH_3ko1c4VWCZDPtT4pZJmgfWAFaKdncyLei1Q7OXoq1NCBN0v82oPHskXMt4d9_bDbrd-UUNxVogAuf52KCt9WUCpGHHsrK2wkDRzLOsjF8tBDzRgZfdtoxoAFBG2Cv3Cmcs_w8g7tsowPS8lwMe0891ZGummmeApVBDbKE"/>
+</div>
+</nav>
+<main class="mt-24 px-4 md:px-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Doctor Identity & Bio -->
+<div class="lg:col-span-7 space-y-8">
+<!-- Hero Card -->
+<section class="relative bg-surface-container-lowest rounded-lg overflow-hidden">
+<div class="h-48 bg-gradient-to-r from-primary/10 to-secondary-container/10"></div>
+<div class="px-8 pb-8 -mt-16 flex flex-col md:flex-row items-end md:items-center gap-6">
+<div class="relative">
+<img alt="Doctor Profile" class="w-40 h-40 rounded-lg object-cover shadow-xl border-4 border-surface-container-lowest" data-alt="Experienced female doctor with a kind expression wearing a white coat, soft studio lighting, professional medical portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjHo6hOHL3W7n-qgAML6bw9WVxPb4lOwXIx_GKzRTxME0_lSZaIjpAMjpqI1bXKj4XfQ9pNuMT3yryuEiQURgd9qnxuQ6Kn6RsLGPQ6srIWgjhCsGzU9E0eIz7OunJ3p4qxD09IsjBBFqukXfOHB8Bd-rS7lAxvClJUDxTZhHnI5kguwvrGJ_UNOovwWd0E0pX5J_fRMg8nocK91zQ_F2XdpQpTztWRjdKBYtKB26onvQxar68_bbvk5d-Q20XVVvuQFssSRokK84"/>
+<div class="absolute -bottom-2 -right-2 bg-primary text-white p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="flex-1 space-y-1">
+<div class="flex items-center gap-3">
+<h1 class="text-3xl font-extrabold tracking-tight text-on-surface">Dr. Elena Thorne</h1>
+</div>
+<p class="text-primary font-semibold">Reproductive Endocrinologist</p>
+<div class="flex items-center gap-4 mt-2">
+<div class="flex items-center gap-1 bg-surface-container-low px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold">4.9</span>
+<span class="text-xs text-on-surface-variant ml-1">(120+ reviews)</span>
+</div>
+<div class="text-sm font-medium text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">work</span>
+                                12 Years Exp.
+                            </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Stats Bento -->
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<div class="bg-surface-container-low p-6 rounded-md space-y-2">
+<span class="material-symbols-outlined text-primary" data-icon="school">school</span>
+<h3 class="font-bold text-sm text-on-surface-variant uppercase tracking-wider">Education</h3>
+<p class="text-sm font-semibold">Johns Hopkins University</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-md space-y-2">
+<span class="material-symbols-outlined text-secondary" data-icon="language">language</span>
+<h3 class="font-bold text-sm text-on-surface-variant uppercase tracking-wider">Languages</h3>
+<p class="text-sm font-semibold">English, Spanish, French</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-md space-y-2 col-span-2 md:col-span-1">
+<span class="material-symbols-outlined text-tertiary" data-icon="videocam">videocam</span>
+<h3 class="font-bold text-sm text-on-surface-variant uppercase tracking-wider">Consultation</h3>
+<p class="text-sm font-semibold">Video Call (Luna HD)</p>
+</div>
+</div>
+<!-- About Section -->
+<section class="space-y-4">
+<h2 class="text-2xl font-bold tracking-tight px-2">About Dr. Thorne</h2>
+<div class="bg-surface-container-lowest p-8 rounded-lg leading-relaxed text-on-surface-variant">
+                    Dr. Elena Thorne is a leading specialist in hormonal health and fertility wellness. With over a decade of experience in reproductive endocrinology, she focuses on a holistic approach that integrates medical science with lifestyle optimization. Her mission at Luna Wellness is to provide personalized care journeys that empower women to understand their cycles and thrive.
+                </div>
+</section>
+<!-- Reviews -->
+<section class="space-y-4">
+<div class="flex justify-between items-center px-2">
+<h2 class="text-2xl font-bold tracking-tight">Patient Experiences</h2>
+<button class="text-primary font-bold text-sm hover:underline">View All</button>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-lowest p-6 rounded-lg">
+<div class="flex items-center gap-4 mb-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-white font-bold">M</div>
+<div>
+<h4 class="font-bold text-sm">Maya R.</h4>
+<div class="flex text-tertiary">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant italic">"Dr. Thorne actually listens. She didn't just look at my charts, she looked at my life. Her advice on cycle-syncing has changed my energy levels completely."</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Booking Widget -->
+<aside class="lg:col-span-5">
+<div class="sticky top-28 space-y-6">
+<!-- Calendar Card -->
+<div class="bg-surface-container-lowest rounded-lg shadow-[0px_20px_40px_rgba(24,27,39,0.04)] overflow-hidden">
+<div class="bg-primary-container p-6 text-white">
+<h3 class="text-xl font-bold">Book a Consultation</h3>
+<p class="text-white/80 text-sm">Select your preferred time slot</p>
+</div>
+<div class="p-6 space-y-6">
+<!-- Date Selector -->
+<div class="space-y-3">
+<div class="flex justify-between items-center mb-2">
+<h4 class="font-bold text-on-surface">September 2024</h4>
+<div class="flex gap-2">
+<button class="p-1 hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">chevron_left</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-2 text-center text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">
+<div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
+</div>
+<div class="grid grid-cols-7 gap-2">
+<button class="h-10 rounded-md text-sm font-medium hover:bg-surface-container transition-colors">12</button>
+<button class="h-10 rounded-md text-sm font-medium hover:bg-surface-container transition-colors">13</button>
+<button class="h-10 rounded-md text-sm font-bold bg-primary text-white shadow-md">14</button>
+<button class="h-10 rounded-md text-sm font-medium hover:bg-surface-container transition-colors">15</button>
+<button class="h-10 rounded-md text-sm font-medium hover:bg-surface-container transition-colors">16</button>
+<button class="h-10 rounded-md text-sm font-medium opacity-20 cursor-not-allowed">17</button>
+<button class="h-10 rounded-md text-sm font-medium opacity-20 cursor-not-allowed">18</button>
+</div>
+</div>
+<!-- Time Slots -->
+<div class="space-y-4">
+<h4 class="font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">schedule</span>
+                                Available Slots
+                            </h4>
+<div class="grid grid-cols-2 gap-3">
+<button class="py-3 px-4 rounded-md border-2 border-primary-container bg-surface-container-lowest text-primary font-bold text-sm text-center">
+                                    09:00 AM
+                                </button>
+<button class="py-3 px-4 rounded-md border-2 border-transparent bg-surface-container-low hover:bg-surface-container-high transition-colors text-on-surface font-medium text-sm text-center">
+                                    10:30 AM
+                                </button>
+<button class="py-3 px-4 rounded-md border-2 border-transparent bg-surface-container-low hover:bg-surface-container-high transition-colors text-on-surface font-medium text-sm text-center">
+                                    01:00 PM
+                                </button>
+<button class="py-3 px-4 rounded-md border-2 border-transparent bg-surface-container-low hover:bg-surface-container-high transition-colors text-on-surface font-medium text-sm text-center">
+                                    03:30 PM
+                                </button>
+</div>
+</div>
+<!-- Price Info -->
+<div class="pt-6 border-t-2 border-dashed border-surface-container flex justify-between items-center">
+<div>
+<p class="text-xs text-on-surface-variant font-medium">Session Fee (45 mins)</p>
+<p class="text-2xl font-black text-on-surface">$120.00</p>
+</div>
+<span class="material-symbols-outlined text-primary-container text-3xl">payments</span>
+</div>
+<!-- Action -->
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-white py-4 rounded-full font-bold text-lg shadow-lg hover:brightness-110 active:scale-95 transition-all">
+                            Confirm Booking
+                        </button>
+<p class="text-center text-[10px] text-on-surface-variant uppercase tracking-widest font-semibold">
+                            Secured via Luna Pay
+                        </p>
+</div>
+</div>
+<!-- Consultation Policy -->
+<div class="bg-surface-container-low p-6 rounded-md">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="info">info</span>
+<div>
+<h5 class="font-bold text-sm">Rescheduling Policy</h5>
+<p class="text-xs text-on-surface-variant mt-1 leading-relaxed">Cancel or reschedule for free up to 24 hours before your session. Video link will be sent to your email.</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- NavigationDrawer (AI Coach Button) -->
+<div class="fixed bottom-24 right-6 z-[60] flex items-center justify-center bg-gradient-to-br from-[#FF3278] to-[#e21364] text-white rounded-full w-14 h-14 shadow-xl hover:brightness-110 hover:scale-105 transition-all cursor-pointer active:animate-pulse">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+</div>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-white/70 backdrop-blur-md shadow-[0px_-10px_30px_rgba(24,27,39,0.03)] rounded-t-[2rem]">
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-[#f3f2ff] dark:bg-slate-800 text-[#FF3278] rounded-full px-4 py-2 scale-110 transition-transform">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider">Fitness</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2">
+<span class="material-symbols-outlined">restaurant</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider">Diet</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2">
+<span class="material-symbols-outlined">group</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider">Community</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider">Profile</span>
+</div>
+</nav>
+</body></html>

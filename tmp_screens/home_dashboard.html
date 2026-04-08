@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Luna Wellness - Home Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,700;0,800;1,800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#e0e1f3",
+              "surface-dim": "#d7d9ea",
+              "on-surface": "#181b27",
+              "on-primary-fixed-variant": "#90003c",
+              "inverse-primary": "#ffb1c0",
+              "surface-variant": "#e0e1f3",
+              "on-background": "#181b27",
+              "on-tertiary-fixed": "#221b00",
+              "primary-fixed": "#ffd9df",
+              "on-tertiary-fixed-variant": "#534600",
+              "tertiary-container": "#c7aa00",
+              "primary-container": "#e21364",
+              "on-secondary": "#ffffff",
+              "on-secondary-container": "#690006",
+              "tertiary-fixed-dim": "#e6c500",
+              "on-secondary-fixed-variant": "#8c1616",
+              "on-error-container": "#93000a",
+              "on-primary-container": "#fffbff",
+              "surface-bright": "#faf8ff",
+              "on-tertiary-container": "#4b3f00",
+              "surface": "#faf8ff",
+              "on-primary-fixed": "#3f0016",
+              "inverse-on-surface": "#eff0ff",
+              "surface-container-low": "#f3f2ff",
+              "inverse-surface": "#2d303d",
+              "background": "#faf8ff",
+              "secondary-fixed": "#ffdad6",
+              "primary-fixed-dim": "#ffb1c0",
+              "secondary": "#ae302a",
+              "outline": "#8f6f74",
+              "on-primary": "#ffffff",
+              "surface-container-high": "#e6e7f8",
+              "on-error": "#ffffff",
+              "error": "#ba1a1a",
+              "tertiary-fixed": "#ffe25f",
+              "surface-container": "#ebedfe",
+              "surface-tint": "#bc0050",
+              "primary": "#b7004e",
+              "secondary-fixed-dim": "#ffb4ab",
+              "error-container": "#ffdad6",
+              "outline-variant": "#e4bdc3",
+              "on-secondary-fixed": "#410002",
+              "secondary-container": "#fc695d",
+              "tertiary": "#6e5d00",
+              "surface-container-lowest": "#ffffff",
+              "on-surface-variant": "#5b3f44",
+              "on-tertiary": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.7);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased pb-32">
+<!-- Top App Bar -->
+<header class="bg-[#faf8ff]/70 dark:bg-[#181b27]/70 backdrop-blur-xl docked full-width top-0 sticky z-50 transition-colors shadow-[0_20px_40px_rgba(24,27,39,0.04)] dark:shadow-none flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#b7004e] dark:text-[#ff3278]" style="font-variation-settings: 'FILL' 1;">spa</span>
+<span class="font-['Plus_Jakarta_Sans'] font-black italic text-[#b7004e] dark:text-[#ff3278] text-lg tracking-tight">Luna Wellness</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-[#181b27] dark:text-[#faf8ff] opacity-60 hover:opacity-80 transition-opacity">search</button>
+<span class="material-symbols-outlined text-[#181b27] dark:text-[#faf8ff] opacity-60 hover:opacity-80 transition-opacity">account_circle</span>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-6 pt-8 space-y-10">
+<!-- Hero Section -->
+<section class="space-y-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="space-y-2">
+<p class="font-label text-sm uppercase tracking-widest text-primary font-bold">Today's Focus</p>
+<h1 class="font-headline text-4xl font-extrabold tracking-tight">Good Morning, Anjali!</h1>
+<p class="text-on-surface-variant max-w-md leading-relaxed">Your body is transitioning into the follicular phase. Energy levels are rising—it's a great day for strength.</p>
+</div>
+<!-- Hormone Balance Score Gauge -->
+<div class="relative w-40 h-40 flex items-center justify-center surface-container-lowest rounded-full shadow-sm">
+<svg class="w-32 h-32 transform -rotate-90">
+<circle class="text-surface-container-high" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-width="8"></circle>
+<circle cx="64" cy="64" fill="transparent" r="58" stroke="url(#gradient)" stroke-dasharray="364.4" stroke-dashoffset="72.8" stroke-linecap="round" stroke-width="10"></circle>
+<defs>
+<lineargradient id="gradient" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#b7004e"></stop>
+<stop offset="100%" stop-color="#e21364"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline text-3xl font-bold">82</span>
+<span class="font-label text-[10px] uppercase tracking-tighter opacity-60">Balance Score</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Cycle Phase Insight (Large Vertical) -->
+<div class="md:col-span-4 rounded-lg bg-surface-container-low p-8 flex flex-col justify-between min-h-[400px]">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+</div>
+<h3 class="font-headline text-2xl font-bold leading-tight">Follicular Phase - Focus on HIIT</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Estrogen is climbing. Your metabolism is efficient, and your pain tolerance is at its peak. Push yourself today.</p>
+</div>
+<div class="space-y-4">
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/3 rounded-full"></div>
+</div>
+<p class="font-label text-xs uppercase tracking-widest font-bold">Day 8 of 28</p>
+</div>
+</div>
+<!-- Today's Workout -->
+<div class="md:col-span-8 rounded-lg overflow-hidden relative group h-[220px]">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="serene woman practicing yoga in a bright minimalist studio with soft natural light and lush plants" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7BQ_WHadtwj5jLyAVOQqsWHWvlmB7_E3Uf93EB0SRmFAKfw2n-EWHEFLsgel2LxHgMo9YduTB79pH9Dv2p4UQduXIFx-VhHlCEyRS0lOVLG8j6lYJfur8J-zX6LT32wVp0wjNqpJBBHMos5RKu1M2Tl09PAbf1m6a62_O0LzRnoTQgnPPckG764JD8pH0pufgnfldHBhLn3iGVWk1_WKMqrX5lbzCsxkl81Gu91tohFvVmeBk-5986JrTfJE_HZMD0ZTrfENyJEY"/>
+<div class="absolute inset-0 bg-gradient-to-r from-on-surface/80 to-transparent flex flex-col justify-end p-8 text-white">
+<span class="font-label text-[10px] uppercase tracking-[0.2em] mb-2">Recommended</span>
+<h3 class="font-headline text-3xl font-bold mb-4">Yoga for PCOS</h3>
+<div class="flex gap-4 items-center">
+<button class="bg-gradient-to-tr from-primary to-primary-container px-6 py-2 rounded-full font-bold text-sm hover:scale-105 transition-transform">Start Session</button>
+<span class="text-sm opacity-80 flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 25 min</span>
+</div>
+</div>
+</div>
+<!-- Today's Meal -->
+<div class="md:col-span-5 rounded-lg bg-surface-container-lowest p-6 shadow-sm flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<span class="font-label text-[10px] uppercase tracking-widest text-tertiary font-bold">Nutrition Plan</span>
+<h3 class="font-headline text-xl font-bold mt-1">High-protein breakfast</h3>
+</div>
+<span class="material-symbols-outlined text-tertiary">restaurant</span>
+</div>
+<div class="rounded-md overflow-hidden h-32 w-full relative">
+<img class="w-full h-full object-cover" data-alt="close up of a vibrant breakfast bowl with poached eggs avocado and smoked salmon on rustic ceramic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnzS9z4fcxRsz1N6GifnzHe5PxRJacR9TVtUmd69yZNCfjnIt9UJKI0bNzxtVX8dS8zAY-ghzHfwpXMSMlJjNcPupfIcdtm21uIirdolT7r3xcZRBT2WYK8dUy88xLtVTe-Le_XomY2yYAYbxAsgQjYH0OOIpUjTq5p6MkOevODs3amxYyfXIV7mfy1blj7yYE7eYnnGqaYgFsbRlTz8R-qmVZZCHRDUNd0xpeE1bBdbmwTxQqU2ZFI7yQPNEWzARmPfaJukGXO20"/>
+</div>
+<div class="flex justify-between items-center text-xs font-medium">
+<span class="bg-surface-container-high px-3 py-1 rounded-full">450 kcal</span>
+<span class="bg-surface-container-high px-3 py-1 rounded-full">32g Protein</span>
+<span class="text-primary font-bold">View Recipe</span>
+</div>
+</div>
+<!-- Metrics Widgets (Steps & Water) -->
+<div class="md:col-span-7 grid grid-cols-2 gap-6">
+<!-- Water -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-sm flex flex-col items-center justify-center text-center space-y-4">
+<div class="relative w-20 h-20">
+<svg class="w-20 h-20 -rotate-90">
+<circle class="text-surface-container-high" cx="40" cy="40" fill="transparent" r="34" stroke="currentColor" stroke-width="6"></circle>
+<circle cx="40" cy="40" fill="transparent" r="34" stroke="#3b82f6" stroke-dasharray="213.6" stroke-dashoffset="64" stroke-linecap="round" stroke-width="6"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-blue-500" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+</div>
+</div>
+<div>
+<h4 class="font-headline text-lg font-bold leading-none">1.4L</h4>
+<p class="font-label text-[10px] uppercase opacity-50 mt-1">Goal: 2.5L</p>
+</div>
+</div>
+<!-- Steps -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-sm flex flex-col items-center justify-center text-center space-y-4">
+<div class="relative w-20 h-20">
+<svg class="w-20 h-20 -rotate-90">
+<circle class="text-surface-container-high" cx="40" cy="40" fill="transparent" r="34" stroke="currentColor" stroke-width="6"></circle>
+<circle cx="40" cy="40" fill="transparent" r="34" stroke="#f59e0b" stroke-dasharray="213.6" stroke-dashoffset="40" stroke-linecap="round" stroke-width="6"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-orange-500">steps</span>
+</div>
+</div>
+<div>
+<h4 class="font-headline text-lg font-bold leading-none">8,432</h4>
+<p class="font-label text-[10px] uppercase opacity-50 mt-1">Goal: 10k</p>
+</div>
+</div>
+</div>
+<!-- AI Coach Section -->
+<div class="md:col-span-12 bg-on-surface text-white rounded-lg p-8 flex flex-col md:flex-row justify-between items-center gap-8 overflow-hidden relative">
+<!-- Abstract Decoration -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-container/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
+<div class="relative z-10 space-y-4 flex-1">
+<div class="flex items-center gap-2">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-on-surface bg-primary flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-sm">smart_toy</span>
+</div>
+</div>
+<p class="font-label text-xs uppercase tracking-widest opacity-70">Luna AI Coach</p>
+</div>
+<h3 class="font-headline text-2xl font-bold">"You've been consistent with your water intake this week. Adding a magnesium supplement tonight could improve your sleep quality during this phase."</h3>
+<div class="flex flex-wrap gap-3">
+<button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full text-sm font-medium transition-colors border border-white/5">Meal advice</button>
+<button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full text-sm font-medium transition-colors border border-white/5">Workout tips</button>
+</div>
+</div>
+<div class="relative z-10 hidden lg:block">
+<div class="w-32 h-32 rounded-xl bg-gradient-to-br from-primary-container to-secondary flex items-center justify-center transform rotate-12 shadow-2xl">
+<span class="material-symbols-outlined text-5xl" style="font-variation-settings: 'FILL' 1;">insights</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating AI Button -->
+<button class="fixed bottom-28 right-6 z-50 w-16 h-16 rounded-full bg-gradient-to-tr from-primary to-primary-container text-white shadow-lg flex items-center justify-center hover:scale-110 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-end px-4 pb-6 pt-2 bg-[#faf8ff]/70 dark:bg-[#181b27]/70 backdrop-blur-xl rounded-t-[2.5rem] z-50 shadow-[0_-10px_40px_rgba(24,27,39,0.06)] no-border transition-all">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-gradient-to-tr from-[#b7004e] to-[#e21364] text-white rounded-full p-3 w-14 h-14 -translate-y-2 shadow-lg transition-transform hover:scale-110 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home_health</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider hidden">Home</span>
+</a>
+<!-- Fitness -->
+<a class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] opacity-50 p-2 transition-transform hover:scale-110 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider mt-1">Fitness</span>
+</a>
+<!-- Diet -->
+<a class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] opacity-50 p-2 transition-transform hover:scale-110 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">restaurant</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider mt-1">Diet</span>
+</a>
+<!-- Community -->
+<a class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] opacity-50 p-2 transition-transform hover:scale-110 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider mt-1">Community</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-[#181b27] dark:text-[#faf8ff] opacity-50 p-2 transition-transform hover:scale-110 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-wider mt-1">Profile</span>
+</a>
+</nav>
+</body></html>
