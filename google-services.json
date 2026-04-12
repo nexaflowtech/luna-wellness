@@ -7,20 +7,30 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:197644281015:android:REPLACE_WITH_ANDROID_APP_ID",
+        "mobilesdk_app_id": "1:197644281015:android:2e65fb631c7fa645915932",
         "android_client_info": {
           "package_name": "com.suaib.lunawellness"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "197644281015-0e6euvhapjc2gqar1r8gl1kj5nl1jirm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyB9Kwx8NSvqKcKgTnX0mRZjpamuoWevlps"
+          "current_key": "AIzaSyA1gekEl0eTP-dmakxTbmHThAmclHFT4F8"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "197644281015-0e6euvhapjc2gqar1r8gl1kj5nl1jirm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
