@@ -1,17 +1,17 @@
 import React from 'react';
-import { SymbolView } from 'expo-symbols';
 import { Tabs } from 'expo-router';
+import { Home, Dumbbell, Apple, Users, User, Heart } from 'lucide-react-native';
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#b7004e',
-        tabBarInactiveTintColor: '#8f6f74',
+        tabBarActiveTintColor: '#7C3AED',
+        tabBarInactiveTintColor: '#94A3B8',
         tabBarStyle: {
-          backgroundColor: '#ffffff',
-          borderTopColor: '#e4bdc3',
+          backgroundColor: '#0D0D1A',
+          borderTopColor: 'rgba(255,255,255,0.05)',
           height: 62,
           paddingBottom: 8,
           paddingTop: 6,
@@ -22,35 +22,35 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <SymbolView name="house" tintColor={color} size={28} />,
+          tabBarIcon: ({ color }) => <Home color={color} size={28} strokeWidth={1.8} />,
         }}
       />
       <Tabs.Screen
-        name="fitness"
+        name="explore"
         options={{
-          title: 'Fitness',
-          tabBarIcon: ({ color }) => <SymbolView name="figure.run" tintColor={color} size={28} />,
+          title: 'Explore',
+          tabBarIcon: ({ color }) => <Dumbbell color={color} size={28} strokeWidth={1.8} />,
         }}
       />
       <Tabs.Screen
         name="diet"
         options={{
           title: 'Diet',
-          tabBarIcon: ({ color }) => <SymbolView name="leaf" tintColor={color} size={28} />,
+          tabBarIcon: ({ color }) => <Apple color={color} size={28} strokeWidth={1.8} />,
         }}
       />
       <Tabs.Screen
-        name="community"
+        name="care"
         options={{
-          title: 'Community',
-          tabBarIcon: ({ color }) => <SymbolView name="person.2" tintColor={color} size={28} />,
+          title: 'Care',
+          tabBarIcon: ({ color }) => <Heart color={color} size={28} strokeWidth={1.8} />,
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color }) => <SymbolView name="person" tintColor={color} size={28} />,
+          tabBarIcon: ({ color }) => <User color={color} size={28} strokeWidth={1.8} />,
         }}
       />
     </Tabs>

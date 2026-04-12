@@ -2,6 +2,7 @@ import React from 'react';
 import { TouchableOpacity, Text, ViewStyle, TextStyle } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ArrowRight } from 'lucide-react-native';
+import { Colors } from '@/src/constants/theme';
 
 type PrimaryButtonProps = {
   onPress: () => void;
@@ -26,7 +27,7 @@ export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
       style={style}
     >
       <LinearGradient
-        colors={['#b7004e', '#e21364']} // primary to primary-container
+        colors={[Colors.primary, Colors.accent]} 
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         className="py-5 px-8 rounded-full flex-row items-center justify-center gap-3 shadow-lg"

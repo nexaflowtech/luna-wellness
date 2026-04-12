@@ -3,45 +3,35 @@
 // ─────────────────────────────────────────────
 
 export const Colors = {
-  // Brand
-  primary: '#b7004e',
-  primaryDark: '#90003c',
-  primaryLight: '#ffd9df',
-  primaryMid: '#e21364',
-
-  // Accent
-  rose: '#fc695d',
-  roseLight: '#ffdad6',
-
-  // Semantic
-  success: '#2e7d32',
-  successLight: '#d9f7dd',
-  warning: '#6e5d00',
-  warningLight: '#ffe25f',
-  error: '#ba1a1a',
-  errorLight: '#ffdad6',
-  info: '#ae302a',
-  infoLight: '#ffd9df',
-
-  // Neutrals
-  background: '#faf8ff',
-  card: '#ffffff',
-  border: '#e4bdc3',
-  borderLight: '#ebedfe',
-
-  // Text
-  text: '#181b27',
-  textSecondary: '#5b3f44',
+  primary: '#7C3AED',
+  accent: '#EC4899',
+  background: '#F9FAFB',
+  surface: '#FFFFFF',
+  text: '#111827',
+  textPrimary: '#111827',
+  textSecondary: '#6B7280',
   textMuted: '#8f6f74',
-  textInverse: '#FFFFFF',
+  success: '#10B981',
+  successLight: 'rgba(16,185,129,0.1)',
+  warning: '#F59E0B',
+  warningLight: 'rgba(245,158,11,0.1)',
+  error: '#EF4444',
+  errorLight: 'rgba(239,68,68,0.1)',
+  info: '#3B82F6',
+  infoLight: 'rgba(59,130,246,0.1)',
+  primaryLight: 'rgba(124,58,237,0.1)',
+  rose: '#b7004e',
+  card: '#FFFFFF',
+  border: '#E5E7EB',
+  borderLight: '#F3F4F6',
 
   // Gradient presets (for expo-linear-gradient)
-  gradPrimary: ['#b7004e', '#e21364'] as const,
-  gradSunrise: ['#fc695d', '#e21364'] as const,
-  gradOcean: ['#ae302a', '#fc695d'] as const,
-  gradForest: ['#6e5d00', '#c7aa00'] as const,
-  gradNight: ['#2d303d', '#5b3f44'] as const,
-  gradCard: ['#ffd9df', '#ffdad6'] as const,
+  gradPrimary: ['#7C3AED', '#EC4899'] as const,
+  gradSunrise: ['#EC4899', '#F59E0B'] as const,
+  gradOcean: ['#10B981', '#7C3AED'] as const,
+  gradForest: ['#6B7280', '#111827'] as const,
+  gradNight: ['#111827', '#6B7280'] as const,
+  gradCard: ['#F9FAFB', '#FFFFFF'] as const,
 };
 
 export const Spacing = {
@@ -65,21 +55,21 @@ export const Radius = {
 
 export const Shadow = {
   sm: {
-    shadowColor: '#b7004e',
+    shadowColor: '#7C3AED',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.06,
     shadowRadius: 6,
     elevation: 2,
   },
   md: {
-    shadowColor: '#b7004e',
+    shadowColor: '#7C3AED',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.10,
     shadowRadius: 12,
     elevation: 4,
   },
   lg: {
-    shadowColor: '#b7004e',
+    shadowColor: '#7C3AED',
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.15,
     shadowRadius: 20,

@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, router } from 'expo-router';
 import { useAuth } from '@/src/context/AuthContext';
 import { activateSubscription } from '@/src/services/onboardingService';
+import { completeOnboarding } from '@/src/services/userService';
 
 type ProgramId = 'pcos' | 'weight_loss' | 'thyroid';
 type Duration = 1 | 3 | 6;
@@ -17,7 +18,7 @@ const DURATION_OPTIONS: Array<{ duration: Duration; label: string; price: string
 
 export default function ProgramPurchaseScreen() {
   const params = useLocalSearchParams<{ programId?: string }>();
-  const { user } = useAuth();
+  const { user, onboardingComplete } = useAuth();
   const [selectedDuration, setSelectedDuration] = useState<Duration>(3);
   const [submitting, setSubmitting] = useState(false);
 
@@ -32,6 +33,12 @@ export default function ProgramPurchaseScreen() {
     setSubmitting(true);
     try {
       await activateSubscription(user.uid, { programId, durationMonths: selectedDuration });
+      
+      // Mark onboarding complete so returning users enter the main app directly
+      if (!onboardingComplete) {
+        await completeOnboarding(user.uid);
+      }
+
       router.replace('/(tabs)');
     } catch (error) {
       console.error(error);

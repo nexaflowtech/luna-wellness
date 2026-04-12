@@ -9,7 +9,7 @@ export default function Register() {
       {/* TODO: React Hook Form + Zod registration fields */}
       <TouchableOpacity
         className="w-full bg-purple-700 rounded-2xl py-4 items-center mb-4"
-        onPress={() => router.replace('/(setup)/profile')}
+        onPress={() => router.replace('/(onboarding)/profile-setup')}
       >
         <Text className="text-white font-semibold">Create Account</Text>
       </TouchableOpacity>

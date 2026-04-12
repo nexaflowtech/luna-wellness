@@ -6,7 +6,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Colors, Radius, Shadow, Typography, FontWeight } from '@/constants/theme';
+import { Colors, Radius, Shadow, Typography, FontWeight } from '@/src/constants/theme';
 
 type Variant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
 type Size = 'sm' | 'md' | 'lg';

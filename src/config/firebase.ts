@@ -1,5 +1,6 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
-import { initializeAuth, getAuth } from 'firebase/auth';
+import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
+import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 import { getFirestore } from 'firebase/firestore';
 import { getFunctions } from 'firebase/functions';
 import { getStorage } from 'firebase/storage';
@@ -14,18 +15,14 @@ const firebaseConfig = {
   appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID!,
 };
 
+
+
 // Initialize Firebase only once (safe for Expo hot-reload)
 export const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 
-// Firebase v12 in this project does not expose React Native persistence helpers.
-// Use initializeAuth when possible and gracefully fallback to getAuth on hot reload.
-export const auth = (() => {
-  try {
-    return initializeAuth(app);
-  } catch {
-    return getAuth(app);
-  }
-})();
+export const auth = initializeAuth(app, {
+  persistence: getReactNativePersistence(ReactNativeAsyncStorage)
+});
 
 // Firestore database
 export const db = getFirestore(app);

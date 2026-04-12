@@ -72,7 +72,7 @@ export default function OTPVerification() {
 
         <Button
           label="Verify & Continue"
-          onPress={() => router.replace('/(setup)/profile')}
+          onPress={() => router.replace('/(onboarding)/profile-setup')}
           isLoading={false}
         />
 
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
   },
   otpBoxActive: { borderColor: Colors.primary, backgroundColor: Colors.primaryLight },
-  otpBoxFilled: { borderColor: Colors.primaryMid },
+  otpBoxFilled: { borderColor: Colors.primary },
   resendRow: { flexDirection: 'row', justifyContent: 'center' },
   resendText: { fontSize: 14, color: Colors.textSecondary },
   resendLink: { fontSize: 14, fontWeight: FontWeight.semibold, color: Colors.primary },

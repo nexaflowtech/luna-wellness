@@ -6,6 +6,8 @@ export default function ProgramLayout() {
       <Stack.Screen name="index" />
       <Stack.Screen name="recommendation" />
       <Stack.Screen name="purchase" />
+      <Stack.Screen name="pricing" />
+      <Stack.Screen name="checkout" />
     </Stack>
   );
 }

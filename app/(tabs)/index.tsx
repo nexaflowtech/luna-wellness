@@ -1,153 +1,412 @@
 import React from 'react';
-import { ScrollView, View, Text, StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { router } from 'expo-router';
+import { 
+  PlayCircle, 
+  Utensils, 
+  CheckCircle2, 
+  MessageCircle, 
+  HeartPulse, 
+  CalendarDays, 
+  FileText, 
+  Apple,
+  Activity,
+  Droplets,
+  Flame
+} from 'lucide-react-native';
 
-import { Colors, Spacing, FontWeight, Typography, Radius } from '@/constants/theme';
-import { useAuth } from '@/src/context/AuthContext';
-import { useUser } from '@/src/context/UserContext';
-import { useDashboardData } from '@/src/hooks/useDashboardData';
+// NOTE: Add your state management hooks (useAuth, usePlanData) here when connecting API
+// import { useAuth } from '@/src/context/AuthContext';
 
-import { CycleTrackerWidget } from '@/src/components/dashboard/CycleTrackerWidget';
-import { TestosteroneInsightsWidget } from '@/src/components/dashboard/TestosteroneInsightsWidget';
-import { DietPreviewWidget } from '@/src/components/dashboard/DietPreviewWidget';
-import { TodaysWorkoutWidget } from '@/src/components/dashboard/TodaysWorkoutWidget';
-import { Avatar } from '@/src/components/atoms/Avatar';
-import { Card } from '@/src/components/molecules/Card';
+export default function DashboardScreen() {
+  // MOCK DATA for layout preview - should connect to global state / Firebase
+  const userName = "Luna Member"; // Replace with user.displayName
+  const activePlanName = "Zumba + Diet + Coach"; 
+  const activePlanDay = "Day 3 / 30";
+  const expectedResult = "Lose 5kg in 30 days";
 
-export default function HomeDashboardRoute() {
-  const { user } = useAuth();
-  const { profile } = useUser();
-  const { cycle, hormones, diet, workout, goals, isLoading, error } = useDashboardData();
-
-  const firstName = profile?.displayName?.split(' ')[0] ?? user?.displayName?.split(' ')[0] ?? 'there';
-
-  if (isLoading) {
-    return (
-      <SafeAreaView style={styles.centered}>
-        <ActivityIndicator size="large" color={Colors.primary} />
-      </SafeAreaView>
-    );
-  }
+  const features = [
+    { id: 'nutrition', title: 'Nutrition AI', icon: <Apple color="#7C3AED" size={24} /> },
+    { id: 'diet', title: 'Diet Tracker', icon: <Utensils color="#00D4FF" size={24} /> },
+    { id: 'period', title: 'Period Tracker', icon: <CalendarDays color="#7C3AED" size={24} /> },
+    { id: 'report', title: 'AI Report', icon: <FileText color="#00D4FF" size={24} /> },
+  ];
 
   return (
-    <SafeAreaView style={styles.root} edges={['top']}>
-      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-        <View style={styles.headerRow}>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.greeting}>Today&apos;s wellness dashboard</Text>
-            <Text style={styles.name}>{firstName}</Text>
+    <View style={styles.container}>
+      <SafeAreaView style={{ backgroundColor: '#0A0A0F' }} />
+      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+        
+        {/* SECTION 1 — TOP HERO CARD */}
+        <View style={styles.section}>
+          <Text style={styles.greeting}>Good morning, {userName} 👋</Text>
+          
+          <View style={styles.activePlanCard}>
+            {/* Background Glow */}
+            <View style={styles.activePlanGlow} />
+            <View style={styles.activePlanContent}>
+              <View>
+                <Text style={styles.activePlanTitle}>{activePlanName}</Text>
+                
+                {/* Progress bar */}
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 12 }}>
+                  <View style={{ height: 6, flex: 1, backgroundColor: '#1A1A2E', borderRadius: 3 }}>
+                    <View style={{ width: '10%', height: '100%', backgroundColor: '#7C3AED', borderRadius: 3 }} />
+                  </View>
+                  <Text style={{ color: '#F8FAFC', fontSize: 13, fontWeight: 'bold', marginLeft: 12 }}>{activePlanDay}</Text>
+                </View>
+
+                <Text style={{ color: '#00D4FF', fontSize: 14, fontWeight: '700' }}>{expectedResult}</Text>
+              </View>
+              
+              {/* Avatar / Physique Chip placeholder */}
+              <View style={styles.avatarChip}>
+                <Image source={{ uri: 'https://images.unsplash.com/photo-1549476464-37392f717541?q=80&w=100&auto=format&fit=crop' }} style={{ width: '100%', height: '100%' }} />
+              </View>
+            </View>
           </View>
-          <TouchableOpacity onPress={() => router.push('/(tabs)/profile')}>
-            <Avatar
-              size="md"
-              uri={user?.photoURL ?? undefined}
-              name={firstName}
-            />
+        </View>
+
+        {/* SECTION 2 — TODAY PLAN */}
+        <View style={styles.section}>
+          <Text style={styles.sectionHeading}>Today's Plan</Text>
+          
+          {/* Workout Card */}
+          <TouchableOpacity activeOpacity={0.97} style={[styles.taskCard, { borderLeftColor: '#7C3AED', borderLeftWidth: 4 }]}>
+            <View style={[styles.iconWrap, { backgroundColor: 'rgba(124,58,237,0.15)' }]}>
+              <PlayCircle color="#7C3AED" size={20} />
+            </View>
+            <View style={styles.taskTextWrap}>
+              <Text style={styles.taskTitle}>Zumba Cardio Burst</Text>
+              <Text style={styles.taskSub}>20 min • Burn ~200 kcal</Text>
+            </View>
+            <View style={styles.taskAction}><Text style={styles.taskActionText}>Start</Text></View>
+          </TouchableOpacity>
+
+          {/* Diet Card */}
+          <TouchableOpacity activeOpacity={0.97} style={[styles.taskCard, { borderLeftColor: '#10B981', borderLeftWidth: 4 }]}>
+            <View style={[styles.iconWrap, { backgroundColor: 'rgba(16,185,129,0.15)' }]}>
+              <Utensils color="#10B981" size={20} />
+            </View>
+            <View style={styles.taskTextWrap}>
+              <Text style={styles.taskTitle}>Nutrition Summary</Text>
+              <Text style={styles.taskSub}>1400 kcal • 100g Protein</Text>
+            </View>
+            <View style={styles.taskAction}><Text style={styles.taskActionText}>View</Text></View>
+          </TouchableOpacity>
+
+          {/* Habits Card */}
+          <TouchableOpacity activeOpacity={0.97} style={[styles.taskCard, { borderLeftColor: '#00D4FF', borderLeftWidth: 4 }]}>
+            <View style={[styles.iconWrap, { backgroundColor: 'rgba(0,212,255,0.15)' }]}>
+              <Droplets color="#00D4FF" size={20} />
+            </View>
+            <View style={styles.taskTextWrap}>
+              <Text style={styles.taskTitle}>Daily Hydration</Text>
+              <Text style={styles.taskSub}>2 / 8 Glasses (0.5L)</Text>
+            </View>
+            <View style={styles.taskAction}><Text style={styles.taskActionText}>+1</Text></View>
           </TouchableOpacity>
         </View>
 
-        {goals.goals.length > 0 && (
-          <View style={styles.goalRow}>
-            {goals.goals.slice(0, 3).map((g) => (
-              <View key={g} style={styles.goalChip}>
-                <Text style={styles.goalChipText}>{g}</Text>
-              </View>
+        {/* SECTION 3 — TRANSFORMATION PROOF */}
+        <View style={styles.section}>
+          <Text style={styles.sectionHeading}>Success Stories</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingVertical: 8, paddingRight: 24 }}>
+            {[1, 2].map((i) => (
+              <TouchableOpacity activeOpacity={0.97} key={i} style={styles.proofCard}>
+                <Image source={{ uri: `https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=300&auto=format&fit=crop` }} style={styles.proofImg} />
+                <View style={styles.proofContentOverlay} />
+                <View style={styles.proofContent}>
+                  <View style={styles.proofTag}>
+                    <Text style={styles.proofTagText}>Lost 8kg with Zumba + Diet</Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
             ))}
-          </View>
-        )}
-
-        {error && (
-          <Card style={styles.errorCard}>
-            <Text style={styles.errorText}>{error}</Text>
-          </Card>
-        )}
-
-        <Card style={styles.scoreCard} onPress={() => router.push('/(secondary)/hormone-insights')}>
-          <View style={styles.scoreInner}>
-            <LinearGradient colors={Colors.gradPrimary} style={styles.scoreBadge}>
-              <Text style={styles.scoreNumber}>{hormones.score}</Text>
-              <Text style={styles.scoreUnit}>/100</Text>
-            </LinearGradient>
-            <View style={{ flex: 1 }}>
-              <Text style={styles.scoreTitle}>Risk Score</Text>
-              <Text style={styles.scoreSub}>
-                {hormones.label} · {hormones.trend}
-              </Text>
-              <Text style={styles.scoreCta}>Open hormone insights</Text>
-            </View>
-          </View>
-        </Card>
-
-        <View style={styles.quickActionsRow}>
-          <Card style={styles.quickActionCard} onPress={() => router.push('/(secondary)/ai-coach')}>
-            <Text style={styles.quickActionTitle}>AI Coach</Text>
-          </Card>
-          <Card style={styles.quickActionCard} onPress={() => router.push('/(secondary)/doctor-booking')}>
-            <Text style={styles.quickActionTitle}>Book Consultation</Text>
-          </Card>
-          <Card style={styles.quickActionCard} onPress={() => router.push('/(secondary)/lab-tests')}>
-            <Text style={styles.quickActionTitle}>Health Test</Text>
-          </Card>
+          </ScrollView>
         </View>
 
-        <Text style={styles.sectionTitle}>Today Workout</Text>
-        <TodaysWorkoutWidget data={workout} />
+        {/* SECTION 4 — DOCTOR CONSULTATION BANNER */}
+        <View style={styles.section}>
+          <View style={styles.bannerContainer}>
+            <View style={{ flex: 1 }}>
+              <Text style={{ color: '#F8FAFC', fontSize: 16, fontWeight: 'bold', marginBottom: 4 }}>Struggling with hormonal issues?</Text>
+              <Text style={{ color: '#94A3B8', fontSize: 13, marginBottom: 16 }}>Talk to certified doctors and specialists.</Text>
+              <TouchableOpacity activeOpacity={0.9}>
+                <LinearGradient colors={['#7C3AED', '#00D4FF']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ paddingVertical: 10, paddingHorizontal: 20, borderRadius: 20, alignSelf: 'flex-start' }}>
+                  <Text style={{ color: '#ffffff', fontWeight: 'bold', fontSize: 13 }}>Book a Doctor</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </View>
+            <View style={{ alignSelf: 'center', opacity: 0.8 }}>
+              <HeartPulse color="#00D4FF" size={48} />
+            </View>
+          </View>
+        </View>
 
-        <Text style={styles.sectionTitle}>Today Meal Plan</Text>
-        <DietPreviewWidget data={diet} />
+        {/* SECTION 5 — FITNESS CLASSES UPSELL */}
+        <View style={styles.section}>
+          <Text style={styles.sectionHeading}>Explore Classes</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingVertical: 8, paddingRight: 24, gap: 16 }}>
+            {[{ title: 'Zumba Cardio', color: '#7C3AED' }, { title: 'Yoga Flow', color: '#10B981' }, { title: 'HIIT Blast', color: '#00D4FF' }].map((item, idx) => (
+              <TouchableOpacity activeOpacity={0.97} key={idx} style={[styles.upsellCard, { borderBottomColor: item.color, borderBottomWidth: 3 }]}>
+                <View style={[styles.upsellIconWrap, { backgroundColor: `${item.color}20` }]}>
+                  <Flame color={item.color} size={24} />
+                </View>
+                <Text style={styles.upsellTitle}>{item.title}</Text>
+                <Text style={{ color: '#94A3B8', fontSize: 12, marginTop: 4 }}>Premium Plan</Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
 
-        <Text style={styles.sectionTitle}>Cycle Tracker</Text>
-        <CycleTrackerWidget data={cycle} />
+        {/* SECTION 6 — AI COACH */}
+        <View style={styles.section}>
+          <LinearGradient colors={['#7C3AED', '#00D4FF']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ padding: 1, borderRadius: 25 }}>
+            <View style={styles.aiCardInner}>
+              <View style={styles.aiIconWrap}>
+                <MessageCircle color="#00D4FF" size={24} />
+              </View>
+              <View style={{ flex: 1 }}>
+                <Text style={{ color: '#F8FAFC', fontSize: 18, fontWeight: 'bold' }}>Ask Eva, your AI Coach</Text>
+                <Text style={{ color: '#94A3B8', fontSize: 13, marginTop: 2 }}>Diet • Workout • Doubts</Text>
+              </View>
+              <TouchableOpacity activeOpacity={0.9}>
+                <LinearGradient colors={['#7C3AED', '#00D4FF']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ paddingVertical: 8, paddingHorizontal: 16, borderRadius: 20 }}>
+                  <Text style={{ color: '#ffffff', fontWeight: 'bold', fontSize: 13 }}>Chat</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </View>
+          </LinearGradient>
+        </View>
 
-        <Text style={styles.sectionTitle}>Habit Tracker</Text>
-        <Card onPress={() => router.push('/(modals)/habit-tracker' as any)}>
-          <Text style={styles.progressText}>Track hydration, sleep and daily consistency streaks.</Text>
-        </Card>
+        {/* SECTION 7 — FEATURES GRID */}
+        <View style={[styles.section, { marginBottom: 0 }]}>
+          <Text style={styles.sectionHeading}>Quick Trackers</Text>
+          <View style={styles.featuresGrid}>
+            {features.map(f => (
+              <TouchableOpacity activeOpacity={0.97} key={f.id} style={styles.featureCard}>
+                <View style={styles.featureIconWrap}>
+                  {f.icon}
+                </View>
+                <Text style={styles.featureTitle}>{f.title}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
 
-        <Text style={styles.sectionTitle}>Progress Overview</Text>
-        <Card onPress={() => router.push('/(secondary)/progress')}>
-          <Text style={styles.progressText}>Weight, cycle consistency, workout completion and diet adherence charts.</Text>
-        </Card>
-
-        <Text style={styles.sectionTitle}>Community Feed</Text>
-        <Card onPress={() => router.push('/(tabs)/community')}>
-          <Text style={styles.progressText}>See latest posts, comments, likes and wellness challenges.</Text>
-        </Card>
-
-        <Text style={styles.sectionTitle}>Hormone Insights</Text>
-        <TestosteroneInsightsWidget data={hormones} />
-
-        <View style={{ height: Spacing['2xl'] }} />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: Colors.background },
-  centered: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors.background },
-  scroll: { paddingHorizontal: Spacing.md, paddingTop: Spacing.sm, gap: Spacing.md },
-  headerRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 4 },
-  greeting: { ...Typography.sm, color: Colors.textMuted, fontWeight: FontWeight.medium },
-  name: { ...Typography['2xl'], color: Colors.text, fontWeight: FontWeight.extrabold },
-  goalRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  goalChip: { backgroundColor: Colors.primaryLight, paddingHorizontal: 12, paddingVertical: 4, borderRadius: Radius.full },
-  goalChipText: { fontSize: 12, fontWeight: FontWeight.semibold, color: Colors.primary },
-  scoreCard: { gap: 0 },
-  scoreInner: { flexDirection: 'row', alignItems: 'center', gap: 16 },
-  scoreBadge: { width: 72, height: 72, borderRadius: Radius['2xl'], alignItems: 'center', justifyContent: 'center' },
-  scoreNumber: { fontSize: 26, fontWeight: FontWeight.extrabold, color: '#fff', lineHeight: 28 },
-  scoreUnit: { fontSize: 11, color: 'rgba(255,255,255,0.7)', fontWeight: FontWeight.semibold },
-  scoreTitle: { fontSize: 15, fontWeight: FontWeight.bold, color: Colors.text },
-  scoreSub: { fontSize: 12, color: Colors.textSecondary, marginTop: 2 },
-  scoreCta: { fontSize: 12, color: Colors.primary, fontWeight: FontWeight.semibold, marginTop: 6 },
-  sectionTitle: { fontSize: 13, fontWeight: FontWeight.bold, color: Colors.textSecondary, textTransform: 'uppercase', letterSpacing: 0.8, marginTop: 4 },
-  errorCard: { backgroundColor: Colors.errorLight },
-  errorText: { fontSize: 13, color: Colors.error },
-  quickActionsRow: { flexDirection: 'row', gap: 8 },
-  quickActionCard: { flex: 1, alignItems: 'center' },
-  quickActionTitle: { fontSize: 12, fontWeight: FontWeight.bold, color: Colors.primary, textAlign: 'center' },
-  progressText: { fontSize: 13, color: Colors.textSecondary, lineHeight: 20 },
+  container: {
+    flex: 1,
+    backgroundColor: '#0A0A0F',
+  },
+  content: {
+    paddingHorizontal: 20,
+    paddingTop: 16,
+    paddingBottom: 60,
+  },
+  section: {
+    marginBottom: 32,
+  },
+  sectionHeading: {
+    color: '#F8FAFC',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 16,
+  },
+  greeting: {
+    fontSize: 24,
+    fontWeight: '800',
+    color: '#F8FAFC',
+    marginBottom: 20,
+  },
+  activePlanCard: {
+    position: 'relative',
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: '#7C3AED',
+    padding: 20,
+  },
+  activePlanGlow: {
+    position: 'absolute',
+    top: 0, left: 0, right: 0, bottom: 0,
+    borderRadius: 24,
+    backgroundColor: 'rgba(124,58,237,0.1)',
+    shadowColor: '#7C3AED',
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.2,
+    shadowRadius: 24,
+    elevation: 8,
+  },
+  activePlanContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    zIndex: 1,
+  },
+  activePlanTitle: {
+    color: '#F8FAFC',
+    fontSize: 20,
+    fontWeight: 'bold',
+    maxWidth: 200,
+  },
+  avatarChip: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    overflow: 'hidden',
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    borderWidth: 2,
+    borderColor: '#00D4FF',
+  },
+  taskCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    borderRadius: 20,
+    padding: 16,
+    marginBottom: 12,
+  },
+  iconWrap: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 16,
+  },
+  taskTextWrap: {
+    flex: 1,
+  },
+  taskTitle: {
+    color: '#F8FAFC',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  taskSub: {
+    color: '#94A3B8',
+    fontSize: 13,
+    marginTop: 4,
+  },
+  taskAction: {
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 16,
+  },
+  taskActionText: {
+    color: '#ffffff',
+    fontSize: 13,
+    fontWeight: '700',
+  },
+  proofCard: {
+    width: 280,
+    height: 180,
+    borderRadius: 24,
+    overflow: 'hidden',
+    marginRight: 16,
+  },
+  proofImg: {
+    width: '100%',
+    height: '100%',
+  },
+  proofContentOverlay: {
+    position: 'absolute',
+    bottom: 0, left: 0, right: 0,
+    height: '50%',
+    backgroundColor: 'rgba(0,0,0,0.6)',
+  },
+  proofContent: {
+    position: 'absolute',
+    bottom: 16,
+    left: 16,
+  },
+  proofTag: {
+    backgroundColor: '#10B981',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16,
+  },
+  proofTagText: {
+    color: '#ffffff',
+    fontSize: 13,
+    fontWeight: 'bold',
+  },
+  bannerContainer: {
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    borderRadius: 24,
+    padding: 20,
+    borderWidth: 1,
+    borderColor: '#00D4FF',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  upsellCard: {
+    width: 140,
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    borderRadius: 20,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.05)',
+  },
+  upsellIconWrap: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+  },
+  upsellTitle: {
+    color: '#F8FAFC',
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  aiCardInner: {
+    backgroundColor: '#0A0A0F',
+    borderRadius: 24,
+    padding: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  aiIconWrap: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: 'rgba(0,212,255,0.15)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 16,
+  },
+  featuresGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  featureCard: {
+    width: '48%',
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    borderRadius: 20,
+    padding: 20,
+    alignItems: 'center',
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.05)',
+  },
+  featureIconWrap: {
+    marginBottom: 12,
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    padding: 12,
+    borderRadius: 16,
+  },
+  featureTitle: {
+    color: '#F8FAFC',
+    fontSize: 14,
+    fontWeight: '600',
+  },
 });

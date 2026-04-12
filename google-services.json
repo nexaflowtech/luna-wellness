@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "197644281015",
+    "project_id": "luna-health-202fb",
+    "storage_bucket": "luna-health-202fb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:197644281015:android:REPLACE_WITH_ANDROID_APP_ID",
+        "android_client_info": {
+          "package_name": "com.suaib.lunawellness"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9Kwx8NSvqKcKgTnX0mRZjpamuoWevlps"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

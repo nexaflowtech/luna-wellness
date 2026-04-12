@@ -142,6 +142,19 @@ export async function saveAssessment(uid: string, output: AssessmentOutput): Pro
   }, { merge: true });
 }
 
+export async function saveAiPlan(uid: string, plan: any): Promise<void> {
+  await setDoc(doc(db, 'healthProfiles', uid), {
+    aiPlan: plan,
+    aiPlanGeneratedAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
+  }, { merge: true });
+
+  await updateDoc(doc(db, 'users', uid), {
+    hasAiPlan: true,
+    updatedAt: serverTimestamp(),
+  });
+}
+
 export async function activateSubscription(uid: string, input: ProgramPurchaseInput): Promise<void> {
   await addDoc(collection(db, 'subscriptions'), {
     uid,

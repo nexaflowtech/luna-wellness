@@ -103,10 +103,10 @@ export default function ProgramRecommendationScreen() {
       <View className="absolute bottom-0 left-0 right-0 p-6 pt-12 bg-gradient-to-t from-surface via-surface to-transparent">
         <TouchableOpacity
           activeOpacity={0.9}
-          onPress={() => router.push({ pathname: '/(program)/purchase', params: { programId: selected } })}
+          onPress={() => router.push({ pathname: '/(program)/pricing', params: { programId: selected } })}
         >
           <LinearGradient colors={['#b7004e', '#e21364']} className="rounded-full py-4 items-center justify-center">
-            <Text className="text-on-primary font-headline text-base font-bold">Continue To Purchase</Text>
+            <Text className="text-on-primary font-headline text-base font-bold">Continue To Pricing</Text>
           </LinearGradient>
         </TouchableOpacity>
       </View>

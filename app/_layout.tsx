@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Stack } from 'expo-router';
+import { Stack, useSegments, useRouter } from 'expo-router';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import 'react-native-reanimated';
@@ -8,14 +8,49 @@ import '../global.css';
 import { AuthProvider, useAuth } from '@/src/context/AuthContext';
 import { UserProvider } from '@/src/context/UserContext';
 import { ThemeProvider } from '@/src/context/ThemeContext';
+import { ErrorBoundary } from '@/src/components/system/ErrorBoundary';
+import { NetworkGuard } from '@/src/components/system/NetworkGuard';
 import { registerPushToken, scheduleDailyReminders } from '@/src/services/notificationService';
 
 SplashScreen.preventAutoHideAsync();
 
 function AuthGate() {
-  const {
-    user,
-  } = useAuth();
+  const { user, isLoading, onboardingComplete } = useAuth();
+  const segments = useSegments();
+  const router = useRouter();
+
+  useEffect(() => {
+    // AuthGate only mounts after fonts are loaded (RootLayout returns null until then).
+    // Now we also wait for auth state to resolve before dismissing the splash screen.
+    if (!isLoading && onboardingComplete !== undefined) {
+      SplashScreen.hideAsync();
+    }
+  }, [isLoading, onboardingComplete]);
+
+  // Deep Link & Navigation Guard
+  useEffect(() => {
+    if (isLoading || onboardingComplete === undefined) return;
+
+    const rootSegment = segments[0];
+    if (!rootSegment) return; // Allow root index.tsx to handle initial redirects
+
+    if (!user) {
+      // Unauthenticated: allow onboarding and auth
+      if (rootSegment !== '(onboarding)' && rootSegment !== '(auth)') {
+        router.replace('/(onboarding)/login');
+      }
+    } else if (!onboardingComplete) {
+      // Authenticated but onboarding incomplete: allow onboarding and program checkout
+      if (rootSegment !== '(onboarding)' && rootSegment !== '(program)') {
+        router.replace('/(onboarding)/login');
+      }
+    } else {
+      // Authenticated and onboarded: allow main app navigation
+      if (rootSegment !== '(tabs)' && rootSegment !== '(secondary)' && rootSegment !== '(modals)') {
+        router.replace('/(tabs)');
+      }
+    }
+  }, [user, isLoading, onboardingComplete, segments]);
 
   useEffect(() => {
     if (!user) return;
@@ -35,35 +70,33 @@ export default function RootLayout() {
     if (error) throw error;
   }, [error]);
 
-  useEffect(() => {
-    if (loaded) SplashScreen.hideAsync();
-  }, [loaded]);
-
   if (!loaded) return null;
 
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <UserProvider>
-          <AuthGate />
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="index" />
-            <Stack.Screen name="(auth)" />
-            <Stack.Screen name="(onboarding)" />
-            <Stack.Screen name="(program)" />
-            <Stack.Screen name="(tabs)" />
-            <Stack.Screen name="(secondary)" />
+    <ErrorBoundary>
+      <NetworkGuard>
+        <ThemeProvider>
+          <AuthProvider>
+            <UserProvider>
+              <AuthGate />
+              <Stack screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="index" />
+                <Stack.Screen name="splash" />
+                <Stack.Screen name="(auth)" />
+                <Stack.Screen name="(onboarding)" />
+                <Stack.Screen name="(program)" />
+                <Stack.Screen name="(tabs)" />
+                <Stack.Screen name="(secondary)" />
 
-            {/* Legacy groups kept for compatibility with existing UI files */}
-            <Stack.Screen name="(app)" />
-            <Stack.Screen name="(setup)" />
-            <Stack.Screen name="(modals)" options={{ presentation: 'modal' }} />
-            <Stack.Screen name="login" />
-            <Stack.Screen name="modal" />
-            <Stack.Screen name="+not-found" />
-          </Stack>
-        </UserProvider>
-      </AuthProvider>
-    </ThemeProvider>
+                <Stack.Screen name="(modals)" options={{ presentation: 'modal' }} />
+                <Stack.Screen name="login" />
+                <Stack.Screen name="modal" />
+                <Stack.Screen name="+not-found" />
+              </Stack>
+            </UserProvider>
+          </AuthProvider>
+        </ThemeProvider>
+      </NetworkGuard>
+    </ErrorBoundary>
   );
 }

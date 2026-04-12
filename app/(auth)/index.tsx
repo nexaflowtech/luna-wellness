@@ -1,121 +1,141 @@
 import {
-  View, Text, StyleSheet, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform, StatusBar,
+  View, Text, StyleSheet, TouchableOpacity, ScrollView, Platform, StatusBar,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
-import { Colors, Shadow, Radius, FontWeight } from '@/constants/theme';
-import { Button } from '@/components/atoms/Button';
-import { Input } from '@/components/atoms/Input';
+import { Colors } from '@/constants/theme';
+import { PrimaryButton } from '@/components/onboarding/PrimaryButton';
+import { GlassCard } from '@/components/onboarding/GlassCard';
+import { CarouselCard } from '@/components/onboarding/CarouselCard';
 
 export default function SignIn() {
   return (
-    <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <StatusBar barStyle="light-content" />
-      <ScrollView style={{ flex: 1, backgroundColor: Colors.background }} bounces={false}>
+    <View style={{ flex: 1, backgroundColor: Colors.background }}>
+      <StatusBar barStyle="dark-content" />
+      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 40 }} bounces={false}>
+        
+        {/* TOP: Transformation carousel & social proof */}
+        <View style={styles.topSection}>
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.carouselContainer}
+            snapToInterval={316} // width 300 + 16 margin
+            decelerationRate="fast"
+          >
+            <CarouselCard 
+              beforeImageUri="https://images.unsplash.com/photo-1549476464-37392f717541?q=80&w=200&auto=format&fit=crop"
+              afterImageUri="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=200&auto=format&fit=crop"
+              resultTag="Lost 13kg using Zumba + Diet Plan"
+            />
+            <CarouselCard 
+              beforeImageUri="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop"
+              afterImageUri="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=200&auto=format&fit=crop"
+              resultTag="Lost 8kg using HIIT + Keto"
+            />
+          </ScrollView>
 
-        {/* Header Gradient */}
-        <LinearGradient colors={Colors.gradNight} style={styles.header}>
-          <Text style={styles.headerLabel}>LUNA WELLNESS</Text>
-          <Text style={styles.headerTitle}>Welcome back 👋</Text>
-          <Text style={styles.headerSub}>Sign in to continue your journey</Text>
-        </LinearGradient>
-
-        {/* Form Card */}
-        <View style={styles.card}>
-          <Input
-            label="Email address"
-            placeholder="you@email.com"
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
-          <Input
-            label="Password"
-            placeholder="Enter your password"
-            secureTextEntry
-          />
-
-          <TouchableOpacity onPress={() => router.push('/(auth)/forgot-password')} style={styles.forgotWrap}>
-            <Text style={styles.forgotText}>Forgot password?</Text>
-          </TouchableOpacity>
-
-          <Button label="Sign In" onPress={() => router.replace('/(setup)/profile')} />
-
-          {/* Divider */}
-          <View style={styles.divider}>
-            <View style={styles.dividerLine} />
-            <Text style={styles.dividerText}>or continue with</Text>
-            <View style={styles.dividerLine} />
-          </View>
-
-          {/* Social buttons */}
-          <View style={styles.socialRow}>
-            {[
-              { label: 'Google', emoji: '🇬' },
-              { label: 'Apple', emoji: '🍎' },
-            ].map((s) => (
-              <TouchableOpacity key={s.label} style={styles.socialBtn}>
-                <Text style={{ fontSize: 18 }}>{s.emoji}</Text>
-                <Text style={styles.socialLabel}>{s.label}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-
-          <View style={styles.registerRow}>
-            <Text style={styles.registerText}>New to Luna? </Text>
-            <TouchableOpacity onPress={() => router.push('/(auth)/register')}>
-              <Text style={styles.registerLink}>Create account</Text>
-            </TouchableOpacity>
+          <View style={styles.socialProof}>
+            <Text style={styles.socialProofText}>⭐ 50,000+ transformations</Text>
           </View>
         </View>
+
+        {/* MIDDLE: Welcome message */}
+        <View style={styles.middleSection}>
+          <Text style={styles.welcomeTitle}>
+            Start your personalized transformation journey
+          </Text>
+          <Text style={styles.welcomeSub}>
+            Join thousands of women who have transformed their lives with Luna Wellness.
+          </Text>
+        </View>
+
+        <View style={{ flex: 1 }} />
+
+        {/* BOTTOM: Terms, Privacy, Button */}
+        <View style={styles.bottomSection}>
+          <GlassCard style={styles.actionCard}>
+            <View style={styles.termsContainer}>
+              <Text style={styles.termsText}>
+                By continuing, you agree to our{' '}
+                <Text style={styles.linkText}>Terms of Service</Text>
+                {' '}and{' '}
+                <Text style={styles.linkText}>Privacy Policy</Text>
+              </Text>
+            </View>
+            
+            <PrimaryButton 
+              title="Continue" 
+              onPress={() => router.replace('/(tabs)')} 
+              showArrow 
+            />
+          </GlassCard>
+        </View>
+
       </ScrollView>
-    </KeyboardAvoidingView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  header: {
-    paddingTop: 64,
-    paddingBottom: 48,
-    paddingHorizontal: 28,
-    gap: 6,
-    borderBottomLeftRadius: 32,
-    borderBottomRightRadius: 32,
-  },
-  headerLabel: {
-    fontSize: 11,
-    fontWeight: FontWeight.bold,
-    color: 'rgba(255,255,255,0.5)',
-    letterSpacing: 2,
-  },
-  headerTitle: { fontSize: 30, fontWeight: FontWeight.extrabold, color: '#fff' },
-  headerSub: { fontSize: 15, color: 'rgba(255,255,255,0.7)' },
-  card: {
-    margin: 20,
-    backgroundColor: Colors.card,
-    borderRadius: 28,
-    padding: 24,
-    gap: 16,
-    ...Shadow.md,
-  },
-  forgotWrap: { alignSelf: 'flex-end', marginTop: -4 },
-  forgotText: { fontSize: 13, color: Colors.primary, fontWeight: FontWeight.medium },
-  divider: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  dividerLine: { flex: 1, height: 1, backgroundColor: Colors.border },
-  dividerText: { fontSize: 12, color: Colors.textMuted },
-  socialRow: { flexDirection: 'row', gap: 12 },
-  socialBtn: {
-    flex: 1,
-    flexDirection: 'row',
+  topSection: {
+    paddingTop: Platform.OS === 'ios' ? 60 : 40,
     alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-    borderWidth: 1.5,
-    borderColor: Colors.border,
-    borderRadius: Radius.xl,
-    paddingVertical: 14,
+    paddingBottom: 24,
   },
-  socialLabel: { fontSize: 14, fontWeight: FontWeight.semibold, color: Colors.text },
-  registerRow: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 4 },
-  registerText: { fontSize: 14, color: Colors.textSecondary },
-  registerLink: { fontSize: 14, fontWeight: FontWeight.semibold, color: Colors.primary },
+  carouselContainer: {
+    paddingHorizontal: 12,
+  },
+  socialProof: {
+    marginTop: 16,
+    backgroundColor: 'rgba(124, 58, 237, 0.1)',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+  },
+  socialProofText: {
+    fontSize: 14,
+    color: '#7C3AED', // Primary color
+    fontWeight: '600',
+  },
+  middleSection: {
+    paddingHorizontal: 32,
+    alignItems: 'center',
+    gap: 12,
+  },
+  welcomeTitle: {
+    fontSize: 28,
+    fontWeight: '800',
+    color: '#111827', // Text Primary
+    textAlign: 'center',
+    lineHeight: 34,
+  },
+  welcomeSub: {
+    fontSize: 15,
+    color: '#6B7280', // Text Secondary
+    textAlign: 'center',
+    lineHeight: 22,
+  },
+  bottomSection: {
+    paddingHorizontal: 24,
+    paddingTop: 40,
+  },
+  actionCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 32,
+    padding: 24,
+  },
+  termsContainer: {
+    marginBottom: 20,
+  },
+  termsText: {
+    fontSize: 12,
+    color: '#6B7280',
+    textAlign: 'center',
+    lineHeight: 18,
+  },
+  linkText: {
+    color: '#7C3AED',
+    textDecorationLine: 'underline',
+  },
 });
