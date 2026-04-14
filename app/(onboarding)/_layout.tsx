@@ -10,6 +10,8 @@ export default function OnboardingLayout() {
       <Stack.Screen name="goal-physique" />
       <Stack.Screen name="lifestyle" />
       <Stack.Screen name="ai-loading" />
+      <Stack.Screen name="ai-plan-generating" />
+      <Stack.Screen name="ai-plan-result" />
       <Stack.Screen name="plan-ready" />
     </Stack>
   );

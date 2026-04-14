@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
-import { Home, Dumbbell, Apple, Users, User, Heart } from 'lucide-react-native';
+import { Home, Dumbbell, Salad, Users, User } from 'lucide-react-native';
 
 export default function TabLayout() {
   return (
@@ -22,35 +22,35 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <Home color={color} size={28} strokeWidth={1.8} />,
+          tabBarIcon: ({ color }) => <Home color={color} size={24} />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="fitness"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <Dumbbell color={color} size={28} strokeWidth={1.8} />,
+          title: 'Fitness',
+          tabBarIcon: ({ color }) => <Dumbbell color={color} size={24} />,
         }}
       />
       <Tabs.Screen
         name="diet"
         options={{
           title: 'Diet',
-          tabBarIcon: ({ color }) => <Apple color={color} size={28} strokeWidth={1.8} />,
+          tabBarIcon: ({ color }) => <Salad color={color} size={24} />,
         }}
       />
       <Tabs.Screen
-        name="care"
+        name="community"
         options={{
-          title: 'Care',
-          tabBarIcon: ({ color }) => <Heart color={color} size={28} strokeWidth={1.8} />,
+          title: 'Community',
+          tabBarIcon: ({ color }) => <Users color={color} size={24} />,
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color }) => <User color={color} size={28} strokeWidth={1.8} />,
+          tabBarIcon: ({ color }) => <User color={color} size={24} />,
         }}
       />
     </Tabs>

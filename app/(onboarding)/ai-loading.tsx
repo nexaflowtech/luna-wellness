@@ -67,7 +67,7 @@ export default function AiLoadingScreen() {
         });
         await saveAiPlan(user.uid, aiPlan);
         setTimeout(() => {
-          router.replace({ pathname: '/(onboarding)/plan-ready', params: { aiPlan: JSON.stringify(aiPlan) } });
+          router.replace({ pathname: '/(onboarding)/ai-plan-generating', params: { ...params, aiPlan: JSON.stringify(aiPlan) } });
         }, 1500);
       } catch (err) {
         console.error('[AiLoading] Error:', err);

@@ -1,6 +1,5 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
-import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
-import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
+import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getFunctions } from 'firebase/functions';
 import { getStorage } from 'firebase/storage';
@@ -15,20 +14,8 @@ const firebaseConfig = {
   appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID!,
 };
 
-
-
-// Initialize Firebase only once (safe for Expo hot-reload)
 export const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
-
-export const auth = initializeAuth(app, {
-  persistence: getReactNativePersistence(ReactNativeAsyncStorage)
-});
-
-// Firestore database
+export const auth = getAuth(app);
 export const db = getFirestore(app);
-
-// Firebase Cloud Functions
 export const functions = getFunctions(app);
-
-// Firebase Storage
 export const storage = getStorage(app);

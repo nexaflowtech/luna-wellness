@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Stack, useSegments, useRouter } from 'expo-router';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import * as Updates from 'expo-updates';
 import 'react-native-reanimated';
 import '../global.css';
 
@@ -65,6 +66,21 @@ export default function RootLayout() {
   const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
+
+  useEffect(() => {
+    async function checkUpdate() {
+      try {
+        const update = await Updates.checkForUpdateAsync();
+        if (update.isAvailable) {
+          await Updates.fetchUpdateAsync();
+          await Updates.reloadAsync();
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    checkUpdate();
+  }, []);
 
   useEffect(() => {
     if (error) throw error;

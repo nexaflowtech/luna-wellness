@@ -75,9 +75,9 @@ export default function LoginScreen() {
                 resultTag="Lost 10kg in 3 months"
               />
             </ScrollView>
-            <Text className="font-headline text-4xl font-extrabold text-[#F8FAFC]">Welcome Back</Text>
+            <Text className="font-headline text-4xl font-extrabold text-[#F8FAFC]">Welcome to Luna ✨</Text>
             <Text className="text-[#94A3B8] mt-2 text-center">
-              Sign in with email or phone OTP to continue.
+              Your AI-powered health companion
             </Text>
           </View>
 
@@ -171,7 +171,7 @@ export default function LoginScreen() {
                   <ActivityIndicator color="#fff" />
                 ) : (
                   <>
-                    <Text className="text-white font-headline font-bold">Continue</Text>
+                    <Text className="text-white font-headline font-bold">Get Started</Text>
                     <ArrowRight color="#fff" size={18} />
                   </>
                 )}

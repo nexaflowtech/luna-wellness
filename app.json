@@ -68,6 +68,14 @@
         "projectId": "c5afa357-0aba-48e3-a395-8ed5ec47af0d"
       }
     },
-    "owner": "suaib"
+    "owner": "suaib",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/c5afa357-0aba-48e3-a395-8ed5ec47af0d",
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
+    }
   }
 }
