@@ -5,14 +5,16 @@ import { useAuth } from '@/src/context/AuthContext';
 import { LunaAiService } from '@/src/services/lunaAiService';
 import { saveProfileSetup, saveQuestionnaire, saveAiPlan } from '@/src/services/onboardingService';
 import Animated, {
-  useSharedValue, useAnimatedStyle, withRepeat, withTiming, withSequence, Easing,
+  useSharedValue, useAnimatedStyle, withRepeat, withTiming, withSequence, Easing, FadeInDown
 } from 'react-native-reanimated';
 import { BodyPreview3D } from '@/src/components/onboarding/BodyPreview3D';
+import { ScreenWrapper } from '@/src/components/ui/ScreenWrapper';
 
 const STEPS = [
-  'Analyzing your body...',
-  'Calculating your BMI...',
-  'Building your plan...',
+  'Analyzing your body metrics...',
+  'Calculating metabolic rate...',
+  'Building hormonal profile...',
+  'Personalizing your journey...',
 ];
 
 export default function AiLoadingScreen() {
@@ -29,13 +31,13 @@ export default function AiLoadingScreen() {
 
   useEffect(() => {
     scanLineY.value = withRepeat(withTiming(100, { duration: 1800, easing: Easing.linear }), -1, false);
-    glowOpacity.value = withRepeat(withSequence(withTiming(0.5, { duration: 1200 }), withTiming(0.1, { duration: 1200 })), -1, true);
+    glowOpacity.value = withRepeat(withSequence(withTiming(0.4, { duration: 1200 }), withTiming(0.1, { duration: 1200 })), -1, true);
   }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setStepIndex((prev) => (prev < STEPS.length - 1 ? prev + 1 : prev));
-    }, 2000);
+    }, 1800);
     return () => clearInterval(interval);
   }, []);
 
@@ -67,6 +69,7 @@ export default function AiLoadingScreen() {
         });
         await saveAiPlan(user.uid, aiPlan);
         setTimeout(() => {
+          // Push to generation screen and pass params along
           router.replace({ pathname: '/(onboarding)/ai-plan-generating', params: { ...params, aiPlan: JSON.stringify(aiPlan) } });
         }, 1500);
       } catch (err) {
@@ -83,25 +86,36 @@ export default function AiLoadingScreen() {
   const bmi = parseFloat(params.bmi as string || '22');
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#080B14', alignItems: 'center', justifyContent: 'center', padding: 32 }}>
-      {/* Mint ambient glow */}
-      <Animated.View style={[glowStyle, { position: 'absolute', width: 320, height: 320, borderRadius: 160, backgroundColor: 'rgba(110,231,183,0.08)', top: '25%' }]} />
+    <ScreenWrapper>
+      <View className="flex-1 items-center justify-center p-8 overflow-hidden">
+        {/* Deep background ambient glow */}
+        <Animated.View style={[glowStyle, { position: 'absolute', width: '150%', aspectRatio: 1, borderRadius: 9999, backgroundColor: 'rgba(34,197,94,0.06)', top: '10%' }]} />
 
-      <View style={{ width: '100%', height: '52%', position: 'relative', borderRadius: 24, overflow: 'hidden', marginBottom: 40, backgroundColor: 'rgba(255,255,255,0.03)', borderWidth: 1, borderColor: 'rgba(110,231,183,0.1)' }}>
-        <BodyPreview3D bmi={bmi} isLoading={true} />
+        <Animated.View entering={FadeInDown.duration(600).springify()} className="w-full h-[55%] relative rounded-[32px] overflow-hidden mb-12 bg-surface border border-accent/20" style={{
+           shadowColor: '#22C55E',
+           shadowOffset: { width: 0, height: 10 },
+           shadowOpacity: 0.1,
+           shadowRadius: 30,
+           elevation: 10
+        }}>
+          <BodyPreview3D bmi={bmi} isLoading={true} />
+          <View className="absolute inset-0 bg-gradient-to-t from-background/70 to-transparent pointer-events-none" />
 
-        {/* Mint scanning beam */}
-        <Animated.View style={[scanLineStyle, { position: 'absolute', left: 0, right: 0, height: 2, backgroundColor: '#6EE7B7', shadowColor: '#6EE7B7', shadowOffset: { width: 0, height: 0 }, shadowOpacity: 1, shadowRadius: 12, elevation: 4 }]} />
-        <Animated.View style={[scanLineStyle, { position: 'absolute', left: 0, right: 0, height: 48, marginTop: -48, backgroundColor: 'rgba(110,231,183,0.07)' }]} />
+          {/* Mint scanning beam */}
+          <Animated.View style={[scanLineStyle, { position: 'absolute', left: 0, right: 0, height: 2, backgroundColor: '#22C55E', shadowColor: '#22C55E', shadowOffset: { width: 0, height: 0 }, shadowOpacity: 1, shadowRadius: 16, elevation: 8 }]} />
+          <Animated.View style={[scanLineStyle, { position: 'absolute', left: 0, right: 0, height: 80, marginTop: -80, backgroundColor: 'rgba(34,197,94,0.1)' }]} />
+        </Animated.View>
+
+        <Animated.View entering={FadeInDown.delay(200).duration(500)} className="items-center w-full">
+          <ActivityIndicator size="large" color="#22C55E" style={{ marginBottom: 24, transform: [{ scale: 1.2 }] }} />
+          <Animated.Text key={stepIndex} entering={FadeInDown.duration(400)} className="text-accent text-[22px] font-extrabold text-center mb-3">
+            {STEPS[stepIndex]}
+          </Animated.Text>
+          <Text className="text-textSecondary text-[15px] text-center leading-[22px] px-4">
+            Please wait while our Luna AI engine creates your personalized daily blueprint...
+          </Text>
+        </Animated.View>
       </View>
-
-      <ActivityIndicator size="large" color="#6EE7B7" style={{ marginBottom: 20 }} />
-      <Text style={{ color: '#6EE7B7', fontSize: 19, fontWeight: 'bold', textAlign: 'center', marginBottom: 8 }}>
-        {STEPS[stepIndex]}
-      </Text>
-      <Text style={{ color: '#64748B', fontSize: 14, textAlign: 'center' }}>
-        Please wait while our AI engine creates your personalized journey...
-      </Text>
-    </View>
+    </ScreenWrapper>
   );
 }

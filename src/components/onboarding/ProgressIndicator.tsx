@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 
 interface ProgressIndicatorProps {
   currentStep: number;
@@ -8,35 +8,24 @@ interface ProgressIndicatorProps {
 
 export const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({ currentStep, totalSteps }) => {
   return (
-    <View style={styles.wrap}>
-      <View style={styles.row}>
+    <View className="w-full flex-row items-center gap-2 mb-6">
+      <View className="flex-1 flex-row">
         {Array.from({ length: totalSteps }).map((_, i) => {
           const isActive = i === currentStep - 1;
           const isCompleted = i < currentStep - 1;
           return (
             <View
               key={i}
-              style={[
-                styles.dot,
-                isActive ? styles.dotActive : isCompleted ? styles.dotDone : styles.dotPending,
-              ]}
+              className={`h-2 rounded-full mr-1 ${
+                isActive ? 'bg-accent flex-1' : isCompleted ? 'bg-accent/40 w-4' : 'bg-surface border border-white/5 w-4'
+              }`}
             />
           );
         })}
       </View>
-      <Text style={styles.label}>Step {currentStep} of {totalSteps}</Text>
+      <Text className="text-[10px] font-bold text-textSecondary uppercase tracking-widest">Step {currentStep} of {totalSteps}</Text>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  wrap: { width: '100%', flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 24 },
-  row: { flex: 1, flexDirection: 'row' },
-  dot: { height: 8, borderRadius: 999, marginRight: 4 },
-  dotActive: { backgroundColor: '#b7004e', flex: 1 },
-  dotDone: { backgroundColor: '#e497aa', width: 16 },
-  dotPending: { backgroundColor: '#e6e7f8', width: 16 },
-  label: { fontSize: 10, fontWeight: '700', color: '#8f6f74', textTransform: 'uppercase', letterSpacing: 1.2 },
-});
 
 export default ProgressIndicator;

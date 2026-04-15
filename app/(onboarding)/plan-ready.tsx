@@ -1,9 +1,11 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { CheckCircle2, Target, TrendingDown, Sparkles } from 'lucide-react-native';
+import Animated, { FadeInDown, FadeIn } from 'react-native-reanimated';
+import { ScreenWrapper } from '@/src/components/ui/ScreenWrapper';
+import { PrimaryButton } from '@/src/components/onboarding/PrimaryButton';
 
 export default function PlanReadyScreen() {
   const router = useRouter();
@@ -13,71 +15,78 @@ export default function PlanReadyScreen() {
 
   const handleStart = () => { router.replace('/(tabs)'); };
 
-  const ListItem = ({ text }: { text: string }) => (
-    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
-      <CheckCircle2 color="#6EE7B7" size={20} />
-      <Text style={{ color: '#F1F5F9', fontSize: 16, marginLeft: 12 }}>{text}</Text>
-    </View>
+  const ListItem = ({ text, delay }: { text: string; delay: number }) => (
+    <Animated.View entering={FadeInDown.delay(delay).duration(500)} className="flex-row items-center mb-4">
+      <View className="w-6 h-6 rounded-full bg-accent/20 items-center justify-center">
+        <CheckCircle2 color="#22C55E" size={14} strokeWidth={3} />
+      </View>
+      <Text className="text-textPrimary text-[15px] ml-4 font-semibold">{text}</Text>
+    </Animated.View>
   );
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#080B14' }}>
-      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 24, paddingBottom: 120 }}>
+    <ScreenWrapper>
+      <ScrollView className="flex-1" contentContainerStyle={{ paddingHorizontal: 24, paddingTop: 40, paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
 
         {/* Hero */}
-        <View style={{ alignItems: 'center', marginTop: 32, marginBottom: 40 }}>
-          <View style={{ width: 80, height: 80, borderRadius: 40, alignItems: 'center', justifyContent: 'center', marginBottom: 24, backgroundColor: 'rgba(110,231,183,0.1)' }}>
-            <Sparkles color="#6EE7B7" size={38} />
+        <Animated.View entering={FadeInDown.duration(600).springify()} className="items-center mb-10">
+          <View className="w-24 h-24 rounded-full items-center justify-center mb-6 bg-primary/10 border border-primary/20 shadow-2xl shadow-primary/30">
+            <Sparkles color="#7C3AED" size={44} />
           </View>
-          <Text style={{ color: '#F1F5F9', fontSize: 30, fontWeight: '900', textAlign: 'center', marginBottom: 12 }}>Your Plan is Ready</Text>
-          <Text style={{ color: '#64748B', fontSize: 15, textAlign: 'center' }}>
-            We've analyzed your profile and crafted a customized protocol to hit your targets safely and efficiently.
+          <Text className="text-textPrimary text-[34px] leading-[42px] font-black text-center mb-3 tracking-tight">Your Protocol is Generated</Text>
+          <Text className="text-textSecondary text-[16px] leading-[24px] text-center px-4">
+            We've analyzed your profile and crafted a customized daily protocol to hit your targets efficiently.
           </Text>
-        </View>
+        </Animated.View>
 
         {/* Gradient border card */}
-        <LinearGradient
-          colors={['#6EE7B7', '#818CF8']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={{ padding: 1, borderRadius: 24, marginBottom: 24 }}
-        >
-          <View style={{ backgroundColor: '#080B14', borderRadius: 23, padding: 24 }}>
+        <Animated.View entering={FadeInDown.delay(200).duration(500)}>
+          <LinearGradient
+            colors={['#7C3AED', '#F472B6']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            className="p-[1px] rounded-[32px]"
+          >
+            <View className="bg-surface rounded-[31px] p-7">
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 24 }}>
-              <Target color="#818CF8" size={22} />
-              <View style={{ marginLeft: 16, flex: 1 }}>
-                <Text style={{ color: '#64748B', fontSize: 11, textTransform: 'uppercase', letterSpacing: 1.2, fontWeight: '700', marginBottom: 4 }}>Primary Goal</Text>
-                <Text style={{ color: '#F1F5F9', fontSize: 17, fontWeight: 'bold' }}>{primaryGoal}</Text>
+              <View className="flex-row items-center mb-8">
+                <View className="w-12 h-12 rounded-2xl bg-secondary/10 items-center justify-center border border-secondary/20">
+                  <Target color="#F472B6" size={24} />
+                </View>
+                <View className="ml-5 flex-1">
+                  <Text className="text-textSecondary text-[12px] uppercase tracking-widest font-extrabold mb-1.5">Primary Goal Track</Text>
+                  <Text className="text-textPrimary text-[18px] font-black capitalize">{primaryGoal}</Text>
+                </View>
               </View>
-            </View>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 24 }}>
-              <TrendingDown color="#6EE7B7" size={22} />
-              <View style={{ marginLeft: 16, flex: 1 }}>
-                <Text style={{ color: '#64748B', fontSize: 11, textTransform: 'uppercase', letterSpacing: 1.2, fontWeight: '700', marginBottom: 4 }}>Expected Result</Text>
-                <Text style={{ color: '#6EE7B7', fontSize: 17, fontWeight: 'bold' }}>See progress in 14–21 days</Text>
+              <View className="flex-row items-center mb-8">
+                <View className="w-12 h-12 rounded-2xl bg-accent/10 items-center justify-center border border-accent/20">
+                  <TrendingDown color="#22C55E" size={24} />
+                </View>
+                <View className="ml-5 flex-1">
+                  <Text className="text-textSecondary text-[12px] uppercase tracking-widest font-extrabold mb-1.5">Expected Timeline</Text>
+                  <Text className="text-accent text-[18px] font-black">See progress in 14–21 days</Text>
+                </View>
               </View>
+
+              <View className="h-[1px] bg-white/10 mb-8" />
+
+              <Text className="text-textSecondary text-[12px] uppercase tracking-widest font-extrabold mb-6">What's Included</Text>
+              <View className="ml-1">
+                <ListItem text="Personalized Daily Workout Routine" delay={300} />
+                <ListItem text="Adaptive Nutrition Framework" delay={400} />
+                <ListItem text="24/7 AI Coach Access" delay={500} />
+              </View>
+
             </View>
-
-            <View style={{ height: 1, backgroundColor: 'rgba(255,255,255,0.06)', marginBottom: 24 }} />
-
-            <Text style={{ color: '#64748B', fontSize: 11, textTransform: 'uppercase', letterSpacing: 1.2, fontWeight: '700', marginBottom: 16 }}>What's Included</Text>
-            <ListItem text="Personalized Workout Routine" />
-            <ListItem text="Adaptive Nutrition Framework" />
-            <ListItem text="24/7 AI Coach Access" />
-          </View>
-        </LinearGradient>
+          </LinearGradient>
+        </Animated.View>
 
       </ScrollView>
 
-      <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, paddingHorizontal: 24, paddingTop: 16, paddingBottom: 36, backgroundColor: '#080B14', borderTopWidth: 1, borderTopColor: 'rgba(255,255,255,0.06)' }}>
-        <TouchableOpacity activeOpacity={0.9} onPress={handleStart}>
-          <LinearGradient colors={['#6EE7B7', '#818CF8']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ paddingVertical: 16, borderRadius: 100, alignItems: 'center' }}>
-            <Text style={{ color: '#080B14', fontWeight: '800', fontSize: 17 }}>Start My Plan</Text>
-          </LinearGradient>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+      <Animated.View entering={FadeIn.delay(600).duration(500)} className="absolute bottom-0 left-0 right-0 px-6 py-8 bg-background border-t border-white/5">
+         <PrimaryButton title="Enter the Dashboard" onPress={handleStart} />
+      </Animated.View>
+    </ScreenWrapper>
   );
 }

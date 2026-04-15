@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Check } from 'lucide-react-native';
 
 interface SelectionCardProps {
@@ -9,6 +9,7 @@ interface SelectionCardProps {
   isSelected: boolean;
   isRecommended?: boolean;
   onToggle: () => void;
+  className?: string; // Allow passing custom styles
 }
 
 export const SelectionCard: React.FC<SelectionCardProps> = ({
@@ -18,71 +19,37 @@ export const SelectionCard: React.FC<SelectionCardProps> = ({
   isSelected,
   isRecommended,
   onToggle,
+  className = ""
 }) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={onToggle}
-      style={[
-        styles.card,
-        isSelected ? styles.cardSelected : isRecommended ? styles.cardRecommended : styles.cardDefault,
-      ]}
+      className={`p-5 rounded-2xl border-2 mb-4 flex-row items-center justify-between shadow-sm ${className} ${
+        isSelected ? 'bg-primary/10 border-primary' : isRecommended ? 'bg-primary/5 border-transparent' : 'bg-surface border-white/5'
+      }`}
     >
-      <View style={styles.contentWrap}>
-        <View style={[styles.iconWrap, isSelected ? styles.iconWrapSelected : styles.iconWrapDefault]}>
+      <View className="flex-1 flex-row items-center">
+        <View className={`w-12 h-12 rounded-full items-center justify-center ${
+          isSelected ? 'bg-primary/20' : 'bg-background border border-white/5'
+        }`}>
           {icon}
         </View>
 
-        <View style={styles.textWrap}>
-          <Text style={styles.title}>{title}</Text>
-          {isRecommended && !description ? <Text style={styles.recommendedText}>Recommended for you</Text> : null}
-          {description ? <Text style={styles.description}>{description}</Text> : null}
+        <View className="flex-1 pl-4 pr-3">
+          <Text className="font-bold text-base text-textPrimary leading-snug">{title}</Text>
+          {description ? <Text className="mt-0.5 text-[13px] leading-tight text-textSecondary">{description}</Text> : null}
+          {isRecommended ? <Text className="mt-1.5 uppercase tracking-widest font-extrabold text-[10px] text-primary">Recommended for you</Text> : null}
         </View>
       </View>
 
-      <View style={[styles.checkWrap, isSelected ? styles.checkWrapSelected : styles.checkWrapDefault]}>
+      <View className={`w-6 h-6 rounded-full border-2 items-center justify-center ${
+        isSelected ? 'border-primary bg-primary' : 'border-white/10'
+      }`}>
         {isSelected ? <Check color="#ffffff" size={14} strokeWidth={3} /> : null}
       </View>
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  card: {
-    padding: 20,
-    borderRadius: 12,
-    borderWidth: 2,
-    marginBottom: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.07,
-    shadowRadius: 3,
-    elevation: 1,
-  },
-  cardSelected: { backgroundColor: '#fdf0f4', borderColor: '#b7004e' },
-  cardRecommended: { backgroundColor: '#fdf0f4', borderColor: 'transparent' },
-  cardDefault: { backgroundColor: '#ffffff', borderColor: 'transparent' },
-  contentWrap: { flex: 1, flexDirection: 'row', alignItems: 'center' },
-  iconWrap: { width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
-  iconWrapSelected: { backgroundColor: '#b7004e' },
-  iconWrapDefault: { backgroundColor: '#ffd9df' },
-  textWrap: { flex: 1, paddingLeft: 14, paddingRight: 12 },
-  title: { fontWeight: '700', fontSize: 16, color: '#181b27', lineHeight: 20 },
-  recommendedText: {
-    marginTop: 4,
-    textTransform: 'uppercase',
-    letterSpacing: 1.2,
-    fontWeight: '700',
-    fontSize: 10,
-    color: '#b7004e',
-  },
-  description: { marginTop: 4, fontSize: 13, lineHeight: 18, color: '#5b3f44' },
-  checkWrap: { width: 24, height: 24, borderRadius: 12, borderWidth: 2, alignItems: 'center', justifyContent: 'center' },
-  checkWrapSelected: { borderColor: '#b7004e', backgroundColor: '#b7004e' },
-  checkWrapDefault: { borderColor: '#e4bdc3' },
-});
 
 export default SelectionCard;

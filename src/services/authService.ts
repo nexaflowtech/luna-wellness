@@ -74,3 +74,11 @@ export async function verifyPhoneOtp(
 export async function logoutUser(): Promise<void> {
   await signOut(auth);
 }
+
+/** Partially update the current user's profile document in Firestore */
+export async function updateUserDoc(uid: string, data: Record<string, any>): Promise<void> {
+  await setDoc(doc(db, 'users', uid), {
+    ...data,
+    updatedAt: serverTimestamp(),
+  }, { merge: true });
+}

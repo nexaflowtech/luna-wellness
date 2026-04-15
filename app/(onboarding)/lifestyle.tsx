@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
-import { useRouter, useLocalSearchParams } from 'expo-router';
+import { View, Text, ScrollView, TouchableOpacity, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter, useLocalSearchParams } from 'expo-router';
+import Animated, { FadeInDown } from 'react-native-reanimated';
+import { ScreenWrapper } from '@/src/components/ui/ScreenWrapper';
+import { Header } from '@/src/components/ui/Header';
 import { ProgressIndicator } from '@/src/components/onboarding/ProgressIndicator';
+import { PrimaryButton } from '@/src/components/onboarding/PrimaryButton';
+import { useAuth } from '@/src/context/AuthContext';
+import { updateUserDoc } from '@/src/services/authService';
+import { LunaAiBubble } from '@/src/components/onboarding/LunaAiBubble';
 
 const ACTIVITY_OPTIONS = [
   { id: 'sedentary', label: 'Sedentary', desc: 'Little to no exercise' },
@@ -19,20 +25,51 @@ const DIET_OPTIONS = [
   { id: 'keto', label: 'Keto / Low-Carb', desc: 'High fat, low carb' },
 ];
 
+const SLEEP_OPTIONS = [
+  { id: 'poor', label: '< 5 hrs', desc: 'Poor / Insomnia' },
+  { id: 'fair', label: '5-6 hrs', desc: 'Fair sleep' },
+  { id: 'good', label: '7-8 hrs', desc: 'Good / Healthy' },
+  { id: 'excel', label: '> 8 hrs', desc: 'Excellent' },
+];
+
+const STRESS_OPTIONS = [
+  { id: 'low', label: 'Low', desc: 'Usually relaxed' },
+  { id: 'moderate', label: 'Moderate', desc: 'Manageable daily stress' },
+  { id: 'high', label: 'High', desc: 'Frequent anxiety/chaos' },
+  { id: 'severe', label: 'Severe', desc: 'Overwhelming' },
+];
+
 export default function LifestyleScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const [activity, setActivity] = useState('');
   const [diet, setDiet] = useState('');
-  const isComplete = activity && diet;
+  const [sleep, setSleep] = useState('');
+  const [stress, setStress] = useState('');
+  const isComplete = activity && diet && sleep && stress;
+
+  const { user } = useAuth();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleNext = () => {
     if (!isComplete) return;
-    router.push({ pathname: '/(onboarding)/ai-loading', params: { ...params, diet, habits: activity } });
+    // Background write — do NOT await
+    if (user?.uid) {
+      updateUserDoc(user.uid, {
+        activityLevel: activity,
+        foodPreference: diet,
+        sleep,
+        stress,
+        onboardingStep: '/(onboarding)/ai-plan-generating',
+      }).catch(e => console.error('lifestyle write failed:', e));
+    }
+    console.log('Selected value: activity=', activity, 'diet=', diet, 'sleep=', sleep, 'stress=', stress);
+    console.log('Navigating to: /(onboarding)/ai-plan-generating');
+    router.push('/(onboarding)/ai-plan-generating');
   };
 
   const renderSelector = (options: any[], selectedValue: string, onSelect: (val: string) => void) => (
-    <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: 12 }}>
+    <View className="flex-row flex-wrap justify-between gap-y-4">
       {options.map((opt) => {
         const isActive = selectedValue === opt.id;
         return (
@@ -40,18 +77,10 @@ export default function LifestyleScreen() {
             key={opt.id}
             onPress={() => onSelect(opt.id)}
             activeOpacity={0.8}
-            style={{
-              borderRadius: 20, padding: 16, width: '48%',
-              backgroundColor: isActive ? 'rgba(129,140,248,0.1)' : 'rgba(255,255,255,0.04)',
-              borderWidth: 1,
-              borderColor: isActive ? '#818CF8' : 'rgba(255,255,255,0.08)',
-              shadowColor: isActive ? '#818CF8' : 'transparent',
-              shadowOffset: { width: 0, height: 6 }, shadowOpacity: isActive ? 0.15 : 0, shadowRadius: 12,
-              elevation: isActive ? 4 : 0,
-            }}
+            className={`w-[48%] rounded-[24px] p-5 border border-white/5 shadow-lg ${isActive ? 'bg-primary border-primary' : 'bg-surface'}`}
           >
-            <Text style={{ color: isActive ? '#F1F5F9' : '#64748B', fontSize: 15, fontWeight: 'bold', marginBottom: 4 }}>{opt.label}</Text>
-            <Text style={{ color: '#334155', fontSize: 12 }}>{opt.desc}</Text>
+            <Text className={`text-[16px] font-extrabold mb-1.5 ${isActive ? 'text-white' : 'text-textPrimary'}`}>{opt.label}</Text>
+            <Text className={`text-[13px] leading-[18px] ${isActive ? 'text-white/80' : 'text-textSecondary'}`}>{opt.desc}</Text>
           </TouchableOpacity>
         );
       })}
@@ -59,35 +88,76 @@ export default function LifestyleScreen() {
   );
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#080B14' }}>
-      <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 24, paddingTop: 16, marginBottom: 8 }}>
-        <TouchableOpacity onPress={() => router.back()} style={{ width: 40, height: 40, alignItems: 'center', justifyContent: 'center', borderRadius: 20, backgroundColor: 'rgba(255,255,255,0.04)' }}>
-          <Text style={{ color: '#F1F5F9', fontSize: 20 }}>{'<'}</Text>
-        </TouchableOpacity>
-        <Text style={{ color: '#F1F5F9', fontSize: 20, fontWeight: 'bold', textAlign: 'center', flex: 1, marginLeft: -40 }}>Lifestyle Basics</Text>
+    <SafeAreaView className="flex-1 bg-background">
+      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} className="flex-1">
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View className="flex-1">
+            <Header title="Lifestyle Basics" showBack transparent />
+      
+      <View className="px-6 py-4">
+        <ProgressIndicator currentStep={4} totalSteps={4} />
       </View>
 
-      <View style={{ paddingHorizontal: 24, paddingVertical: 16 }}>
-        <ProgressIndicator currentStep={4} totalSteps={5} />
-      </View>
+      <ScrollView className="flex-1 px-6" contentContainerStyle={{ paddingBottom: 140, paddingTop: 12 }} showsVerticalScrollIndicator={false}>
+        <Animated.Text entering={FadeInDown.duration(500).springify()} className="text-textPrimary text-[32px] leading-[40px] font-extrabold mb-3">
+          Daily Habits
+        </Animated.Text>
+        <Animated.Text entering={FadeInDown.delay(100).duration(500)} className="text-textSecondary text-[16px] leading-[24px] mb-8">
+          We use this data to accurately calculate your metabolic maintenance load.
+        </Animated.Text>
+        
+        <Animated.View entering={FadeInDown.delay(200).duration(500)}>
+          <Text className="text-textSecondary text-[13px] font-bold uppercase tracking-widest mb-4 ml-2">Activity Level</Text>
+          {renderSelector(ACTIVITY_OPTIONS, activity, setActivity)}
+        </Animated.View>
+        
+        <View className="h-10" />
+        
+        <Animated.View entering={FadeInDown.delay(300).duration(500)}>
+          <Text className="text-textSecondary text-[13px] font-bold uppercase tracking-widest mb-4 ml-2">Dietary Preference</Text>
+          {renderSelector(DIET_OPTIONS, diet, setDiet)}
+        </Animated.View>
 
-      <ScrollView style={{ flex: 1, paddingHorizontal: 24 }} contentContainerStyle={{ paddingBottom: 120, paddingTop: 12 }}>
-        <Text style={{ color: '#F1F5F9', fontSize: 26, fontWeight: '800', marginBottom: 8 }}>Daily Habits</Text>
-        <Text style={{ color: '#64748B', fontSize: 15, marginBottom: 32 }}>We use this data to accurately calculate your metabolic maintenance load.</Text>
-        <Text style={{ color: '#F1F5F9', fontSize: 17, fontWeight: 'bold', marginBottom: 16 }}>Activity Level</Text>
-        {renderSelector(ACTIVITY_OPTIONS, activity, setActivity)}
-        <View style={{ height: 28 }} />
-        <Text style={{ color: '#F1F5F9', fontSize: 17, fontWeight: 'bold', marginBottom: 16 }}>Dietary Preference</Text>
-        {renderSelector(DIET_OPTIONS, diet, setDiet)}
+        <View className="h-10" />
+
+        <Animated.View entering={FadeInDown.delay(350).duration(500)}>
+          <Text className="text-textSecondary text-[13px] font-bold uppercase tracking-widest mb-4 ml-2">Average Sleep</Text>
+          {renderSelector(SLEEP_OPTIONS, sleep, setSleep)}
+        </Animated.View>
+
+        <View className="h-10" />
+
+        <Animated.View entering={FadeInDown.delay(400).duration(500)}>
+          <Text className="text-textSecondary text-[13px] font-bold uppercase tracking-widest mb-4 ml-2">Daily Stress Level</Text>
+          {renderSelector(STRESS_OPTIONS, stress, setStress)}
+        </Animated.View>
       </ScrollView>
 
-      <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, paddingHorizontal: 24, paddingTop: 16, paddingBottom: 32, backgroundColor: '#080B14', borderTopWidth: 1, borderTopColor: 'rgba(255,255,255,0.06)' }}>
-        <TouchableOpacity activeOpacity={0.9} disabled={!isComplete} onPress={handleNext} style={{ opacity: isComplete ? 1 : 0.4 }}>
-          <LinearGradient colors={['#6EE7B7', '#818CF8']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ paddingVertical: 16, borderRadius: 100, alignItems: 'center' }}>
-            <Text style={{ color: '#080B14', fontWeight: '800', fontSize: 17 }}>Generate Plan</Text>
-          </LinearGradient>
-        </TouchableOpacity>
-      </View>
+      {/* Luna AI companion bubble — reacts to lifestyle selections */}
+      <LunaAiBubble
+        typing={!isComplete}
+        message={
+          !isComplete
+            ? "I need your activity and lifestyle data to calculate your personalised metabolic rate."
+            : stress === 'high' || stress === 'severe'
+            ? "High stress signals detected — I'll add cortisol-lowering protocols and adapt your recovery windows."
+            : sleep === 'poor'
+            ? "Poor sleep affects hormone production significantly. I'll factor sleep recovery into your plan structure."
+            : activity === 'sedentary'
+            ? "Starting from sedentary — I'll build a progressive activity ramp so your body adapts safely."
+            : "Great lifestyle snapshot! I have everything I need to generate your personalised health blueprint."
+        }
+        subMessage={isComplete ? "Tap Generate Plan to have me build your protocol." : undefined}
+      />
+
+      <Animated.View entering={FadeInDown.delay(500).duration(500)} className="absolute bottom-0 left-0 right-0 px-6 py-8 bg-background border-t border-white/5">
+        <View className={`${isComplete ? 'opacity-100' : 'opacity-40'}`} pointerEvents={isComplete ? 'auto' : 'none'}>
+          <PrimaryButton title="Generate Plan" onPress={handleNext} />
+        </View>
+      </Animated.View>
+          </View>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }

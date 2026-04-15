@@ -8,9 +8,9 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: '#7C3AED',
-        tabBarInactiveTintColor: '#94A3B8',
+        tabBarInactiveTintColor: '#A1A1AA',
         tabBarStyle: {
-          backgroundColor: '#0D0D1A',
+          backgroundColor: '#0B0B0F',
           borderTopColor: 'rgba(255,255,255,0.05)',
           height: 62,
           paddingBottom: 8,
@@ -53,6 +53,8 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <User color={color} size={24} />,
         }}
       />
+      <Tabs.Screen name="care" options={{ href: null }} />
+      <Tabs.Screen name="explore" options={{ href: null }} />
     </Tabs>
   );
 }

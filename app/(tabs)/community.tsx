@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, StatusBar } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { addDoc, collection, getDocs, increment, limit, orderBy, query, serverTimestamp, updateDoc, doc } from 'firebase/firestore';
 import { db } from '@/src/config/firebase';
-import { Colors, FontWeight, Radius } from '@/src/constants/theme';
-import { Card } from '@/src/components/molecules/Card';
+import { ScreenWrapper } from '@/src/components/ui/ScreenWrapper';
+import { Header } from '@/src/components/ui/Header';
+import { Heart, MessageCircle, MoreHorizontal } from 'lucide-react-native';
 
 type CommunityPost = {
   id: string;
@@ -20,87 +20,123 @@ export default function CommunityScreen() {
   const [posts, setPosts] = useState<CommunityPost[]>([]);
 
   const loadPosts = async () => {
-    const q = query(collection(db, 'communityPosts'), orderBy('createdAt', 'desc'), limit(10));
-    const snap = await getDocs(q);
-    setPosts(
-      snap.docs.map((d) => ({
-        id: d.id,
-        authorName: String(d.data().authorName ?? 'Luna Member'),
-        content: String(d.data().content ?? ''),
-        likesCount: Number(d.data().likesCount ?? 0),
-        commentsCount: Number(d.data().commentsCount ?? 0),
-      }))
-    );
+    try {
+      const q = query(collection(db, 'communityPosts'), orderBy('createdAt', 'desc'), limit(10));
+      const snap = await getDocs(q);
+      setPosts(
+        snap.docs.map((d) => ({
+          id: d.id,
+          authorName: String(d.data().authorName ?? 'Luna Member'),
+          content: String(d.data().content ?? ''),
+          likesCount: Number(d.data().likesCount ?? 0),
+          commentsCount: Number(d.data().commentsCount ?? 0),
+        }))
+      );
+    } catch(e) {
+      // ignore
+    }
   };
 
   useEffect(() => {
-    loadPosts().catch(() => setPosts([]));
+    loadPosts();
   }, []);
 
   const seedPost = async () => {
-    await addDoc(collection(db, 'communityPosts'), {
-      authorName: 'You',
-      content: 'Starting my Luna wellness challenge today.',
-      likesCount: 0,
-      commentsCount: 0,
-      createdAt: serverTimestamp(),
-    });
-    await loadPosts();
+    try {
+      await addDoc(collection(db, 'communityPosts'), {
+        authorName: 'You',
+        content: 'Just smashed my daily step goal and feeling amazing! 🌟',
+        likesCount: 0,
+        commentsCount: 0,
+        createdAt: serverTimestamp(),
+      });
+      await loadPosts();
+    } catch(e) {
+      // ignore
+    }
   };
 
   const likePost = async (id: string) => {
-    await updateDoc(doc(db, 'communityPosts', id), { likesCount: increment(1) });
-    await loadPosts();
+    try {
+      await updateDoc(doc(db, 'communityPosts', id), { likesCount: increment(1) });
+      await loadPosts();
+    } catch(e) {
+      // ignore
+    }
+  };
+
+  // Helper for generating deterministic avatar colors based on name
+  const getAvatarColor = (name: string) => {
+    const colors = ['#7C3AED', '#F472B6', '#22C55E', '#00D4FF', '#EAB308'];
+    const index = name.length % colors.length;
+    return colors[index];
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: Colors.background }}>
-      <StatusBar barStyle="light-content" />
-      <LinearGradient colors={['#b7004e', '#fc695d']} style={styles.header}>
-        <Text style={styles.title}>Community</Text>
-        <Text style={styles.subtitle}>Posts, comments, likes and challenges</Text>
-      </LinearGradient>
+    <ScreenWrapper>
+      <Header title="Community" subtitle="Connect with the Luna tribe" />
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.challenges}>
-        {CHALLENGES.map((c) => (
-          <View key={c} style={styles.challengeChip}>
-            <Text style={styles.challengeText}>🏆 {c}</Text>
+      <View className="mb-6 mt-2">
+        <Text className="text-textSecondary text-[13px] font-bold uppercase tracking-widest px-5 mb-3">Trending Challenges</Text>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20, gap: 12 }}>
+          {CHALLENGES.map((c) => (
+            <View key={c} className="px-5 py-3 rounded-full bg-surface border border-white/5 flex-row items-center gap-2">
+              <Text className="text-[14px]">🏆</Text>
+              <Text className="text-textPrimary text-[13px] font-bold">{c}</Text>
+            </View>
+          ))}
+        </ScrollView>
+      </View>
+
+      <ScrollView contentContainerStyle={{ paddingHorizontal: 20, gap: 16, paddingBottom: 100 }} showsVerticalScrollIndicator={false}>
+        
+        <TouchableOpacity activeOpacity={0.9} onPress={seedPost}>
+          <View className="bg-primary/10 border border-primary/30 p-5 rounded-[24px] flex-row items-center gap-4">
+            <View className="w-10 h-10 rounded-full bg-primary/20 items-center justify-center">
+              <Text className="text-primary font-bold">Y</Text>
+            </View>
+            <Text className="text-primary font-bold flex-1">Share your wellness update...</Text>
           </View>
-        ))}
-      </ScrollView>
-
-      <ScrollView contentContainerStyle={styles.content}>
-        <TouchableOpacity onPress={seedPost}>
-          <Card>
-            <Text style={{ color: '#5b3f44' }}>Share your wellness update...</Text>
-          </Card>
         </TouchableOpacity>
 
-        {posts.map((p) => (
-          <Card key={p.id} style={{ gap: 8 }}>
-            <Text style={{ color: '#181b27', fontWeight: FontWeight.bold }}>{p.authorName}</Text>
-            <Text style={{ color: '#5b3f44' }}>{p.content}</Text>
-            <View style={styles.row}>
-              <TouchableOpacity onPress={() => likePost(p.id)}>
-                <Text style={styles.action}>❤️ {p.likesCount}</Text>
-              </TouchableOpacity>
-              <Text style={styles.action}>💬 {p.commentsCount}</Text>
+        {posts.map((p) => {
+          const color = getAvatarColor(p.authorName);
+          return (
+            <View key={p.id} className="bg-surface border border-white/5 p-5 rounded-[32px]">
+              
+              <View className="flex-row items-center justify-between mb-4">
+                <View className="flex-row items-center gap-3">
+                  <View className="w-12 h-12 rounded-[16px] items-center justify-center" style={{ backgroundColor: `${color}20` }}>
+                    <Text style={{ color, fontWeight: '900', fontSize: 18 }}>{p.authorName.charAt(0)}</Text>
+                  </View>
+                  <View>
+                    <Text className="text-white font-bold text-[16px]">{p.authorName}</Text>
+                    <Text className="text-textSecondary text-[12px] font-medium mt-0.5">2 hours ago</Text>
+                  </View>
+                </View>
+                <TouchableOpacity className="w-8 h-8 items-center justify-center rounded-full bg-white/5">
+                  <MoreHorizontal color="#8A8A93" size={16} />
+                </TouchableOpacity>
+              </View>
+
+              <Text className="text-white text-[15px] mb-5 leading-6">{p.content}</Text>
+              
+              <View className="h-[1px] bg-white/5 mb-4" />
+
+              <View className="flex-row items-center gap-6 px-1">
+                <TouchableOpacity activeOpacity={0.8} onPress={() => likePost(p.id)} className="flex-row items-center gap-2">
+                  <Heart color={p.likesCount > 0 ? '#F472B6' : '#8A8A93'} size={20} fill={p.likesCount > 0 ? '#F472B6' : 'transparent'} />
+                  <Text className={`font-bold ${p.likesCount > 0 ? 'text-[#F472B6]' : 'text-textSecondary'}`}>{p.likesCount}</Text>
+                </TouchableOpacity>
+                <View className="flex-row items-center gap-2">
+                  <MessageCircle color="#8A8A93" size={20} />
+                  <Text className="text-textSecondary font-bold">{p.commentsCount}</Text>
+                </View>
+              </View>
             </View>
-          </Card>
-        ))}
+          );
+        })}
       </ScrollView>
-    </View>
+    </ScreenWrapper>
   );
 }
-
-const styles = StyleSheet.create({
-  header: { paddingTop: 56, paddingBottom: 24, paddingHorizontal: 24, borderBottomLeftRadius: 28, borderBottomRightRadius: 28 },
-  title: { fontSize: 26, fontWeight: FontWeight.extrabold, color: '#fff' },
-  subtitle: { fontSize: 14, color: 'rgba(255,255,255,0.75)', marginTop: 4 },
-  challenges: { paddingHorizontal: 20, paddingVertical: 14, gap: 8 },
-  challengeChip: { paddingHorizontal: 14, paddingVertical: 8, borderRadius: Radius.full, backgroundColor: '#fff', borderWidth: 1, borderColor: '#e4bdc3' },
-  challengeText: { color: '#5b3f44', fontWeight: FontWeight.medium, fontSize: 13 },
-  content: { padding: 20, gap: 12, paddingBottom: 40 },
-  row: { flexDirection: 'row', gap: 16 },
-  action: { color: '#8f6f74', fontWeight: FontWeight.medium },
-});

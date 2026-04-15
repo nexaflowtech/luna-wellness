@@ -10,6 +10,10 @@ interface AuthContextType {
   profileComplete: boolean;
   questionnaireComplete: boolean;
   subscriptionActive: boolean;
+  goal: string | null;
+  gender: string | null;
+  healthScore: number | null;
+  onboardingStep: string | null;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -19,6 +23,10 @@ const AuthContext = createContext<AuthContextType>({
   profileComplete: false,
   questionnaireComplete: false,
   subscriptionActive: false,
+  goal: null,
+  gender: null,
+  healthScore: null,
+  onboardingStep: null,
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -28,6 +36,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [profileComplete, setProfileComplete] = useState(false);
   const [questionnaireComplete, setQuestionnaireComplete] = useState(false);
   const [subscriptionActive, setSubscriptionActive] = useState(false);
+  const [goal, setGoal] = useState<string | null>(null);
+  const [gender, setGender] = useState<string | null>(null);
+  const [healthScore, setHealthScore] = useState<number | null>(null);
+  const [onboardingStep, setOnboardingStep] = useState<string | null>(null);
 
   useEffect(() => {
     let unsubscribeDoc: (() => void) | null = null;
@@ -44,6 +56,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             setProfileComplete(data?.profileComplete === true);
             setQuestionnaireComplete(data?.questionnaireComplete === true);
             setSubscriptionActive(data?.subscriptionActive === true);
+            setGoal(data?.goal ?? null);
+            setGender(data?.gender ?? null);
+            setHealthScore(data?.healthScore ?? null);
+            setOnboardingStep(data?.onboardingStep ?? null);
             setIsLoading(false);
           },
           (error) => {
@@ -56,6 +72,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setProfileComplete(false);
         setQuestionnaireComplete(false);
         setSubscriptionActive(false);
+        setGoal(null);
+        setGender(null);
+        setHealthScore(null);
+        setOnboardingStep(null);
         setIsLoading(false);
         if (unsubscribeDoc) unsubscribeDoc();
       }
@@ -68,7 +88,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, onboardingComplete, profileComplete, questionnaireComplete, subscriptionActive }}>
+    <AuthContext.Provider value={{
+      user, isLoading, onboardingComplete, profileComplete, questionnaireComplete, subscriptionActive,
+      goal, gender, healthScore, onboardingStep
+    }}>
       {children}
     </AuthContext.Provider>
   );
