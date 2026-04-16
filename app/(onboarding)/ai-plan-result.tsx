@@ -1,109 +1,137 @@
 import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
-import { LinearGradient } from 'expo-linear-gradient';
-import { CheckCircle2, Sparkles, ArrowRight } from 'lucide-react-native';
-import Animated, { FadeInDown, FadeIn } from 'react-native-reanimated';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Animated, { FadeInDown } from 'react-native-reanimated';
+import { LucideIcon, Flame, Coffee, Beef, Wheat, Carrot, Timer, Sparkles, ArrowRight } from 'lucide-react-native';
+
 import { ScreenWrapper } from '@/src/components/ui/ScreenWrapper';
 import { PrimaryButton } from '@/src/components/onboarding/PrimaryButton';
-import { useAuth } from '@/src/context/AuthContext';
-import { updateUserDoc } from '@/src/services/authService';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '@/src/config/firebase';
-import { LunaAiBubble } from '@/src/components/onboarding/LunaAiBubble';
+import { OnboardingPlanResult } from '@/src/services/lunaAiService';
 
-export default function AiPlanResult() {
+export default function AiPlanResultScreen() {
   const router = useRouter();
-  const { user } = useAuth();
-  const [planData, setPlanData] = React.useState<any>(null);
-  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const params = useLocalSearchParams();
 
-  React.useEffect(() => {
-    if (!user) return;
-    getDoc(doc(db, 'users', user.uid)).then(snap => {
-      setPlanData(snap.data());
-    });
-  }, [user]);
+  const aiPlan: OnboardingPlanResult = params.aiPlan
+    ? JSON.parse(params.aiPlan as string)
+    : {
+      calorieRange: '1800-2000 kcal',
+      macroSplit: { protein: '120g', fiber: '30g', carbs: '200g', fat: '60g' },
+      timelineEstimate: { months: 3, description: 'Steady progress' },
+      metabolicProfile: 'Balanced metabolic state.',
+      hormonalRiskSignals: ['None'],
+      planConfidenceScore: 95
+    };
 
-  // Route to tabs — navigation ALWAYS fires immediately
-  const handleNext = () => {
-    if (user?.uid) {
-      updateUserDoc(user.uid, { onboardingComplete: true })
-        .catch(e => console.error('onboardingComplete write failed:', e));
-    }
-    console.log('Navigating to: /(tabs)');
-    router.replace('/(tabs)');
+  const onContinue = () => {
+    router.push('/(onboarding)/pricing');
   };
-
-  const ListItem = ({ title, desc, delay }: { title: string; desc: string; delay: number }) => (
-    <Animated.View entering={FadeInDown.delay(delay).duration(500)} className="flex-row mb-5 gap-4 px-2">
-      <View className="w-8 h-8 rounded-full bg-accent/10 items-center justify-center mt-1">
-        <CheckCircle2 color="#22C55E" size={20} />
-      </View>
-      <View className="flex-1">
-        <Text className="text-[16px] text-textPrimary font-semibold leading-snug">{title}</Text>
-        <Text className="text-[14px] text-textSecondary leading-snug mt-1">{desc}</Text>
-      </View>
-    </Animated.View>
-  );
 
   return (
     <ScreenWrapper>
-      <ScrollView contentContainerStyle={{ paddingHorizontal: 24, paddingVertical: 60, paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
-        
-        <Animated.View entering={FadeInDown.duration(600).springify()} className="items-center mb-12">
-          <View className="w-[88px] h-[88px] rounded-full bg-surface border border-accent/20 items-center justify-center mb-6 shadow-2xl shadow-accent/20">
-            <Sparkles color="#22C55E" size={40} />
-          </View>
-          <Text className="text-[36px] font-extrabold text-textPrimary text-center mb-3 leading-[44px]">Your AI Plan is Ready</Text>
-          <Text className="text-[16px] text-textSecondary text-center leading-[24px] px-2">
-            We've successfully processed your biometric data and crafted a custom path to hit your targets.
-          </Text>
-        </Animated.View>
+      <SafeAreaView className="flex-1">
+        <ScrollView className="flex-1 px-6" showsVerticalScrollIndicator={false}>
+          <View className="py-8">
+            <Animated.View entering={FadeInDown.duration(600).springify()}>
+              <Text className="text-textSecondary text-[13px] uppercase font-bold tracking-[3px] mb-2">
+                Your AI Blueprint
+              </Text>
+              <Text className="text-textPrimary text-[32px] font-extrabold leading-[40px] mb-6">
+                Optimised for Your <Text className="text-primary">Hormones</Text>
+              </Text>
+            </Animated.View>
 
-        <Animated.View entering={FadeInDown.delay(200).duration(500)}>
-          <LinearGradient
-            colors={['#7C3AED', '#F472B6']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            className="p-[1px] rounded-[32px] mb-8"
-          >
-            <View className="bg-surface rounded-[31px] p-8">
-              <View className="flex-row items-center justify-between mb-6">
-                <Text className="text-[13px] font-bold text-textSecondary uppercase tracking-widest">Plan Breakdown</Text>
-                <View className="px-3 py-1 bg-accent/20 rounded-full">
-                  <Text className="text-accent font-bold text-[12px]">Score: {planData?.healthScore ?? '--'}</Text>
-                </View>
+            {/* Calorie Card */}
+            <Animated.View
+              entering={FadeInDown.delay(100).duration(600)}
+              className="bg-surface rounded-[32px] p-8 mb-6 border border-white/5 relative overflow-hidden"
+            >
+              <View className="absolute top-0 right-0 p-4 opacity-10">
+                <Flame size={120} color="#7C3AED" />
               </View>
-              
-              <ListItem title="Diet Direction" desc={planData?.aiPlan?.dietStrategy || 'Optimizing nutrition'} delay={300} />
-              <ListItem title="Workout Direction" desc={planData?.aiPlan?.workoutStrategy || 'Building stamina'} delay={400} />
-              <ListItem title="Focus Areas" desc={(planData?.aiPlan?.hormoneFocusAreas || []).join(', ') || 'Overall wellness'} delay={500} />
+              <Text className="text-textSecondary text-[14px] uppercase font-bold mb-2 tracking-wider">Target Daily Intake</Text>
+              <Text className="text-textPrimary text-[40px] font-black mb-1">{aiPlan.calorieRange}</Text>
+              <Text className="text-primary text-[14px] font-bold">Scientific metabolic baseline</Text>
+            </Animated.View>
+
+            {/* Macro Grid */}
+            <View className="flex-row flex-wrap justify-between gap-4 mb-6">
+              <MacroCard icon={Beef} label="Protein" value={aiPlan.macroSplit.protein} color="#EF4444" delay={200} />
+              <MacroCard icon={Wheat} label="Carbs" value={aiPlan.macroSplit.carbs} color="#3B82F6" delay={300} />
+              <MacroCard icon={Carrot} label="Fiber" value={aiPlan.macroSplit.fiber} color="#10B981" delay={400} />
+              <MacroCard icon={Coffee} label="Fats" value={aiPlan.macroSplit.fat} color="#F59E0B" delay={500} />
             </View>
-          </LinearGradient>
-        </Animated.View>
 
-      </ScrollView>
+            {/* Insight Panel */}
+            <Animated.View
+              entering={FadeInDown.delay(600).duration(600)}
+              className="bg-surface/50 rounded-[32px] p-6 mb-6 border border-white/5"
+            >
+              <View className="flex-row items-center gap-3 mb-4">
+                <View className="bg-primary/20 p-2 rounded-xl">
+                  <Sparkles size={20} color="#7C3AED" />
+                </View>
+                <Text className="text-textPrimary text-[18px] font-bold">Metabolic Insight</Text>
+              </View>
+              <Text className="text-textSecondary text-[15px] leading-[22px] mb-6">
+                {aiPlan.metabolicProfile}
+              </Text>
 
-      {/* Luna AI companion bubble — final message */}
-      <LunaAiBubble
-        typing={!planData}
-        message={
-          !planData 
-            ? "Finalising your results..." 
-            : `Your plan is ready! I've calculated a health score of ${planData?.healthScore ?? '--'} based on your inputs. Let's get started.`
-        }
-        subMessage={planData ? "I'll be waiting for you in the dashboard." : undefined}
-      />
+              <View className="flex-row items-center gap-3 mb-4">
+                <View className="bg-primary/20 p-2 rounded-xl">
+                  <Timer size={20} color="#7C3AED" />
+                </View>
+                <Text className="text-textPrimary text-[18px] font-bold">Expected Timeline</Text>
+              </View>
+              <Text className="text-textSecondary text-[15px] leading-[22px]">
+                {aiPlan.timelineEstimate.months} Months – {aiPlan.timelineEstimate.description}
+              </Text>
+            </Animated.View>
 
-      <Animated.View entering={FadeIn.delay(800).duration(500)} className="absolute bottom-0 left-0 right-0 px-6 py-8 bg-background border-t border-white/5">
-        <View className={`${isSubmitting ? 'opacity-40' : 'opacity-100'}`} pointerEvents={isSubmitting ? 'none' : 'auto'}>
-          <PrimaryButton 
-            title="Go to Dashboard" 
-            onPress={handleNext} 
+            {/* Risk Signals */}
+            {aiPlan.hormonalRiskSignals.length > 0 && aiPlan.hormonalRiskSignals[0] !== 'None' && (
+              <Animated.View
+                entering={FadeInDown.delay(700).duration(600)}
+                className="bg-red-500/10 rounded-[24px] p-5 mb-10 border border-red-500/20"
+              >
+                <Text className="text-red-400 text-[13px] uppercase font-bold mb-3 tracking-wider">Hormonal Risk Flags</Text>
+                {aiPlan.hormonalRiskSignals.map((signal, i) => (
+                  <View key={i} className="flex-row gap-2 mb-2">
+                    <Text className="text-red-300">•</Text>
+                    <Text className="text-red-300/80 text-[14px] flex-1 leading-[20px]">{signal}</Text>
+                  </View>
+                ))}
+              </Animated.View>
+            )}
+
+            <View className="h-24" />
+          </View>
+        </ScrollView>
+
+        <View className="absolute bottom-0 left-0 right-0 p-6 bg-background/80" style={{ backdropFilter: 'blur(20px)' }}>
+          <PrimaryButton
+            title="Unlock My Full Plan"
+            onPress={onContinue}
+            icon={<ArrowRight size={20} color="#FFF" />}
           />
         </View>
-      </Animated.View>
+      </SafeAreaView>
     </ScreenWrapper>
+  );
+}
+
+function MacroCard({ icon: Icon, label, value, color, delay }: { icon: any, label: string, value: string, color: string, delay: number }) {
+  return (
+    <Animated.View
+      entering={FadeInDown.delay(delay).duration(600).springify()}
+      className="bg-surface rounded-[24px] p-5 w-[47%] border border-white/5"
+    >
+      <View style={{ backgroundColor: `${color}20` }} className="p-2 rounded-xl self-start mb-3">
+        <Icon size={18} color={color} />
+      </View>
+      <Text className="text-textSecondary text-[13px] font-medium mb-1">{label}</Text>
+      <Text className="text-textPrimary text-[18px] font-black">{value}</Text>
+    </Animated.View>
   );
 }

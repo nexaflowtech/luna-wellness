@@ -8,7 +8,7 @@ import { z } from 'zod';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 
 import { ProgressIndicator } from '@/src/components/onboarding/ProgressIndicator';
-import { BodyPreview3D } from '@/src/components/onboarding/BodyPreview3D';
+import { BmiCharacter } from '@/src/components/onboarding/BmiCharacter';
 import { calculateBMI, BodyVariant } from '@/src/utils/getBodyVariant';
 import { MetricCard } from '@/src/components/onboarding/MetricCard';
 import { Header } from '@/src/components/ui/Header';
@@ -88,8 +88,8 @@ export default function ProfileDetailsScreen() {
     <SafeAreaView className="flex-1 bg-background">
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} className="flex-1">
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <ScrollView 
-            contentContainerStyle={{ flexGrow: 1 }} 
+          <ScrollView
+            contentContainerStyle={{ flexGrow: 1 }}
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="handled"
           >
@@ -101,22 +101,25 @@ export default function ProfileDetailsScreen() {
               </View>
 
               <View className="px-6 pt-4">
-                {/* 3D Preview Panel */}
+                {/* Character Preview Panel */}
                 <Animated.View entering={FadeInDown.duration(600).springify()} style={{ height: 320 }} className="w-full relative mb-8">
                   <View className="flex-1 rounded-[32px] overflow-hidden border border-white/5 bg-surface relative" style={{
-                      shadowColor: bmiColor,
-                      shadowOffset: { width: 0, height: 12 },
-                      shadowOpacity: 0.15,
-                      shadowRadius: 30,
-                      elevation: 10
+                    shadowColor: bmiColor,
+                    shadowOffset: { width: 0, height: 12 },
+                    shadowOpacity: 0.15,
+                    shadowRadius: 30,
+                    elevation: 10
                   }}>
-                    <BodyPreview3D bmi={bmi} bodyVariant={watchVariant} />
+                    <BmiCharacter
+                      gender={(params.gender as 'male' | 'female') || 'male'}
+                      bmi={bmi}
+                    />
                     <View className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent pointer-events-none" />
                   </View>
-                  
+
                   {/* BMI Live Indicator */}
                   <View className="absolute bottom-6 self-center flex-row justify-center">
-                    <View 
+                    <View
                       className="px-6 py-3.5 rounded-full flex-row items-center gap-3 bg-surface/90 border border-white/10"
                       style={{ backdropFilter: 'blur(10px)' }}
                     >
@@ -196,10 +199,10 @@ export default function ProfileDetailsScreen() {
           bmi < 18.5
             ? `Your BMI is ${bmi} — I'll factor underweight recovery into your plan, prioritising nutrient density.`
             : bmi < 25
-            ? `Your BMI is ${bmi} — looking healthy! I'll fine-tune your plan to optimise performance and hormonal balance.`
-            : bmi < 30
-            ? `Your BMI is ${bmi} — I'll design a sustainable calorie deficit that protects your hormones while you lose weight.`
-            : `Your BMI is ${bmi} — I'll create a safe, medically-informed plan that accounts for metabolic adaptation.`
+              ? `Your BMI is ${bmi} — looking healthy! I'll fine-tune your plan to optimise performance and hormonal balance.`
+              : bmi < 30
+                ? `Your BMI is ${bmi} — I'll design a sustainable calorie deficit that protects your hormones while you lose weight.`
+                : `Your BMI is ${bmi} — I'll create a safe, medically-informed plan that accounts for metabolic adaptation.`
         }
         subMessage="Adjust height & weight above to update your analysis."
       />
@@ -208,6 +211,6 @@ export default function ProfileDetailsScreen() {
       <Animated.View entering={FadeInDown.delay(300).duration(500)} className="absolute bottom-0 left-0 right-0 px-6 py-8 bg-background border-t border-white/5">
         <PrimaryButton title="Next Step" onPress={handleSubmit(onSubmit)} />
       </Animated.View>
-    </SafeAreaView>
+    </SafeAreaView >
   );
 }

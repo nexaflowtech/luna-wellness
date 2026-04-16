@@ -16,14 +16,42 @@ import { registerPushToken, scheduleDailyReminders } from '@/src/services/notifi
 SplashScreen.preventAutoHideAsync();
 
 function RootNavigation() {
+  const segments = useSegments();
+  const router = useRouter();
   const { user, isLoading, onboardingComplete } = useAuth();
 
   // Hide splash screen only when auth is fully determined
   useEffect(() => {
-    if (!isLoading && onboardingComplete !== undefined) {
+    if (!isLoading) {
       SplashScreen.hideAsync();
     }
-  }, [isLoading, onboardingComplete]);
+  }, [isLoading]);
+
+  useEffect(() => {
+    if (isLoading) return;
+
+    const inAuthGroup = segments[0] === '(auth)';
+    const inOnboardingGroup = segments[0] === '(onboarding)';
+    const inTabsGroup = segments[0] === '(tabs)';
+    const isSplash = segments[0] === 'splash';
+
+    if (!user) {
+      // Not logged in -> force to onboarding
+      if (!inOnboardingGroup && !isSplash) {
+        router.replace('/(onboarding)');
+      }
+    } else if (!onboardingComplete) {
+      // Logged in but not onboarded -> force to onboarding/program
+      if (inTabsGroup) {
+        router.replace('/(onboarding)');
+      }
+    } else {
+      // Logged in and onboarded -> force to tabs
+      if (inAuthGroup || inOnboardingGroup || isSplash) {
+        router.replace('/(tabs)');
+      }
+    }
+  }, [user, isLoading, onboardingComplete, segments]);
 
   useEffect(() => {
     if (!user) return;

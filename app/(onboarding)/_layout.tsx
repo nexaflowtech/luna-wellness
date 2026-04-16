@@ -12,6 +12,8 @@ export default function OnboardingLayout() {
       <Stack.Screen name="ai-loading" />
       <Stack.Screen name="ai-plan-generating" />
       <Stack.Screen name="ai-plan-result" />
+      <Stack.Screen name="pricing" />
+      <Stack.Screen name="payment-success" />
       <Stack.Screen name="plan-ready" />
     </Stack>
   );
