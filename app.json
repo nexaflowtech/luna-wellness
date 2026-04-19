@@ -17,6 +17,7 @@
       "bundleIdentifier": "com.nexaflowtech.lunawellness"
     },
     "android": {
+      "versionCode": 4,
       "adaptiveIcon": {
         "backgroundColor": "#080B14",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
