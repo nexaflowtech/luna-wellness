@@ -9,15 +9,12 @@ import {
   CalendarDays,
   LineChart,
   Dumbbell,
-  Users,
-  Search,
-  ChevronRight,
-  TrendingUp,
-  Stethoscope,
-  LayoutGrid,
+  Droplets,
   Apple,
-  ClipboardList,
-  Target
+  Brain,
+  Zap,
+  Bell,
+  Stethoscope
 } from 'lucide-react-native';
 import { ScreenWrapper } from '@/src/components/ui/ScreenWrapper';
 import { useAuth } from '@/src/context/AuthContext';
@@ -42,241 +39,192 @@ export default function DashboardScreen() {
   }
 
   return (
-    <ScreenWrapper>
+    <View className="flex-1 bg-background">
+      {/* TopAppBar */}
+      <View className="flex-row justify-between items-center px-6 pt-16 pb-4 bg-background/90 z-50">
+        <View className="flex-row items-center gap-3">
+          <View className="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high">
+            <Image source={{ uri: 'https://images.unsplash.com/photo-1549476464-37392f717541?q=80&w=100&auto=format&fit=crop' }} className="w-full h-full" />
+          </View>
+          <Text className="text-xl font-extrabold text-text-primary tracking-tighter">Luna Wellness</Text>
+        </View>
+        <TouchableOpacity className="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-low hover:bg-surface-container">
+          <Bell color="#006e2f" size={20} />
+        </TouchableOpacity>
+      </View>
+
       <ScrollView
-        contentContainerStyle={{ paddingBottom: 100 }}
+        contentContainerStyle={{ paddingBottom: 120 }}
         showsVerticalScrollIndicator={false}
-        className="bg-background"
+        className="px-6 pt-4"
       >
-        {/* TOP: ACTIVE PLAN & PROGRESS */}
-        <View className="px-6 pt-6 mb-8">
-          <View className="flex-row justify-between items-center mb-6">
+        {/* Active Plan Section */}
+        <View className="bg-surface-container-lowest rounded-3xl p-6 shadow-sm border border-gray-100 mb-8">
+          <View className="flex-col gap-4">
             <View>
-              <Text className="text-textSecondary text-[14px] font-bold uppercase tracking-widest mb-1">Welcome back</Text>
-              <Text className="text-3xl font-black text-white">{userName} ✨</Text>
+              <Text className="text-xs font-bold uppercase tracking-widest text-[#6d7b6c] mb-1">Active Plan</Text>
+              <Text className="text-2xl font-extrabold tracking-tight text-text-primary">Zumba + Diet + Coach</Text>
             </View>
-            <TouchableOpacity className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/10">
-              <Image source={{ uri: 'https://images.unsplash.com/photo-1549476464-37392f717541?q=80&w=100&auto=format&fit=crop' }} className="w-full h-full" />
+            <View className="w-full">
+              <View className="flex-row justify-between items-end mb-2">
+                <Text className="text-sm font-semibold text-primary">Day 14 of 30</Text>
+                <Text className="text-sm font-bold text-text-primary">45%</Text>
+              </View>
+              <View className="h-3 w-full bg-surface-container-low rounded-full overflow-hidden">
+                <LinearGradient
+                  colors={['#006e2f', '#006b5f']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
+                  style={{ width: '45%', height: '100%' }}
+                />
+              </View>
+            </View>
+          </View>
+        </View>
+
+        {/* Today's Plan Bento Grid */}
+        <View className="mb-8">
+          <View className="flex-row justify-between items-end mb-6">
+            <Text className="text-xl font-extrabold tracking-tight text-text-primary">Today's Plan</Text>
+            <TouchableOpacity>
+              <Text className="text-sm font-semibold text-primary">View Calendar</Text>
             </TouchableOpacity>
           </View>
 
-          <LinearGradient
-            colors={['#7C3AED', '#5B21B6']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            className="rounded-[32px] p-6 shadow-xl shadow-primary/20"
-          >
-            <View className="flex-row justify-between items-start mb-6">
-              <View>
-                <Text className="text-white/70 text-xs font-bold uppercase tracking-wider mb-1">Active Plan</Text>
-                <Text className="text-white text-xl font-black">Zumba + Diet + Coach</Text>
+          <View className="flex-col gap-4">
+            {/* Workout Card */}
+            <TouchableOpacity activeOpacity={0.9} className="bg-surface-container-lowest p-6 rounded-3xl border border-gray-100 shadow-sm flex-row items-center">
+              <View className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mr-4 border border-primary/20">
+                <Dumbbell color="#006e2f" size={24} />
               </View>
-              <View className="bg-white/20 p-2 rounded-xl">
-                <Target color="#FFF" size={20} />
+              <View className="flex-1">
+                <Text className="text-lg font-bold mb-1 text-text-primary">Morning HIIT</Text>
+                <Text className="text-sm text-[#3d4a3d]">45 mins • 320 kcal</Text>
               </View>
-            </View>
+              <View className="bg-primary/10 px-3 py-1.5 rounded-lg">
+                <Text className="text-[10px] font-bold text-primary uppercase">Cardio</Text>
+              </View>
+            </TouchableOpacity>
 
-            <View className="flex-row justify-between items-end">
-              <View className="flex-1 mr-4">
-                <View className="flex-row justify-between mb-2">
-                  <Text className="text-white/80 text-xs">Plan Progress</Text>
-                  <Text className="text-white text-xs font-bold">12%</Text>
-                </View>
-                <View className="h-2 bg-white/20 rounded-full overflow-hidden">
-                  <View className="h-full bg-white rounded-full" style={{ width: '12%' }} />
-                </View>
+            {/* Diet Card */}
+            <TouchableOpacity activeOpacity={0.9} className="bg-surface-container-lowest p-6 rounded-3xl border border-gray-100 shadow-sm flex-row items-center">
+              <View className="w-14 h-14 rounded-2xl bg-[#006b5f]/10 flex items-center justify-center mr-4 border border-[#006b5f]/20">
+                <Utensils color="#006b5f" size={24} />
               </View>
-              <TouchableOpacity className="bg-white px-4 py-2 rounded-full">
-                <Text className="text-primary text-xs font-black">Keep Going</Text>
+              <View className="flex-1">
+                <Text className="text-lg font-bold mb-1 text-text-primary">Keto Mediterranean</Text>
+                <Text className="text-sm text-[#3d4a3d]">Remaining: 840 kcal</Text>
+              </View>
+              <View className="bg-[#006b5f]/10 px-3 py-1.5 rounded-lg">
+                <Text className="text-[10px] font-bold text-[#006b5f] uppercase">Lunch</Text>
+              </View>
+            </TouchableOpacity>
+
+            {/* Hydration Card */}
+            <TouchableOpacity activeOpacity={0.9} className="bg-surface-container-lowest p-6 rounded-3xl border border-gray-100 shadow-sm flex-row items-center">
+              <View className="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mr-4 border border-blue-500/20">
+                <Droplets color="#3B82F6" size={24} />
+              </View>
+              <View className="flex-1">
+                <Text className="text-lg font-bold mb-1 text-text-primary">Hydration</Text>
+                <Text className="text-sm text-[#3d4a3d]">1.2L / 2.5L logged</Text>
+              </View>
+              <TouchableOpacity className="bg-surface-container-low px-4 py-2 rounded-xl">
+                <Text className="text-[12px] font-bold text-text-primary">+ 250ml</Text>
+              </TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Feature Grid */}
+        <View className="mb-10">
+          <View className="flex-row flex-wrap justify-between gap-y-4">
+            <FeatureBox icon={Apple} label="Diet Tracker" color="#006b5f" />
+            <FeatureBox icon={CalendarDays} label="Period Tracker" color="#ba1a1a" />
+            <FeatureBox icon={LineChart} label="AI Report" color="#005ac2" />
+            <FeatureBox icon={Brain} label="Nutrition AI" color="#006e2f" />
+          </View>
+        </View>
+
+        {/* Doctor Consultation CTA */}
+        <View className="mb-10 relative rounded-3xl overflow-hidden shadow-sm">
+          <LinearGradient
+            colors={['#82abff', '#dce9ff']}
+            className="p-8 flex-row items-center"
+          >
+            <View className="flex-1 pr-4 z-10">
+              <Text className="text-2xl font-extrabold text-[#003d88] mb-2 leading-tight">Need professional advice?</Text>
+              <Text className="text-[#003d88]/80 text-xs mb-6 max-w-xs">Book a 1-on-1 session with our certified wellness doctors.</Text>
+              <TouchableOpacity className="bg-[#003d88] self-start px-6 py-3 rounded-full shadow-lg">
+                <Text className="text-white font-bold text-sm tracking-wide">Consult Now</Text>
               </TouchableOpacity>
             </View>
+            <View className="w-24 h-24 rounded-2xl overflow-hidden border-4 border-white/40 shadow-xl z-10">
+              <Image source={{ uri: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=200&auto=format&fit=crop' }} className="w-full h-full" />
+            </View>
           </LinearGradient>
         </View>
 
-        {/* SECTION 1: TRANSFORMATION CAROUSEL */}
-        <View className="mb-8">
-          <View className="flex-row justify-between items-center px-6 mb-4">
-            <Text className="text-white text-lg font-black tracking-tight">Success Stories</Text>
+        {/* Fitness Classes Horizontal Scroll */}
+        <View className="mb-10 -mx-6">
+          <View className="flex-row justify-between items-end mb-6 px-6">
+            <Text className="text-xl font-extrabold tracking-tight text-text-primary">Fitness Classes</Text>
             <TouchableOpacity>
-              <Text className="text-primary text-xs font-bold">View All</Text>
+              <Text className="text-sm font-semibold text-primary">Explore All</Text>
             </TouchableOpacity>
           </View>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingLeft: 20, paddingRight: 20 }}
-          >
-            {[
-              { id: 1, name: 'Anjali R.', result: '8kg Weight Loss', tag: 'Zumba + Diet' },
-              { id: 2, name: 'Priya M.', result: 'Thyroid Fixed', tag: 'Special Keto' },
-              { id: 3, name: 'Sonia K.', result: 'PCOS Reversed', tag: 'Hormone Bal.' }
-            ].map((story) => (
-              <View key={story.id} className="w-[280px] h-[160px] bg-surface rounded-[28px] mr-4 p-5 border border-white/5 overflow-hidden">
-                <LinearGradient
-                  colors={['transparent', 'rgba(0,0,0,0.8)']}
-                  className="absolute bottom-0 left-0 right-0 h-24"
-                />
-                <View className="bg-primary/20 self-start px-2 py-1 rounded-lg mb-2">
-                  <Text className="text-primary text-[10px] font-black uppercase tracking-wider">{story.tag}</Text>
-                </View>
-                <View className="mt-auto">
-                  <Text className="text-white text-lg font-black">{story.result}</Text>
-                  <Text className="text-white/60 text-xs">{story.name} • 3 months journey</Text>
-                </View>
-              </View>
-            ))}
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 24, gap: 16 }}>
+            <ClassCard title="Zumba High Energy" coach="Elena" time="45 min" tag="Live Now" image="https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=400&auto=format&fit=crop" color="#006e2f" />
+            <ClassCard title="Sunset Vinyasa" coach="Marcus" time="60 min" tag="Starts in 2h" image="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=400&auto=format&fit=crop" color="#3d4a3d" />
           </ScrollView>
-        </View>
-
-        {/* SECTION 2: TODAY'S PLAN */}
-        <View className="px-6 mb-8">
-          <Text className="text-white text-lg font-black mb-4">Today's Protocol</Text>
-
-          <View className="flex-row gap-4 mb-4">
-            {/* Workout */}
-            <TouchableOpacity
-              activeOpacity={0.9}
-              className="flex-1 bg-surface rounded-[28px] p-5 border border-white/5"
-            >
-              <View className="w-10 h-10 rounded-2xl bg-[#7C3AED1A] items-center justify-center mb-4 border border-[#7C3AED33]">
-                <Dumbbell color="#7C3AED" size={20} />
-              </View>
-              <Text className="text-white/60 text-[11px] font-bold uppercase mb-1">Workout</Text>
-              <Text className="text-white text-[16px] font-black mb-1">{workout.title || 'Zumba Burn'}</Text>
-              <Text className="text-primary text-[12px] font-bold">{workout.durationMin || '45'} min Session</Text>
-            </TouchableOpacity>
-
-            {/* Diet */}
-            <TouchableOpacity
-              activeOpacity={0.9}
-              className="flex-1 bg-surface rounded-[28px] p-5 border border-white/5"
-            >
-              <View className="w-10 h-10 rounded-2xl bg-[#22C55E1A] items-center justify-center mb-4 border border-[#22C55E33]">
-                <Utensils color="#22C55E" size={20} />
-              </View>
-              <Text className="text-white/60 text-[11px] font-bold uppercase mb-1">Next Meal</Text>
-              <Text className="text-white text-[16px] font-black mb-1">{diet.mealName || 'Green Salad'}</Text>
-              <Text className="text-accent text-[12px] font-bold">{diet.kcal || '450'} Kcal Target</Text>
-            </TouchableOpacity>
-          </View>
-
-          <TouchableOpacity className="bg-surface rounded-[28px] p-5 border border-white/5 flex-row items-center">
-            <View className="w-10 h-10 rounded-2xl bg-orange-500/10 items-center justify-center mr-4 border border-orange-500/20">
-              <TrendingUp color="#F97316" size={20} />
-            </View>
-            <View className="flex-1">
-              <Text className="text-white/60 text-[11px] font-bold uppercase mb-0.5">Habit Tracker</Text>
-              <Text className="text-white text-[15px] font-black">2L Water Target</Text>
-            </View>
-            <View className="flex-row gap-1">
-              {[...Array(5)].map((_, i) => (
-                <View key={i} className={`w-1.5 h-6 rounded-full ${i < 3 ? 'bg-orange-500' : 'bg-white/10'}`} />
-              ))}
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        {/* SECTION 3: DOCTOR CONSULTATION */}
-        <View className="px-6 mb-8">
-          <LinearGradient
-            colors={['#0F172A', '#1E293B']}
-            className="rounded-[32px] p-6 border border-white/5"
-          >
-            <View className="flex-row items-center mb-4">
-              <View className="w-12 h-12 rounded-[20px] bg-blue-500/20 items-center justify-center mr-4">
-                <Stethoscope color="#3B82F6" size={24} />
-              </View>
-              <View>
-                <Text className="text-white text-lg font-black">Expert Help</Text>
-                <Text className="text-white/60 text-xs">Book a consultation now</Text>
-              </View>
-            </View>
-            <TouchableOpacity className="bg-blue-500 rounded-2xl py-3 items-center">
-              <Text className="text-white font-black">Find a Specialist</Text>
-            </TouchableOpacity>
-          </LinearGradient>
-        </View>
-
-        {/* SECTION 4: FITNESS CLASSES */}
-        <View className="mb-8">
-          <View className="flex-row justify-between items-center px-6 mb-4">
-            <Text className="text-white text-lg font-black tracking-tight">Live Classes</Text>
-            <TouchableOpacity>
-              <Text className="text-primary text-xs font-bold">Join Now</Text>
-            </TouchableOpacity>
-          </View>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingLeft: 20, paddingRight: 20 }}
-          >
-            {[
-              { title: 'Zumba Core', trainer: 'Sarah K.', time: 'LIVE', color: '#7C3AED' },
-              { title: 'Morning Yoga', trainer: 'David L.', time: '7:00 AM', color: '#10B981' },
-              { title: 'HIIT Blast', trainer: 'Mike J.', time: '6:30 PM', color: '#EF4444' }
-            ].map((cl, i) => (
-              <View key={i} className="w-[180px] bg-surface rounded-[28px] mr-4 p-5 border border-white/5">
-                <View style={{ backgroundColor: `${cl.color}20` }} className="w-8 h-8 rounded-lg items-center justify-center mb-4">
-                  <PlayCircle color={cl.color} size={18} />
-                </View>
-                <Text className="text-white font-black mb-0.5">{cl.title}</Text>
-                <Text className="text-white/60 text-[10px]">{cl.trainer}</Text>
-                <View className="mt-4 bg-white/5 py-1.5 rounded-xl items-center">
-                  <Text style={{ color: cl.color === '#EF4444' ? '#EF4444' : cl.color }} className="text-[10px] font-black">{cl.time}</Text>
-                </View>
-              </View>
-            ))}
-          </ScrollView>
-        </View>
-
-        {/* SECTION 5: AI COACH (ASK EVA) */}
-        <View className="px-6 mb-8">
-          <TouchableOpacity activeOpacity={0.9}>
-            <LinearGradient
-              colors={['#10B981', '#059669']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              className="rounded-[32px] p-6 shadow-xl shadow-accent/20"
-            >
-              <View className="flex-row justify-between items-center">
-                <View className="flex-1 mr-4">
-                  <Text className="text-white text-xl font-black mb-1">Ask Eva AI</Text>
-                  <Text className="text-white/80 text-sm italic">"Should I eat more protein today?"</Text>
-                </View>
-                <View className="w-14 h-14 rounded-full bg-white/20 items-center justify-center">
-                  <MessageCircle color="#FFF" size={28} />
-                </View>
-              </View>
-            </LinearGradient>
-          </TouchableOpacity>
-        </View>
-
-        {/* SECTION 6: FEATURES GRID */}
-        <View className="px-6 mb-12">
-          <Text className="text-white text-lg font-black mb-4">Explore Tools</Text>
-          <View className="flex-row flex-wrap justify-between gap-4">
-            <FeatureItem icon={Apple} label="Nutrition AI" color="#FACC15" />
-            <FeatureItem icon={ClipboardList} label="Diet Tracker" color="#EF4444" />
-            <FeatureItem icon={CalendarDays} label="Period Tracker" color="#F472B6" />
-            <FeatureItem icon={LineChart} label="AI Report" color="#3B82F6" />
-          </View>
         </View>
 
       </ScrollView>
-    </ScreenWrapper>
+
+      {/* AI Coach FAB */}
+      <TouchableOpacity className="absolute bottom-28 right-6 w-16 h-16 rounded-3xl shadow-xl shadow-primary/30 overflow-hidden active:scale-95 transition-all">
+        <LinearGradient
+          colors={['#006e2f', '#006b5f']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          className="w-full h-full items-center justify-center"
+        >
+          <Zap color="#ffffff" size={28} />
+        </LinearGradient>
+      </TouchableOpacity>
+
+    </View>
   );
 }
 
-function FeatureItem({ icon: Icon, label, color }: { icon: any, label: string, color: string }) {
+function FeatureBox({ icon: Icon, label, color }: { icon: any, label: string, color: string }) {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      className="w-[47%] bg-surface rounded-[24px] p-5 border border-white/5 items-center justify-center"
+      className="w-[47%] bg-surface-container-low p-4 rounded-[20px] items-center text-center justify-center"
     >
-      <View style={{ backgroundColor: `${color}15` }} className="w-12 h-12 rounded-2xl items-center justify-center mb-3">
-        <Icon color={color} size={24} />
-      </View>
-      <Text className="text-white/80 text-xs font-bold">{label}</Text>
+      <Icon color={color} size={32} className="mb-2" />
+      <Text className="text-sm font-bold text-text-primary">{label}</Text>
     </TouchableOpacity>
+  );
+}
+
+function ClassCard({ title, coach, time, tag, image, color }: any) {
+  return (
+    <View className="w-[260px] bg-surface-container-lowest rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+      <View className="h-40 relative">
+        <Image source={{ uri: image }} className="w-full h-full" />
+        <View style={{ backgroundColor: color }} className="absolute top-4 left-4 px-3 py-1.5 rounded-lg shadow-sm">
+          <Text className="text-white text-[10px] font-bold uppercase tracking-wider">{tag}</Text>
+        </View>
+      </View>
+      <View className="p-5">
+        <Text className="font-bold text-lg mb-1 text-text-primary">{title}</Text>
+        <View className="flex-row justify-between items-center mt-1">
+          <Text className="text-sm font-bold text-[#3d4a3d]">Coach {coach}</Text>
+          <Text className="text-sm font-bold text-primary">{time}</Text>
+        </View>
+      </View>
+    </View>
   );
 }

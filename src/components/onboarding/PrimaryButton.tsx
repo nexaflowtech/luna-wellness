@@ -12,42 +12,39 @@ type PrimaryButtonProps = {
   className?: string;
   loading?: boolean;
   disabled?: boolean;
+  icon?: React.ReactNode;
 };
 
 export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   onPress,
   title,
-  style,
-  textStyle,
   showArrow = false,
   className = "",
   loading = false,
-  disabled = false
+  disabled = false,
+  icon
 }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={0.8}
       disabled={disabled || loading}
-      className={`w-full max-w-md self-center ${className} ${(disabled || loading) ? 'opacity-70' : ''}`}
-      style={style}
+      className={`w-full ${className} ${(disabled || loading) ? 'opacity-70' : ''}`}
     >
       <LinearGradient
-        colors={['#7C3AED', '#F472B6']}
+        colors={['#006e2f', '#006b5f']} // Luna Master Gradient
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
-        className="py-4 px-8 rounded-full flex-row items-center justify-center gap-2 shadow-lg shadow-primary/20"
+        className="py-5 px-8 rounded-3xl flex-row items-center justify-center gap-2 shadow-xl shadow-primary/20"
       >
         {loading ? (
           <ActivityIndicator color="#ffffff" size="small" />
         ) : (
           <>
-            <Text className="text-textPrimary font-bold text-lg">
+            <Text className="text-white font-bold text-lg tracking-tight">
               {title}
             </Text>
-            {showArrow && (
-              <ArrowRight color="#ffffff" size={20} />
-            )}
+            {icon ? icon : (showArrow && <ArrowRight color="#ffffff" size={20} />)}
           </>
         )}
       </LinearGradient>

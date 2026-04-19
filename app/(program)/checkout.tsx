@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '@/constants/theme';
 import { SummaryCard } from '@/components/program/SummaryCard';
 import { PrimaryButton } from '@/components/onboarding/PrimaryButton';
@@ -17,7 +18,7 @@ export default function CheckoutScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.content} bounces={false}>
-        
+
         <View style={styles.header}>
           <Text style={styles.title}>Order Summary</Text>
           <Text style={styles.subtitle}>Review your plan details before proceeding to secure payment.</Text>
@@ -25,7 +26,7 @@ export default function CheckoutScreen() {
 
         <SummaryCard>
           <Text style={styles.sectionTitle}>Plan Includes:</Text>
-          
+
           <View style={styles.list}>
             <IncludedItem label="Zumba" />
             <IncludedItem label="Diet" />
@@ -53,13 +54,13 @@ export default function CheckoutScreen() {
 
       {/* Footer CTA */}
       <View style={styles.footer}>
-        <PrimaryButton 
-          title="Proceed to Pay" 
+        <PrimaryButton
+          title="Proceed to Pay"
           onPress={() => {
             // Replace with actual payment gateway integration
             console.log('Proceeding to payment');
             router.replace('/(tabs)');
-          }} 
+          }}
           showArrow
         />
       </View>

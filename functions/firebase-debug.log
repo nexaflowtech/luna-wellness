@@ -165,3 +165,16 @@ Issues? Report them at https://github.com/firebase/firebase-tools/issues and att
 
 [debug] [2026-04-16T19:08:47.929Z] Got response from /__/functions.yaml {"endpoints":{"generateOnboardingPlanGemini":{"platform":"gcfv1","labels":{},"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"callableTrigger":{},"entryPoint":"generateOnboardingPlanGemini"},"askClaudeSonnet":{"platform":"gcfv1","labels":{},"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"callableTrigger":{},"entryPoint":"askClaudeSonnet"},"generateOnboardingPlanClaude":{"platform":"gcfv1","labels":{},"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"callableTrigger":{},"entryPoint":"generateOnboardingPlanClaude"}},"specVersion":"v1alpha1","requiredAPIs":[]}
 [info] +  functions: Loaded functions definitions from source: generateOnboardingPlanGemini, askClaudeSonnet, generateOnboardingPlanClaude. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: generateOnboardingPlanGemini, askClaudeSonnet, generateOnboardingPlanClaude."}}
+[debug] [2026-04-17T05:31:31.774Z] Received signal SIGHUP 1
+[info]  
+[info] i  emulators: Received SIGHUP for the first time. Starting a clean shutdown. 
+[info] i  emulators: Please wait for a clean shutdown or send the SIGHUP signal again to stop right now. 
+[info] i  emulators: Shutting down emulators. {"metadata":{"emulator":{"name":"hub"},"message":"Shutting down emulators."}}
+[info] i  ui: Stopping Emulator UI {"metadata":{"emulator":{"name":"ui"},"message":"Stopping Emulator UI"}}
+[info] i  functions: Stopping Functions Emulator {"metadata":{"emulator":{"name":"functions"},"message":"Stopping Functions Emulator"}}
+[info] i  eventarc: Stopping Eventarc Emulator {"metadata":{"emulator":{"name":"eventarc"},"message":"Stopping Eventarc Emulator"}}
+[info] i  tasks: Stopping Cloud Tasks Emulator {"metadata":{"emulator":{"name":"tasks"},"message":"Stopping Cloud Tasks Emulator"}}
+[info] i  hub: Stopping emulator hub {"metadata":{"emulator":{"name":"hub"},"message":"Stopping emulator hub"}}
+[info] i  logging: Stopping Logging Emulator {"metadata":{"emulator":{"name":"logging"},"message":"Stopping Logging Emulator"}}
+[debug] [2026-04-17T05:31:32.096Z] Could not find VSCode notification endpoint: FetchError: request to http://localhost:40001/vscode/notify failed, reason: . If you are not running the Firebase SQL Connect VSCode extension, this is expected and not an issue.
+[debug] [2026-04-17T05:31:32.868Z] Found emulator hub locator: {"version":"15.15.0","origins":["http://127.0.0.1:4400","http://[::1]:4400"],"pid":23960}

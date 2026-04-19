@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Colors } from '@/src/constants/theme';
-import { LinearGradient } from 'expo-linear-gradient';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { Plus, Minus } from 'lucide-react-native';
 
 interface MetricCardProps {
   label: string;
@@ -15,104 +14,42 @@ interface MetricCardProps {
 
 export const MetricCard: React.FC<MetricCardProps> = ({ label, value, unit, min, max, onChange, highlight }) => {
   const pct = ((value - min) / (max - min)) * 100;
-  
+
   return (
-    <View style={[styles.card, highlight && styles.cardHighlight]}>
-      <Text style={[styles.label, highlight && styles.labelHighlight]}>{label}</Text>
-      
-      <View style={styles.valueRow}>
-        <Text style={[styles.valueText, highlight && styles.valueHighlight]}>{value}</Text>
-        <Text style={styles.unitText}> {unit}</Text>
+    <View className="bg-surface-container-lowest p-6 rounded-[24px] shadow-sm border border-gray-100 flex-1">
+      <View className="flex-row justify-between items-end mb-4">
+        <Text className="font-bold text-on-surface-variant text-sm uppercase tracking-widest">{label}</Text>
+        <View className="flex-row items-baseline gap-1">
+          <Text className="text-3xl font-extrabold text-on-surface tracking-tighter">{value}</Text>
+          <Text className="text-on-surface-variant font-medium text-sm">{unit}</Text>
+        </View>
       </View>
 
-      <View style={styles.track}>
-        <LinearGradient
-          colors={[Colors.primary, Colors.accent]}
-          start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
-          style={[styles.fill, { width: `${pct}%` }]}
+      <View className="h-2 rounded-full overflow-hidden mb-6 bg-surface-container-high w-full relative">
+        <View
+          className="absolute left-0 top-0 bottom-0 bg-[#006e2f] rounded-full"
+          style={{ width: `${pct}%` }}
         />
       </View>
 
-      <View style={styles.controls}>
-        <TouchableOpacity style={styles.btn} onPress={() => onChange(Math.max(min, value - 1))}>
-          <Text style={styles.btnText}>−</Text>
+      <View className="flex-row gap-3">
+        <TouchableOpacity
+          activeOpacity={0.8}
+          className="flex-1 h-12 rounded-xl items-center justify-center bg-surface-container-low border border-[#006e2f]/10"
+          onPress={() => onChange(Math.max(min, value - 1))}
+        >
+          <Minus color="#006e2f" size={20} strokeWidth={2.5} />
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.btn, styles.btnPlus]} onPress={() => onChange(Math.min(max, value + 1))}>
-          <LinearGradient
-            colors={[Colors.primary, Colors.accent]}
-            style={StyleSheet.absoluteFillObject}
-            start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
-          />
-          <Text style={[styles.btnText, { color: '#fff' }]}>+</Text>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          className="flex-1 h-12 rounded-xl items-center justify-center bg-surface-container-low border border-[#006e2f]/10"
+          onPress={() => onChange(Math.min(max, value + 1))}
+        >
+          <Plus color="#006e2f" size={20} strokeWidth={2.5} />
         </TouchableOpacity>
       </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: 'rgba(255,255,255,0.04)',
-    borderRadius: 20,
-    padding: 16,
-    flex: 1,
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.08)',
-  },
-  cardHighlight: {
-    backgroundColor: 'rgba(110,231,183,0.08)',
-    borderColor: '#6EE7B7',
-  },
-  label: {
-    fontSize: 13,
-    color: '#64748B',
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-    fontWeight: '600',
-    marginBottom: 8,
-  },
-  labelHighlight: {
-    color: '#6EE7B7',
-  },
-  valueRow: { flexDirection: 'row', alignItems: 'baseline' },
-  valueText: {
-    fontSize: 24,
-    fontWeight: '800',
-    color: '#F8FAFC',
-  },
-  unitText: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: '#94A3B8',
-  },
-  valueHighlight: {
-    color: '#6EE7B7',
-  },
-  track: {
-    height: 5,
-    borderRadius: 5,
-    backgroundColor: '#1E293B',
-    overflow: 'hidden',
-    marginVertical: 12,
-  },
-  fill: { height: '100%', borderRadius: 5 },
-  controls: { flexDirection: 'row', gap: 8 },
-  btn: {
-    flex: 1,
-    height: 36,
-    borderRadius: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(255,255,255,0.08)',
-    overflow: 'hidden',
-  },
-  btnPlus: { backgroundColor: '#818CF8', borderColor: 'transparent' },
-  btnText: {
-    color: '#F1F5F9',
-    fontSize: 20,
-    fontWeight: '800',
-    lineHeight: 22,
-  },
-});
 
 export default MetricCard;

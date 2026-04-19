@@ -77,10 +77,10 @@ export default function LifestyleScreen() {
             key={opt.id}
             onPress={() => onSelect(opt.id)}
             activeOpacity={0.8}
-            className={`w-[48%] rounded-[24px] p-5 border border-white/5 shadow-lg ${isActive ? 'bg-primary border-primary' : 'bg-surface'}`}
+            className={`w-[48%] rounded-[24px] p-5 border border-white/5 shadow-lg ${isActive ? 'bg-primary border-primary' : 'bg-background-card'}`}
           >
-            <Text className={`text-[16px] font-extrabold mb-1.5 ${isActive ? 'text-white' : 'text-textPrimary'}`}>{opt.label}</Text>
-            <Text className={`text-[13px] leading-[18px] ${isActive ? 'text-white/80' : 'text-textSecondary'}`}>{opt.desc}</Text>
+            <Text className={`text-[16px] font-extrabold mb-1.5 ${isActive ? 'text-white' : 'text-text-primary'}`}>{opt.label}</Text>
+            <Text className={`text-[13px] leading-[18px] ${isActive ? 'text-white/80' : 'text-text-secondary'}`}>{opt.desc}</Text>
           </TouchableOpacity>
         );
       })}
@@ -93,68 +93,68 @@ export default function LifestyleScreen() {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View className="flex-1">
             <Header title="Lifestyle Basics" showBack transparent />
-      
-      <View className="px-6 py-4">
-        <ProgressIndicator currentStep={4} totalSteps={4} />
-      </View>
 
-      <ScrollView className="flex-1 px-6" contentContainerStyle={{ paddingBottom: 140, paddingTop: 12 }} showsVerticalScrollIndicator={false}>
-        <Animated.Text entering={FadeInDown.duration(500).springify()} className="text-textPrimary text-[32px] leading-[40px] font-extrabold mb-3">
-          Daily Habits
-        </Animated.Text>
-        <Animated.Text entering={FadeInDown.delay(100).duration(500)} className="text-textSecondary text-[16px] leading-[24px] mb-8">
-          We use this data to accurately calculate your metabolic maintenance load.
-        </Animated.Text>
-        
-        <Animated.View entering={FadeInDown.delay(200).duration(500)}>
-          <Text className="text-textSecondary text-[13px] font-bold uppercase tracking-widest mb-4 ml-2">Activity Level</Text>
-          {renderSelector(ACTIVITY_OPTIONS, activity, setActivity)}
-        </Animated.View>
-        
-        <View className="h-10" />
-        
-        <Animated.View entering={FadeInDown.delay(300).duration(500)}>
-          <Text className="text-textSecondary text-[13px] font-bold uppercase tracking-widest mb-4 ml-2">Dietary Preference</Text>
-          {renderSelector(DIET_OPTIONS, diet, setDiet)}
-        </Animated.View>
+            <View className="px-6 py-4">
+              <ProgressIndicator currentStep={4} totalSteps={4} />
+            </View>
 
-        <View className="h-10" />
+            <ScrollView className="flex-1 px-6" contentContainerStyle={{ paddingBottom: 140, paddingTop: 12 }} showsVerticalScrollIndicator={false}>
+              <Animated.Text entering={FadeInDown.duration(500).springify()} className="text-text-primary text-[32px] leading-[40px] font-extrabold mb-3">
+                Daily Habits
+              </Animated.Text>
+              <Animated.Text entering={FadeInDown.delay(100).duration(500)} className="text-text-secondary text-[16px] leading-[24px] mb-8">
+                We use this data to accurately calculate your metabolic maintenance load.
+              </Animated.Text>
 
-        <Animated.View entering={FadeInDown.delay(350).duration(500)}>
-          <Text className="text-textSecondary text-[13px] font-bold uppercase tracking-widest mb-4 ml-2">Average Sleep</Text>
-          {renderSelector(SLEEP_OPTIONS, sleep, setSleep)}
-        </Animated.View>
+              <Animated.View entering={FadeInDown.delay(200).duration(500)}>
+                <Text className="text-text-secondary text-[13px] font-bold uppercase tracking-widest mb-4 ml-2">Activity Level</Text>
+                {renderSelector(ACTIVITY_OPTIONS, activity, setActivity)}
+              </Animated.View>
 
-        <View className="h-10" />
+              <View className="h-10" />
 
-        <Animated.View entering={FadeInDown.delay(400).duration(500)}>
-          <Text className="text-textSecondary text-[13px] font-bold uppercase tracking-widest mb-4 ml-2">Daily Stress Level</Text>
-          {renderSelector(STRESS_OPTIONS, stress, setStress)}
-        </Animated.View>
-      </ScrollView>
+              <Animated.View entering={FadeInDown.delay(300).duration(500)}>
+                <Text className="text-text-secondary text-[13px] font-bold uppercase tracking-widest mb-4 ml-2">Dietary Preference</Text>
+                {renderSelector(DIET_OPTIONS, diet, setDiet)}
+              </Animated.View>
 
-      {/* Luna AI companion bubble — reacts to lifestyle selections */}
-      <LunaAiBubble
-        typing={!isComplete}
-        message={
-          !isComplete
-            ? "I need your activity and lifestyle data to calculate your personalised metabolic rate."
-            : stress === 'high' || stress === 'severe'
-            ? "High stress signals detected — I'll add cortisol-lowering protocols and adapt your recovery windows."
-            : sleep === 'poor'
-            ? "Poor sleep affects hormone production significantly. I'll factor sleep recovery into your plan structure."
-            : activity === 'sedentary'
-            ? "Starting from sedentary — I'll build a progressive activity ramp so your body adapts safely."
-            : "Great lifestyle snapshot! I have everything I need to generate your personalised health blueprint."
-        }
-        subMessage={isComplete ? "Tap Generate Plan to have me build your protocol." : undefined}
-      />
+              <View className="h-10" />
 
-      <Animated.View entering={FadeInDown.delay(500).duration(500)} className="absolute bottom-0 left-0 right-0 px-6 py-8 bg-background border-t border-white/5">
-        <View className={`${isComplete ? 'opacity-100' : 'opacity-40'}`} pointerEvents={isComplete ? 'auto' : 'none'}>
-          <PrimaryButton title="Generate Plan" onPress={handleNext} />
-        </View>
-      </Animated.View>
+              <Animated.View entering={FadeInDown.delay(350).duration(500)}>
+                <Text className="text-text-secondary text-[13px] font-bold uppercase tracking-widest mb-4 ml-2">Average Sleep</Text>
+                {renderSelector(SLEEP_OPTIONS, sleep, setSleep)}
+              </Animated.View>
+
+              <View className="h-10" />
+
+              <Animated.View entering={FadeInDown.delay(400).duration(500)}>
+                <Text className="text-text-secondary text-[13px] font-bold uppercase tracking-widest mb-4 ml-2">Daily Stress Level</Text>
+                {renderSelector(STRESS_OPTIONS, stress, setStress)}
+              </Animated.View>
+            </ScrollView>
+
+            {/* Luna AI companion bubble — reacts to lifestyle selections */}
+            <LunaAiBubble
+              typing={!isComplete}
+              message={
+                !isComplete
+                  ? "I need your activity and lifestyle data to calculate your personalised metabolic rate."
+                  : stress === 'high' || stress === 'severe'
+                    ? "High stress signals detected — I'll add cortisol-lowering protocols and adapt your recovery windows."
+                    : sleep === 'poor'
+                      ? "Poor sleep affects hormone production significantly. I'll factor sleep recovery into your plan structure."
+                      : activity === 'sedentary'
+                        ? "Starting from sedentary — I'll build a progressive activity ramp so your body adapts safely."
+                        : "Great lifestyle snapshot! I have everything I need to generate your personalised health blueprint."
+              }
+              subMessage={isComplete ? "Tap Generate Plan to have me build your protocol." : undefined}
+            />
+
+            <Animated.View entering={FadeInDown.delay(500).duration(500)} className="absolute bottom-0 left-0 right-0 px-6 py-8 bg-background border-t border-white/5">
+              <View className={`${isComplete ? 'opacity-100' : 'opacity-40'}`} pointerEvents={isComplete ? 'auto' : 'none'}>
+                <PrimaryButton title="Generate Plan" onPress={handleNext} />
+              </View>
+            </Animated.View>
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>

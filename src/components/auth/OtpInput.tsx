@@ -62,16 +62,16 @@ export const OtpInput: React.FC<OtpInputProps> = ({
     };
 
     return (
-        <View className="flex-row justify-between w-full px-2" style={{ gap: 8 }}>
+        <View className="flex-row justify-between w-full" style={{ gap: 8 }}>
             {code.map((char, index) => (
                 <View
                     key={index}
-                    className={`w-12 h-16 rounded-2xl border-2 items-center justify-center bg-background ${code[index] ? 'border-primary bg-primary/5' : 'border-white/10'
+                    className={`w-12 h-16 rounded-2xl border-2 items-center justify-center bg-surface-container-low ${code[index] ? 'border-primary' : 'border-transparent'
                         }`}
                 >
                     <TextInput
-                        ref={(ref) => (inputs.current[index] = ref!)}
-                        className="text-textPrimary text-2xl font-black text-center w-full h-full"
+                        ref={(ref) => { if (ref) inputs.current[index] = ref; }}
+                        className="text-on-surface text-2xl font-black text-center w-full h-full"
                         keyboardType="number-pad"
                         maxLength={index === 0 ? codeLength : 1} // Support paste in first index
                         value={char}
@@ -79,7 +79,7 @@ export const OtpInput: React.FC<OtpInputProps> = ({
                         onKeyPress={(e) => handleKeyPress(e, index)}
                         editable={!isLoading}
                         autoFocus={index === 0}
-                        selectionColor="#7C3AED"
+                        selectionColor="#006e2f"
                     />
                 </View>
             ))}

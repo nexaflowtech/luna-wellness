@@ -1,0 +1,17 @@
+# Ignore IDE files
+.idea/
+.vscode/
+.git/
+node_modules/
+
+# Ignore build artifacts
+android/
+ios/
+dist/
+web-build/
+
+# Ignore logs
+*.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*

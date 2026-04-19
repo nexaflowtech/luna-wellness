@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '@/constants/theme';
 import { PricingCard } from '@/components/program/PricingCard';
 import { ChecklistItem } from '@/components/program/ChecklistItem';
@@ -11,7 +12,7 @@ export default function PricingScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.content} bounces={false}>
-        
+
         {/* Header */}
         <View style={styles.header}>
           <Text style={styles.title}>Unlock Full Access</Text>
@@ -20,14 +21,14 @@ export default function PricingScreen() {
 
         <PricingCard>
           <Text style={styles.sectionTitle}>You will get</Text>
-          
+
           <View style={styles.checklist}>
             <ChecklistItem text="Zumba Classes (30 Days)" />
             <ChecklistItem text="Diet Plan (Personalized)" />
             <ChecklistItem text="Coach Support" />
             <ChecklistItem text="AI Assistant" />
           </View>
-          
+
           <View style={styles.divider} />
 
           <View style={styles.priceBlock}>
@@ -44,9 +45,9 @@ export default function PricingScreen() {
 
       {/* CTA Bottom Lock */}
       <View style={styles.footer}>
-        <PrimaryButton 
-          title="Start Now" 
-          onPress={() => router.push('/(program)/checkout')} 
+        <PrimaryButton
+          title="Start Now"
+          onPress={() => router.push('/(program)/checkout')}
         />
         <Text style={styles.guaranteeText}>30-Day Money-Back Guarantee</Text>
       </View>

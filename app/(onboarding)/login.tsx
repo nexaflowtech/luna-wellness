@@ -1,47 +1,43 @@
 import React, { useState, useRef, useEffect } from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-  Alert,
-  TouchableWithoutFeedback,
-  Keyboard,
-  ActivityIndicator,
-} from 'react-native';
+import { Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, ActivityIndicator, View, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Eye, EyeOff, Mail, Phone, ArrowLeft, RefreshCw } from 'lucide-react-native';
-import Animated, { FadeInDown, FadeIn, FadeOut } from 'react-native-reanimated';
+import { ArrowLeft, RefreshCw, CheckSquare, Square, Sparkles } from 'lucide-react-native';
+import Animated, { FadeInDown, FadeIn } from 'react-native-reanimated';
 import { FirebaseRecaptchaVerifierModal } from 'expo-firebase-recaptcha';
 
-import { loginUser, sendPhoneOtp, verifyPhoneOtp } from '@/src/services/authService';
+import { sendPhoneOtp, verifyPhoneOtp } from '@/src/services/authService';
 import { useAuth } from '@/src/context/AuthContext';
-import { auth, app } from '@/src/config/firebase'; // Ensure 'app' is exported from firebase config
+import { app } from '@/src/config/firebase';
 import { CarouselCard } from '@/src/components/onboarding/CarouselCard';
 import { PrimaryButton } from '@/src/components/onboarding/PrimaryButton';
 import { OtpInput } from '@/src/components/auth/OtpInput';
 
-type AuthMode = 'email' | 'phone';
 type PhoneStep = 'phone' | 'otp';
+
+const RECENT_TRANSFORMATIONS = [
+  {
+    imageUri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDJIGGXlr9Lamao4xquWgA8nLjRngc2vuLB1LsIBrynsyQCPKRCY3nn8m0tQ9E53ypEQiilLY0MWCsmzL6Ub2WruEJx6qA1HYpLKt31Vi7shBzRL3Jq_f2VxdVVdQBRxQgGEyxJOuZXgP5X0kohx7Y8hr7ctq5X6nYjgQiOagwTl1hiqODdXX8J7NHccr59lwwnP7dfS7ERujKqSZ5by2vpP2xurNGS_1ormm72eJLV_9vleEzH0mPO3hRkJG1J2RhX3T75z0tFDzLM',
+    tag: 'Weight Loss',
+    quote: 'I lost 12kg and gained a whole new perspective on life.',
+    tagColor: 'rgba(59, 130, 246, 0.2)'
+  },
+  {
+    imageUri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCUCHjkdUM6VYOyydCinV5CMgldy3H69McBzQ0clIhZgFQrybM56CHJLmTQrwkuDv0DvzTywbYVjJnpN0Hh3fiHguzDAbxdrrDvYUuDdl3_HqcJVi0U4cyGWhj2cNh66bQMGxuQAXSAwA3HJ7mYUJKxJJHpLmjKSzKpFfhj_KZOhiYYZ4CAEr9BPdK5ahlRIGZywyDnZtvkRL8Uq2gMiChDL59AKuHPGi570aAZSZQS1tQ_lxdhu8cliSXMfpzgI1OsFnKfch9TV9r7',
+    tag: 'PCOS Management',
+    quote: 'Balanced hormones and regular cycles finally achieved naturally.',
+    tagColor: 'rgba(124, 58, 237, 0.2)'
+  }
+];
 
 export default function LoginScreen() {
   const router = useRouter();
   const recaptchaVerifier = useRef<FirebaseRecaptchaVerifierModal>(null);
 
-  const [mode, setMode] = useState<AuthMode>('email');
   const [phoneStep, setPhoneStep] = useState<PhoneStep>('phone');
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
-  // Email state
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-
-  // Phone state
-  const [phoneNumber, setPhoneNumber] = useState(''); // E.g. +91 9876543210
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [verificationId, setVerificationId] = useState<string | null>(null);
   const [otp, setOtp] = useState('');
   const [timer, setTimer] = useState(0);
@@ -50,9 +46,8 @@ export default function LoginScreen() {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const { onboardingComplete, onboardingStep } = useAuth();
 
-  // Timer logic for resend
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
     if (timer > 0) {
       interval = setInterval(() => {
         setTimer((prev) => prev - 1);
@@ -61,34 +56,18 @@ export default function LoginScreen() {
     return () => clearInterval(interval);
   }, [timer]);
 
-  const handleEmailSignIn = async () => {
-    if (!email.trim() || !password) {
-      setErrorMsg('Please enter email and password.');
-      return;
-    }
-    setIsLoading(true);
-    setErrorMsg(null);
-    try {
-      await loginUser(email.trim(), password);
-      navigateAfterAuth();
-    } catch (e: any) {
-      const msg =
-        e?.code === 'auth/invalid-credential'
-          ? 'Invalid email or password.'
-          : e?.message ?? 'Login failed. Please try again.';
-      setErrorMsg(msg);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   const handleSendOtp = async () => {
+    if (timer > 0) return; // Rate limiting / Spam prevention
     if (!phoneNumber.trim()) {
       setErrorMsg('Please enter your phone number.');
       return;
     }
 
-    // Auto-prepend +91 if missing and number seems local (10 digits)
+    if (!termsAccepted) {
+      setErrorMsg('Please accept the Terms & Privacy Policy to continue.');
+      return;
+    }
+
     let formattedNumber = phoneNumber.trim();
     if (formattedNumber.length === 10 && !formattedNumber.startsWith('+')) {
       formattedNumber = `+91${formattedNumber}`;
@@ -108,15 +87,7 @@ export default function LoginScreen() {
       setTimer(30);
     } catch (e: any) {
       console.error('Send OTP Error:', e);
-      if (e?.code === 'auth/operation-not-allowed') {
-        setErrorMsg('Phone Authentication is not enabled in your Firebase Console. Please enable it under Auth -> Sign-in method.');
-      } else if (e?.code === 'auth/billing-not-enabled') {
-        setErrorMsg('SMS verification requires a Blaze plan. To test for free, add your number as a "Test Number" in the Firebase Console (Auth -> Settings).');
-      } else if (e?.code === 'auth/invalid-phone-number') {
-        setErrorMsg('Invalid phone number. Please check the format.');
-      } else {
-        setErrorMsg(e?.message || 'Failed to send OTP. Check your number.');
-      }
+      setErrorMsg(e?.message || 'Failed to send OTP. Check your number.');
     } finally {
       setIsLoading(false);
     }
@@ -165,12 +136,10 @@ export default function LoginScreen() {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-background">
-      {/* Firebase Recaptcha */}
+    <SafeAreaView className="flex-1 bg-surface">
       <FirebaseRecaptchaVerifierModal
         ref={recaptchaVerifier}
-        firebaseConfig={app.options} // Use standard firebase options
-        attemptInvisibleRetries={10}
+        firebaseConfig={app.options}
       />
 
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} className="flex-1">
@@ -180,197 +149,164 @@ export default function LoginScreen() {
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="handled"
           >
-            <View className="flex-1 justify-center px-6 pt-10 pb-24">
+            <View className="flex-1 flex-col bg-surface-container-lowest overflow-hidden relative">
 
-              {/* Header section (Carousel + Welcome) only visible in initial steps */}
+              {/* Header Branding */}
+              <View className="p-8 pb-4 flex-row items-center gap-2">
+                <Sparkles color="#006e2f" size={24} />
+                <Text className="text-xl font-extrabold text-on-surface tracking-tighter">Luna Wellness</Text>
+              </View>
+
               {phoneStep === 'phone' && (
-                <Animated.View
-                  entering={FadeInDown.duration(600).springify()}
-                  exiting={FadeOut.duration(200)}
-                  className="items-center mb-10"
-                >
-                  <View className="bg-white/5 py-1.5 px-4 rounded-full mb-6">
-                    <Text className="text-secondary text-[13px] font-extrabold tracking-widest uppercase">✨ 50,000+ transformations</Text>
+                <Animated.View entering={FadeIn.duration(600)}>
+                  <View className="w-full">
+                    {/* Transformation Carousel */}
+                    <ScrollView
+                      horizontal
+                      showsHorizontalScrollIndicator={false}
+                      className="px-8 py-4 mb-4"
+                      snapToInterval={280}
+                      decelerationRate="fast"
+                    >
+                      {RECENT_TRANSFORMATIONS.map((item, index) => (
+                        <CarouselCard key={index} {...item} />
+                      ))}
+                    </ScrollView>
+
+                    {/* Narrative Section */}
+                    <View className="p-8 pt-6">
+                      <Text className="text-3xl font-bold text-on-surface tracking-tight mb-2 leading-tight">
+                        Your Journey to Wellness Starts Here
+                      </Text>
+                      <Text className="text-on-surface-variant text-sm font-medium">
+                        Join 50k+ women transforming their lives with personalized care.
+                      </Text>
+                    </View>
                   </View>
-                  <ScrollView horizontal showsHorizontalScrollIndicator={false} className="mb-8" snapToInterval={300} decelerationRate="fast">
-                    <CarouselCard
-                      beforeImageUri="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=400&q=80"
-                      afterImageUri="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=400&q=80"
-                      resultTag="Lost 10kg in 3 months"
-                    />
-                  </ScrollView>
-                  <Text className="text-4xl font-extrabold text-textPrimary text-center leading-[44px]">Welcome to Luna</Text>
-                  <Text className="text-textSecondary text-[16px] mt-3 text-center">
-                    Your AI-powered health companion
-                  </Text>
                 </Animated.View>
               )}
 
-              <Animated.View entering={FadeInDown.delay(200).duration(600).springify()} className="rounded-[32px] p-6 bg-surface border border-white/5 shadow-2xl">
+              <View className="px-8 pb-8 space-y-6">
+                {phoneStep === 'phone' ? (
+                  <View className="space-y-6">
+                    {/* Phone Input Box */}
+                    <View className="relative">
+                      <View className="absolute z-10 -top-2.5 left-4 bg-surface-container-lowest px-1">
+                        <Text className="text-[10px] font-bold tracking-widest uppercase text-on-surface-variant">Phone Number</Text>
+                      </View>
+                      <View className="flex-row items-center border-2 border-surface-container-low rounded-2xl p-4 h-[65px] focus:border-primary">
+                        <Text className="text-on-surface-variant font-bold border-r border-outline-variant pr-4 mr-4">+91</Text>
+                        <TextInput
+                          placeholder="98765 43210"
+                          placeholderTextColor="#bccbb9"
+                          className="flex-1 p-0 text-lg font-bold tracking-wide text-on-surface"
+                          keyboardType="phone-pad"
+                          value={phoneNumber}
+                          onChangeText={(text) => setPhoneNumber(text.replace('+91', '').trim())}
+                        />
+                      </View>
+                    </View>
 
-                {/* Mode Switcher (only on initial step) */}
-                {phoneStep === 'phone' && (
-                  <View className="rounded-full p-1.5 flex-row mb-6 bg-white/5">
+                    {errorMsg && (
+                      <View className="bg-error-container/30 px-4 py-3 rounded-xl border border-error/10">
+                        <Text className="text-error text-xs font-semibold text-center">{errorMsg}</Text>
+                      </View>
+                    )}
+
+                    <PrimaryButton
+                      title="Get OTP"
+                      loading={isLoading}
+                      disabled={!phoneNumber.trim() || phoneNumber.trim().length < 10 || !termsAccepted}
+                      onPress={handleSendOtp}
+                    />
+
+                    {/* Terms Checkbox */}
                     <TouchableOpacity
-                      onPress={() => { setMode('email'); setErrorMsg(null); }}
-                      activeOpacity={0.8}
-                      className={`flex-1 py-3.5 rounded-full items-center ${mode === 'email' ? 'bg-primary' : 'bg-transparent'}`}
+                      onPress={() => setTermsAccepted(!termsAccepted)}
+                      className="flex-row items-start px-1 mt-2"
                     >
-                      <Text className={`font-bold ${mode === 'email' ? 'text-white' : 'text-textSecondary'}`}>Email</Text>
+                      <View className={`w-5 h-5 rounded-md border-2 items-center justify-center ${termsAccepted ? 'bg-primary border-primary' : 'border-outline-variant'}`}>
+                        {termsAccepted && <Text className="text-white text-[10px] font-bold">✓</Text>}
+                      </View>
+                      <Text className="text-[11px] leading-relaxed text-on-surface-variant font-medium ml-3 flex-1">
+                        By continuing, I agree to the <Text className="text-primary font-bold">Terms of Service</Text> and <Text className="text-primary font-bold">Privacy Policy</Text>.
+                      </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity
-                      onPress={() => { setMode('phone'); setErrorMsg(null); }}
-                      activeOpacity={0.8}
-                      className={`flex-1 py-3.5 rounded-full items-center ${mode === 'phone' ? 'bg-primary' : 'bg-transparent'}`}
-                    >
-                      <Text className={`font-bold ${mode === 'phone' ? 'text-white' : 'text-textSecondary'}`}>Phone OTP</Text>
-                    </TouchableOpacity>
+
+                    {/* Social Connect */}
+                    <View className="mt-8">
+                      <View className="flex-row items-center justify-center gap-4 mb-6">
+                        <View className="h-[1px] flex-1 bg-surface-container-low" />
+                        <Text className="text-[10px] font-bold tracking-widest uppercase text-outline">Social Connect</Text>
+                        <View className="h-[1px] flex-1 bg-surface-container-low" />
+                      </View>
+
+                      <View className="flex-row justify-center gap-6">
+                        <SocialButton iconUri="https://lh3.googleusercontent.com/aida-public/AB6AXuCkglJhFV7-p3ALD4N_Iz7qJAz76VBHMh_uIHk3wVxQl5DvCRQOZmpCFXFeje4ME3SJrK9qSUn3SyzLVoNQ0UYEpACaYrBRJt7yCagF2SO1-0r6J4gZsFSqhQE4RBq3CIK5ZhQtJcXCOMVpVJUr8YerMuhsPV2tbwzhUm8iU0TcgrmwxVjW8q9WIX5N-3NWmGBP-fVTiiKG5HA4Mphh3QG0Ygv7wN2Hd7CRxEIM08Pec3sjMfIN0M9yXRDDUXzS0iOPQgJqdLMfX64D" />
+                        <SocialButton iconUri="https://lh3.googleusercontent.com/aida-public/AB6AXuD2zfx5zodBRu4uPKJGjFYXNU4SfSr4mL6QqLjysbeflwabKnBg1TIA-id9Npsh52VWLUJ0wro9Bh_P0JQy1vAWbQvk5XCZVR2Pyrw_zzlV116_29ha7rtrdkdzFLbhe7-tCWNbFZWkxLmHR8lxzXIQnV0vsPqm377GKN__XbxQi0RNUlO2e7uiZH7DwIYvl8j-d5EDYiRlgMD8dh31Hjo_Uh6gSuURxNPJxh89aMxBrSfdXAb3tmazAqFxDo0gl0VijUDaXQYOY-na" />
+                      </View>
+                    </View>
                   </View>
-                )}
-
-                {/* EMAIL FORM */}
-                {mode === 'email' && phoneStep === 'phone' && (
+                ) : (
                   <Animated.View entering={FadeIn.duration(400)}>
-                    <Text className="text-[13px] font-bold ml-1 mb-2 text-textSecondary uppercase tracking-wider">Email Address</Text>
-                    <View className="flex-row items-center rounded-2xl px-5 h-[60px] mb-5 bg-background border border-white/10">
-                      <Mail color="#7C3AED" size={20} />
-                      <TextInput
-                        placeholder="Enter your email"
-                        placeholderTextColor="#A1A1AA"
-                        className="flex-1 ml-3 text-textPrimary text-[15px]"
-                        autoCapitalize="none"
-                        keyboardType="email-address"
-                        value={email}
-                        onChangeText={setEmail}
-                      />
-                    </View>
-
-                    <Text className="text-[13px] font-bold ml-1 mb-2 text-textSecondary uppercase tracking-wider">Password</Text>
-                    <View className="flex-row items-center rounded-2xl px-5 h-[60px] bg-background border border-white/10">
-                      <TextInput
-                        placeholder="••••••••"
-                        placeholderTextColor="#A1A1AA"
-                        className="flex-1 text-textPrimary text-[15px]"
-                        secureTextEntry={!showPassword}
-                        value={password}
-                        onChangeText={setPassword}
-                      />
-                      <TouchableOpacity onPress={() => setShowPassword((v) => !v)} className="p-2 -mr-2">
-                        {showPassword ? <EyeOff color="#A1A1AA" size={20} /> : <Eye color="#A1A1AA" size={20} />}
-                      </TouchableOpacity>
-                    </View>
-                  </Animated.View>
-                )}
-
-                {/* PHONE INPUT FORM */}
-                {mode === 'phone' && phoneStep === 'phone' && (
-                  <Animated.View entering={FadeIn.duration(400)}>
-                    <Text className="text-[13px] font-bold ml-1 mb-2 text-textSecondary uppercase tracking-wider">Phone Number</Text>
-                    <View className="flex-row items-center rounded-2xl px-5 h-[60px] bg-background border border-white/10">
-                      <Phone color="#7C3AED" size={20} />
-                      <TextInput
-                        placeholder="+91 98765 43210"
-                        placeholderTextColor="#A1A1AA"
-                        className="flex-1 ml-3 text-textPrimary text-[17px] font-bold"
-                        keyboardType="phone-pad"
-                        value={phoneNumber}
-                        onChangeText={setPhoneNumber}
-                      />
-                    </View>
-                    <Text className="text-textSecondary text-[11px] mt-4 ml-1">
-                      We'll send you a 6-digit verification code. Data rates may apply.
-                    </Text>
-                  </Animated.View>
-                )}
-
-                {/* OTP VERIFICATION FORM */}
-                {phoneStep === 'otp' && (
-                  <Animated.View entering={FadeIn.duration(400)}>
-                    <TouchableOpacity
-                      onPress={resetPhoneStep}
-                      className="flex-row items-center mb-6"
-                    >
-                      <ArrowLeft color="#7C3AED" size={18} />
+                    <TouchableOpacity onPress={resetPhoneStep} className="flex-row items-center mb-6">
+                      <ArrowLeft color="#006e2f" size={18} />
                       <Text className="text-primary font-bold ml-2">Change Number</Text>
                     </TouchableOpacity>
 
-                    <Text className="text-2xl font-black text-white mb-2">Verify Code</Text>
-                    <Text className="text-textSecondary text-[15px] mb-8">
-                      Sent to <Text className="text-white font-bold">{phoneNumber}</Text>
-                    </Text>
+                    <Text className="text-3xl font-black text-on-surface mb-2 tracking-tighter">Verify Code</Text>
+                    <Text className="text-on-surface-variant text-[15px] mb-10">Sent to <Text className="text-primary font-bold">{phoneNumber}</Text></Text>
 
                     <OtpInput
-                      onCodeFilled={(code) => {
-                        setOtp(code);
-                        handleVerifyOtp(code);
-                      }}
+                      onCodeFilled={(code) => handleVerifyOtp(code)}
                       isLoading={isLoading}
                     />
 
-                    <View className="flex-row justify-between items-center mt-10">
+                    {errorMsg && (
+                      <View className="bg-error-container/30 px-4 py-3 rounded-xl border border-error/10 mt-6">
+                        <Text className="text-error text-xs font-semibold text-center">{errorMsg}</Text>
+                      </View>
+                    )}
+
+                    <PrimaryButton
+                      title="Verify & Continue"
+                      className="mt-10"
+                      loading={isLoading}
+                      onPress={() => handleVerifyOtp()}
+                    />
+
+                    <View className="flex-row justify-center items-center mt-8">
                       {timer > 0 ? (
-                        <Text className="text-textSecondary text-xs">Resend in <Text className="text-white font-bold">{timer}s</Text></Text>
+                        <Text className="text-on-surface-variant text-xs">Resend in <Text className="text-primary font-bold">{timer}s</Text></Text>
                       ) : (
-                        <TouchableOpacity
-                          onPress={handleSendOtp}
-                          className="flex-row items-center"
-                        >
-                          <RefreshCw color="#7C3AED" size={14} />
+                        <TouchableOpacity onPress={handleSendOtp} className="flex-row items-center">
+                          <RefreshCw color="#006e2f" size={14} />
                           <Text className="text-primary font-bold text-xs ml-1.5">Resend OTP</Text>
                         </TouchableOpacity>
                       )}
                     </View>
                   </Animated.View>
                 )}
+              </View>
 
-                {errorMsg && (
-                  <Animated.View entering={FadeInDown.duration(300)} className="mt-5 px-4 py-3 bg-red-500/20 rounded-xl border border-red-500/30">
-                    <Text className="text-red-400 text-[13px] text-center font-medium leading-[18px]">{errorMsg}</Text>
-                  </Animated.View>
-                )}
-
-                {/* Action Button (only for initial step) */}
-                {phoneStep === 'phone' && (
-                  <View className="mt-8">
-                    <PrimaryButton
-                      title={mode === 'email' ? 'Sign In' : (isLoading ? 'Sending...' : 'Get OTP')}
-                      onPress={mode === 'email' ? handleEmailSignIn : handleSendOtp}
-                      loading={isLoading}
-                    />
-                  </View>
-                )}
-
-                {/* Action Button (optional manual verify for OTP step) */}
-                {phoneStep === 'otp' && !isLoading && (
-                  <View className="mt-8">
-                    <PrimaryButton
-                      title="Verify & Continue"
-                      onPress={() => handleVerifyOtp()}
-                      loading={isLoading}
-                    />
-                  </View>
-                )}
-
-                {isLoading && phoneStep === 'otp' && (
-                  <View className="mt-8 items-center">
-                    <ActivityIndicator color="#7C3AED" size="small" />
-                    <Text className="text-textSecondary text-xs mt-2">Verifying...</Text>
-                  </View>
-                )}
-
-              </Animated.View>
-
-              {phoneStep === 'phone' && (
-                <Animated.View entering={FadeIn.delay(400).duration(600)} className="flex-row justify-center mt-10">
-                  <Text className="text-textSecondary text-[13px] font-medium text-center px-6 leading-[20px]">
-                    By continuing, you agree to our <Text className="text-white font-bold">Terms</Text> & <Text className="text-white font-bold">Privacy Policy</Text>
-                  </Text>
-                </Animated.View>
-              )}
+              {/* Version Footer */}
+              <View className="mt-auto p-8 items-center">
+                <Text className="text-[10px] font-bold tracking-widest uppercase text-outline">
+                  LUNA WELLNESS VERSION 2.4.1
+                </Text>
+              </View>
             </View>
           </ScrollView>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </SafeAreaView>
+  );
+}
+
+function SocialButton({ iconUri }: { iconUri: string }) {
+  return (
+    <TouchableOpacity className="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center shadow-sm">
+      <Image source={{ uri: iconUri }} className="w-6 h-6" resizeMode="contain" />
+    </TouchableOpacity>
   );
 }

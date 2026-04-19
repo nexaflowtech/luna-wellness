@@ -1,27 +1,24 @@
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
-import { User, Users } from 'lucide-react-native';
+import { User2, Users, Sparkles, Check } from 'lucide-react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ProgressIndicator } from '@/src/components/onboarding/ProgressIndicator';
-import { ScreenWrapper } from '@/src/components/ui/ScreenWrapper';
-import { SelectionCard } from '@/src/components/onboarding/SelectionCard';
-import { PrimaryButton } from '@/src/components/onboarding/PrimaryButton';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useAuth } from '@/src/context/AuthContext';
 import { updateUserDoc } from '@/src/services/authService';
-import { LunaAiBubble } from '@/src/components/onboarding/LunaAiBubble';
+import { useOnboardingStore } from '@/src/store/onboardingStore';
 
 export default function GenderScreen() {
   const router = useRouter();
   const { user } = useAuth();
-  const [selectedGender, setSelectedGender] = useState<'male' | 'female' | null>(null);
+  const { gender: storeGender, setGender } = useOnboardingStore();
+  const [selectedGender, setSelectedGender] = useState<'male' | 'female' | 'other' | null>(storeGender as any || null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // SYNC handler — navigation must NEVER be blocked by an await.
-  // Firestore write fires in background; router.push executes immediately.
-  const handleContinue = () => {
+  const handleContinue = async () => {
     if (!selectedGender) return;
+    setIsLoading(true);
 
-    // Background write — fire and forget
     if (user?.uid) {
       updateUserDoc(user.uid, {
         gender: selectedGender,
@@ -29,62 +26,177 @@ export default function GenderScreen() {
       }).catch(e => console.log('Gender save error:', e));
     }
 
-    console.log('Selected gender:', selectedGender);
-    console.log('Navigating to: /(onboarding)/profile-details');
-    router.push('/(onboarding)/profile-details');
+    setGender(selectedGender);
+
+    setTimeout(() => {
+      setIsLoading(false);
+      router.push('/(onboarding)/profile-details');
+    }, 400);
   };
 
   return (
-    <ScreenWrapper>
-      <View className="px-6 py-4">
-        <ProgressIndicator currentStep={1} totalSteps={4} />
-      </View>
-      
-      <View className="flex-1 px-6 pt-6">
-        <Animated.Text entering={FadeInDown.duration(500).springify()} className="text-textPrimary text-[32px] leading-[40px] font-extrabold mb-3">
-          Which biological profile matches you?
-        </Animated.Text>
-        <Animated.Text entering={FadeInDown.delay(100).duration(500)} className="text-textSecondary text-[16px] leading-[24px] mb-10">
-          We use this to calibrate your baseline metabolic rate and hormonal markers.
-        </Animated.Text>
-        
-        <Animated.View entering={FadeInDown.delay(200).duration(500)}>
-          <SelectionCard 
-            title="Female" 
-            icon={<User color={selectedGender === 'female' ? '#7C3AED' : '#A1A1AA'} size={26} strokeWidth={2.5} />} 
-            isSelected={selectedGender === 'female'}
-            onToggle={() => setSelectedGender('female')}
-          />
-        </Animated.View>
-        <View className="h-4" />
-        <Animated.View entering={FadeInDown.delay(300).duration(500)}>
-          <SelectionCard 
-            title="Male" 
-            icon={<Users color={selectedGender === 'male' ? '#7C3AED' : '#A1A1AA'} size={26} strokeWidth={2.5} />} 
-            isSelected={selectedGender === 'male'}
-            onToggle={() => setSelectedGender('male')}
-          />
-        </Animated.View>
+    <View style={styles.container}>
+      {/* Progress Header (4 Steps) */}
+      <View style={styles.progressHeader}>
+        <View style={[styles.progressBar, styles.progressBarFilled]} />
+        <View style={[styles.progressBar, styles.progressBarEmpty]} />
+        <View style={[styles.progressBar, styles.progressBarEmpty]} />
+        <View style={[styles.progressBar, styles.progressBarEmpty]} />
       </View>
 
-      {/* Luna AI companion bubble */}
-      <LunaAiBubble
-        typing={!selectedGender}
-        message={
-          selectedGender === 'female'
-            ? "Perfect! I'll calibrate your plan around female hormonal cycles, PCOS risk patterns, and metabolic baselines."
-            : selectedGender === 'male'
-            ? "Great! I'll build your plan around male metabolic markers, testosterone profiles, and recovery patterns."
-            : "Hi! I'm Luna 👋 I'll personalize your entire health journey. Start by selecting your biological profile."
-        }
-        subMessage={selectedGender ? "Tap Continue when you're ready." : undefined}
-      />
-
-      <Animated.View entering={FadeInDown.delay(400).duration(500)} className="absolute bottom-0 left-0 right-0 px-6 py-8 bg-background border-t border-white/5">
-        <View className={`${selectedGender ? 'opacity-100' : 'opacity-40'}`} pointerEvents={selectedGender ? 'auto' : 'none'}>
-          <PrimaryButton title="Continue" onPress={handleContinue} />
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* Header Section */}
+        <View style={styles.headerSection}>
+          <Text style={styles.titleText}>Tell us about{'\n'}yourself</Text>
+          <Text style={styles.subtitleText}>
+            Biological sex influences how your body processes nutrients, regulates hormones, and responds to activity.
+          </Text>
         </View>
-      </Animated.View>
-    </ScreenWrapper>
+
+        {/* Selection Grid */}
+        <View style={styles.cardGrid}>
+          <GenderCard
+            title="Male"
+            desc="Calibrated for male metabolic patterns"
+            icon={<User2 color={selectedGender === 'male' ? '#006e2f' : '#006b5f'} size={28} />}
+            isSelected={selectedGender === 'male'}
+            onSelect={() => setSelectedGender('male')}
+            delay={100}
+            accentColor="#e5eeff"
+          />
+          <GenderCard
+            title="Female"
+            desc="Tailored to female-specific health cycles"
+            icon={<User2 color={selectedGender === 'female' ? '#006e2f' : '#006b5f'} size={28} />}
+            isSelected={selectedGender === 'female'}
+            onSelect={() => setSelectedGender('female')}
+            delay={200}
+            accentColor="#f8f9ff"
+          />
+          <GenderCard
+            title="Different"
+            desc="Inclusive approach to individualized wellness"
+            icon={<Users color={selectedGender === 'other' ? '#006e2f' : '#006b5f'} size={28} />}
+            isSelected={selectedGender === 'other'}
+            onSelect={() => setSelectedGender('other')}
+            delay={300}
+            accentColor="#eff4ff"
+          />
+        </View>
+
+        {/* AI Recommendation Panel */}
+        <View style={styles.aiPanel}>
+          <View style={styles.aiPanelRow}>
+            <View style={styles.aiIconBox}>
+              <Sparkles color="#005ac2" size={20} />
+            </View>
+            <View style={styles.aiTextBox}>
+              <Text style={styles.aiLabel}>AI Recommendation</Text>
+              <Text style={styles.aiBody}>
+                Accurate biological data allows our AI to predict daily energy peaks 40% more accurately for your specific profile.
+              </Text>
+            </View>
+          </View>
+        </View>
+      </ScrollView>
+
+      {/* Fixed Bottom Action Bar */}
+      <View style={styles.actionBar}>
+        <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
+          <Text style={styles.backBtnText}>Back</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.continueBtn, !selectedGender && styles.continueBtnDisabled]}
+          onPress={handleContinue}
+          activeOpacity={0.9}
+          disabled={!selectedGender || isLoading}
+        >
+          <LinearGradient
+            colors={['#006e2f', '#006b5f']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.continueBtnGradient}
+          >
+            <Text style={styles.continueBtnText}>
+              {isLoading ? 'Calibrating AI...' : 'Continue'}
+            </Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
+
+interface GenderCardProps {
+  title: string;
+  desc: string;
+  icon: React.ReactNode;
+  isSelected: boolean;
+  onSelect: () => void;
+  delay: number;
+  accentColor: string;
+}
+
+function GenderCard({ title, desc, icon, isSelected, onSelect, delay, accentColor }: GenderCardProps) {
+  return (
+    <Animated.View pointerEvents="box-none" entering={FadeInDown.delay(delay).duration(500).springify()} style={styles.cardWrapper}>
+      <TouchableOpacity
+        activeOpacity={0.9}
+        onPress={onSelect}
+        style={[styles.card, isSelected ? styles.cardSelected : styles.cardDefault]}
+      >
+        <View style={[styles.cardIcon, { backgroundColor: isSelected ? '#eef4ff' : accentColor }]}>
+          {icon}
+        </View>
+        <View style={styles.cardTextBox}>
+          <Text style={styles.cardTitle}>{title}</Text>
+          <Text style={styles.cardDesc}>{desc}</Text>
+        </View>
+        <View style={[styles.cardCheck, isSelected ? styles.cardCheckSelected : styles.cardCheckDefault]}>
+          {isSelected && <Check color="white" size={14} strokeWidth={4} />}
+        </View>
+      </TouchableOpacity>
+    </Animated.View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#f8f9ff' },
+  progressHeader: { flexDirection: 'row', gap: 8, paddingHorizontal: 32, paddingTop: 64, paddingBottom: 24 },
+  progressBar: { flex: 1, height: 4, borderRadius: 99 },
+  progressBarFilled: { backgroundColor: '#006e2f' },
+  progressBarEmpty: { backgroundColor: '#d3e4fe' },
+  scrollContent: { flexGrow: 1, paddingHorizontal: 32, paddingBottom: 40 },
+  headerSection: { marginBottom: 40, marginTop: 16 },
+  titleText: { fontSize: 40, fontWeight: '800', color: '#0b1c30', letterSpacing: -1, lineHeight: 48 },
+  subtitleText: { fontSize: 16, color: '#3d4a3d', lineHeight: 26, fontWeight: '500', marginTop: 16 },
+  cardGrid: { flexDirection: 'column', gap: 16, marginBottom: 48 },
+  cardWrapper: {},
+  card: { flexDirection: 'row', alignItems: 'center', padding: 24, borderRadius: 32, borderWidth: 2 },
+  cardSelected: { borderColor: '#006e2f', backgroundColor: '#ffffff', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.06, shadowRadius: 8, elevation: 3 },
+  cardDefault: { borderColor: 'transparent', backgroundColor: '#ffffff' },
+  cardIcon: { width: 64, height: 64, borderRadius: 16, alignItems: 'center', justifyContent: 'center', marginRight: 20 },
+  cardTextBox: { flex: 1 },
+  cardTitle: { fontSize: 20, fontWeight: '800', color: '#0b1c30', letterSpacing: -0.5, marginBottom: 4 },
+  cardDesc: { fontSize: 14, color: '#3d4a3d', fontWeight: '500', lineHeight: 18 },
+  cardCheck: { width: 24, height: 24, borderRadius: 12, borderWidth: 2, alignItems: 'center', justifyContent: 'center' },
+  cardCheckSelected: { backgroundColor: '#006e2f', borderColor: '#006e2f' },
+  cardCheckDefault: { borderColor: '#bccbb9' },
+  aiPanel: { backgroundColor: '#eff4ff', padding: 24, borderRadius: 32, marginBottom: 8 },
+  aiPanelRow: { flexDirection: 'row', gap: 16, alignItems: 'flex-start' },
+  aiIconBox: { padding: 12, backgroundColor: '#dce9ff', borderRadius: 16 },
+  aiTextBox: { flex: 1 },
+  aiLabel: { fontSize: 10, fontWeight: '700', color: '#005ac2', textTransform: 'uppercase', letterSpacing: 2, marginBottom: 4 },
+  aiBody: { fontSize: 14, color: '#3d4a3d', lineHeight: 22, fontWeight: '700' },
+  actionBar: { padding: 32, backgroundColor: '#f8f9ff', flexDirection: 'row', gap: 16 },
+  backBtn: { flex: 1, paddingVertical: 20, borderRadius: 24, backgroundColor: '#d3e4fe', alignItems: 'center', justifyContent: 'center' },
+  backBtnText: { color: '#006e2f', fontWeight: '700', fontSize: 16 },
+  continueBtn: { flex: 2, borderRadius: 24, overflow: 'hidden', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 6, elevation: 3 },
+  continueBtnDisabled: { opacity: 0.5 },
+  continueBtnGradient: { width: '100%', paddingVertical: 20, alignItems: 'center', justifyContent: 'center' },
+  continueBtnText: { color: 'white', fontWeight: '800', fontSize: 16, letterSpacing: -0.3 },
+});

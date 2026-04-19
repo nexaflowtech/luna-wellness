@@ -1,33 +1,45 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, Dimensions } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+
+const { width } = Dimensions.get('window');
 
 interface CarouselCardProps {
-  beforeImageUri: string;
-  afterImageUri: string;
-  resultTag: string;
+  imageUri: string;
+  tag: string;
+  quote: string;
+  tagColor?: string; // Optional custom color for the tag background
 }
 
-export const CarouselCard: React.FC<CarouselCardProps> = ({ beforeImageUri, afterImageUri, resultTag }) => {
+export const CarouselCard: React.FC<CarouselCardProps> = ({ imageUri, tag, quote, tagColor = 'rgba(34, 197, 94, 0.2)' }) => {
   return (
-    <View className="rounded-[24px] overflow-hidden mx-2 mb-4 w-[300px]" style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}>
-      <View className="flex-row h-[200px]">
-        <View className="flex-1 border-r border-[#1A1A2E]">
-          <Image source={{ uri: beforeImageUri }} className="w-full h-full" resizeMode="cover" />
-          <View className="absolute bottom-2 left-2 bg-black/50 px-2 py-1 rounded-full">
-            <Text className="text-white text-xs font-semibold">Before</Text>
-          </View>
+    <View
+      className="rounded-[32px] overflow-hidden mx-2 shadow-sm border border-black/5"
+      style={{ width: width * 0.7, height: 400 }}
+    >
+      <Image
+        source={{ uri: imageUri }}
+        className="w-full h-full object-cover"
+      />
+
+      {/* Bottom Gradient Overlay */}
+      <LinearGradient
+        colors={['transparent', 'rgba(11, 28, 48, 0.9)']}
+        className="absolute inset-0"
+        start={{ x: 0, y: 0.4 }}
+        end={{ x: 0, y: 1 }}
+      />
+
+      <View className="absolute bottom-6 left-6 right-6">
+        <View
+          className="self-start px-3 py-1 rounded-full border border-white/10 mb-2"
+          style={{ backgroundColor: tagColor }}
+        >
+          <Text className="text-white text-[10px] font-bold tracking-[2px] uppercase">{tag}</Text>
         </View>
-        <View className="flex-1">
-          <Image source={{ uri: afterImageUri }} className="w-full h-full" resizeMode="cover" />
-          <View className="absolute bottom-2 left-2 bg-[#7C3AED] px-2 py-1 rounded-full">
-            <Text className="text-white text-xs font-semibold">After</Text>
-          </View>
-        </View>
-      </View>
-      <View className="p-4 items-center justify-center flex-row gap-2" style={{ backgroundColor: 'transparent' }}>
-         <View className="bg-[#10B981]/20 px-3 py-1.5 rounded-full flex-row items-center">
-            <Text style={{ color: '#10B981' }} className="font-semibold text-xs ml-1">🥗 {resultTag}</Text>
-         </View>
+        <Text className="text-white text-[15px] font-medium leading-tight">
+          "{quote}"
+        </Text>
       </View>
     </View>
   );

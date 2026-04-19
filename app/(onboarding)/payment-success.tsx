@@ -62,7 +62,7 @@ export default function PaymentSuccessScreen() {
             <SafeAreaView className="flex-1 items-center justify-center px-6">
                 <Animated.View
                     entering={ZoomIn.duration(800)}
-                    className="w-32 h-32 rounded-full bg-accent/20 items-center justify-center mb-10 border border-accent/30"
+                    className="w-32 h-32 rounded-full bg-primary-green/20 items-center justify-center mb-10 border border-accent/30"
                 >
                     <Animated.View style={checkAnimatedStyle}>
                         <Check size={64} color="#22C55E" strokeWidth={3} />
@@ -77,10 +77,10 @@ export default function PaymentSuccessScreen() {
                 </Animated.View>
 
                 <Animated.View entering={FadeInDown.delay(400).duration(600).springify()}>
-                    <Text className="text-textPrimary text-[32px] font-black text-center mb-4">
+                    <Text className="text-text-primary text-[32px] font-black text-center mb-4">
                         Payment Successful!
                     </Text>
-                    <Text className="text-textSecondary text-[16px] text-center leading-[24px] mb-12 px-4">
+                    <Text className="text-text-secondary text-[16px] text-center leading-[24px] mb-12 px-4">
                         Welcome to the Luna family. Your personalized "Zumba + Diet + Coach" plan is now active and ready for you.
                     </Text>
                 </Animated.View>
@@ -113,7 +113,7 @@ function Badge({ icon: Icon, label, color, delay }: { icon: any, label: string, 
             <View style={{ backgroundColor: `${color}20` }} className="p-4 rounded-3xl mb-2 items-center justify-center border border-white/5">
                 <Icon size={24} color={color} />
             </View>
-            <Text className="text-textSecondary text-xs font-bold uppercase tracking-widest">{label}</Text>
+            <Text className="text-text-secondary text-xs font-bold uppercase tracking-widest">{label}</Text>
         </Animated.View>
     );
 }

@@ -26,6 +26,10 @@ export interface OnboardingPlanResult {
   metabolicProfile: string;
   hormonalRiskSignals: string[];
   planConfidenceScore: number;
+  workout_type: string;
+  diet_type: string;
+  support: string[];
+  expected_result: string;
 }
 
 // ─── Luna AI Service (Server-Proxy) ───────────────────────────────────────────
@@ -117,7 +121,32 @@ export class LunaAiService {
       hormonalRiskSignals.push('Ensure adequate iron (18mg/day) and folate (400mcg/day) intake.');
     }
 
+    const bmiVal = weightKg / ((heightCm / 100) * (heightCm / 100));
+    const isObese = bmiVal >= 30;
+
+    let workout_type = 'Strength & Conditioning';
+    let diet_type = 'Balanced Macros';
+
+    if (isWeightLoss) {
+      diet_type = 'Calorie Deficit Diet';
+      workout_type = 'Fat Burn Workouts';
+    }
+
+    if (isPCOS) {
+      diet_type = 'Low Carb, Avoid Sugar';
+      workout_type = 'Low Intensity Workouts (Yoga/Walking)';
+    }
+
+    if (isObese) {
+      workout_type = 'Low Impact Cardio (Avoid High Intensity)';
+    }
+
     const timelineMonths = Math.max(2, Math.ceil(Math.abs(goalDelta) / (isPCOS ? 1.5 : 2)));
+
+    const expected_result = isWeightLoss
+      ? `Lose ${Math.abs(goalDelta)} kg in ${timelineMonths * 30} days`
+      : `Achieve optimal balance in ${timelineMonths * 30} days`;
+
     const confidenceScore = 70 + Object.keys(adaptiveAnswers ?? {}).length * 5;
 
     return {
@@ -130,6 +159,10 @@ export class LunaAiService {
       metabolicProfile: metabolicProfileArr.join(' '),
       hormonalRiskSignals: hormonalRiskSignals.length ? hormonalRiskSignals : ['None flagged based on inputs.'],
       planConfidenceScore: Math.min(confidenceScore, 98),
+      workout_type,
+      diet_type,
+      support: ["Coach", "AI"],
+      expected_result,
     };
   }
 }

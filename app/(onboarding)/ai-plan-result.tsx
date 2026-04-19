@@ -1,137 +1,262 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import { LucideIcon, Flame, Coffee, Beef, Wheat, Carrot, Timer, Sparkles, ArrowRight } from 'lucide-react-native';
+import Animated, { FadeInDown, FadeIn } from 'react-native-reanimated';
+import { LucideIcon, Sparkles, ArrowRight, Brain, Timer, Zap, Dumbbell, Utensils, Headset } from 'lucide-react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
-import { ScreenWrapper } from '@/src/components/ui/ScreenWrapper';
-import { PrimaryButton } from '@/src/components/onboarding/PrimaryButton';
-import { OnboardingPlanResult } from '@/src/services/lunaAiService';
+import { useAuth } from '@/src/context/AuthContext';
+
+const { width } = Dimensions.get('window');
 
 export default function AiPlanResultScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
 
-  const aiPlan: OnboardingPlanResult = params.aiPlan
-    ? JSON.parse(params.aiPlan as string)
-    : {
-      calorieRange: '1800-2000 kcal',
-      macroSplit: { protein: '120g', fiber: '30g', carbs: '200g', fat: '60g' },
-      timelineEstimate: { months: 3, description: 'Steady progress' },
-      metabolicProfile: 'Balanced metabolic state.',
-      hormonalRiskSignals: ['None'],
-      planConfidenceScore: 95
-    };
+  // Parse dynamic AI generated plan
+  let aiPlan = {
+    calorieRange: '1850-2050 kcal',
+    objective: 'Sustainable Vitality',
+    objectiveDesc: 'Focused on metabolic health and lean muscle retention through caloric cycling.',
+    targetResult: 'Loading...',
+    timeline: 'in 12 weeks',
+    confidenceScore: 98.4,
+    insight: "Based on your biological markers, we've structured a plan that optimizes for your current metabolic state.",
+    workout_type: 'Custom Workout',
+    diet_type: 'Personalized Diet'
+  };
+
+  if (params.aiPlan) {
+    try {
+      const parsed = JSON.parse(params.aiPlan as string);
+      aiPlan.confidenceScore = parsed.planConfidenceScore || 98.4;
+      aiPlan.objective = parsed.diet_type || 'Metabolic Optimization';
+      aiPlan.objectiveDesc = `This dynamic protocol provides a ${parsed.calorieRange} framework utilizing ${parsed.workout_type || 'adaptive intervals'}.`;
+      aiPlan.targetResult = parsed.expected_result || aiPlan.targetResult;
+      aiPlan.timeline = ''; // already baked into expected_result
+      aiPlan.insight = parsed.metabolicProfile || aiPlan.insight;
+      aiPlan.workout_type = parsed.workout_type || 'Custom Workout';
+      aiPlan.diet_type = parsed.diet_type || 'Personalized Diet';
+    } catch (e) {
+      console.error("Failed to parse aiPlan", e);
+    }
+  }
 
   const onContinue = () => {
     router.push('/(onboarding)/pricing');
   };
 
   return (
-    <ScreenWrapper>
-      <SafeAreaView className="flex-1">
-        <ScrollView className="flex-1 px-6" showsVerticalScrollIndicator={false}>
-          <View className="py-8">
-            <Animated.View entering={FadeInDown.duration(600).springify()}>
-              <Text className="text-textSecondary text-[13px] uppercase font-bold tracking-[3px] mb-2">
-                Your AI Blueprint
-              </Text>
-              <Text className="text-textPrimary text-[32px] font-extrabold leading-[40px] mb-6">
-                Optimised for Your <Text className="text-primary">Hormones</Text>
-              </Text>
-            </Animated.View>
+    <View className="flex-1 bg-surface-bright">
+      {/* Header Branding */}
+      <View className="w-full px-8 pt-16 pb-6 bg-surface-bright flex-row justify-between items-center">
+        <View className="flex-row items-center gap-2">
+          <Sparkles color="#006e2f" size={24} />
+          <Text className="text-xl font-extrabold text-on-surface tracking-tighter">Luna Wellness</Text>
+        </View>
+      </View>
 
-            {/* Calorie Card */}
-            <Animated.View
-              entering={FadeInDown.delay(100).duration(600)}
-              className="bg-surface rounded-[32px] p-8 mb-6 border border-white/5 relative overflow-hidden"
-            >
-              <View className="absolute top-0 right-0 p-4 opacity-10">
-                <Flame size={120} color="#7C3AED" />
-              </View>
-              <Text className="text-textSecondary text-[14px] uppercase font-bold mb-2 tracking-wider">Target Daily Intake</Text>
-              <Text className="text-textPrimary text-[40px] font-black mb-1">{aiPlan.calorieRange}</Text>
-              <Text className="text-primary text-[14px] font-bold">Scientific metabolic baseline</Text>
-            </Animated.View>
-
-            {/* Macro Grid */}
-            <View className="flex-row flex-wrap justify-between gap-4 mb-6">
-              <MacroCard icon={Beef} label="Protein" value={aiPlan.macroSplit.protein} color="#EF4444" delay={200} />
-              <MacroCard icon={Wheat} label="Carbs" value={aiPlan.macroSplit.carbs} color="#3B82F6" delay={300} />
-              <MacroCard icon={Carrot} label="Fiber" value={aiPlan.macroSplit.fiber} color="#10B981" delay={400} />
-              <MacroCard icon={Coffee} label="Fats" value={aiPlan.macroSplit.fat} color="#F59E0B" delay={500} />
+      <ScrollView
+        className="flex-1"
+        contentContainerStyle={{ paddingHorizontal: 32, paddingBottom: 160 }}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* Hero Section */}
+        <Animated.View entering={FadeInDown.duration(600).springify()} className="mt-4 mb-10">
+          <View className="flex-row items-center justify-between gap-4">
+            <View className="flex-1">
+              <Text className="text-[40px] font-extrabold text-on-surface tracking-tighter leading-[48px]">
+                Your Personalized Luna Plan
+              </Text>
+              <Text className="text-on-surface-variant text-lg leading-relaxed font-medium mt-4">
+                We've analyzed 42 of your health markers to craft a journey that respects your rhythm.
+              </Text>
             </View>
 
-            {/* Insight Panel */}
-            <Animated.View
-              entering={FadeInDown.delay(600).duration(600)}
-              className="bg-surface/50 rounded-[32px] p-6 mb-6 border border-white/5"
-            >
-              <View className="flex-row items-center gap-3 mb-4">
-                <View className="bg-primary/20 p-2 rounded-xl">
-                  <Sparkles size={20} color="#7C3AED" />
-                </View>
-                <Text className="text-textPrimary text-[18px] font-bold">Metabolic Insight</Text>
+            {/* AI Confidence Chip */}
+            <View className="bg-surface-container-lowest p-4 rounded-[24px] border border-white items-center shadow-md">
+              <View className="w-10 h-10 bg-[#e6f0ea] rounded-xl items-center justify-center mb-1">
+                <Sparkles color="#006e2f" size={18} />
               </View>
-              <Text className="text-textSecondary text-[15px] leading-[22px] mb-6">
-                {aiPlan.metabolicProfile}
-              </Text>
-
-              <View className="flex-row items-center gap-3 mb-4">
-                <View className="bg-primary/20 p-2 rounded-xl">
-                  <Timer size={20} color="#7C3AED" />
-                </View>
-                <Text className="text-textPrimary text-[18px] font-bold">Expected Timeline</Text>
-              </View>
-              <Text className="text-textSecondary text-[15px] leading-[22px]">
-                {aiPlan.timelineEstimate.months} Months – {aiPlan.timelineEstimate.description}
-              </Text>
-            </Animated.View>
-
-            {/* Risk Signals */}
-            {aiPlan.hormonalRiskSignals.length > 0 && aiPlan.hormonalRiskSignals[0] !== 'None' && (
-              <Animated.View
-                entering={FadeInDown.delay(700).duration(600)}
-                className="bg-red-500/10 rounded-[24px] p-5 mb-10 border border-red-500/20"
-              >
-                <Text className="text-red-400 text-[13px] uppercase font-bold mb-3 tracking-wider">Hormonal Risk Flags</Text>
-                {aiPlan.hormonalRiskSignals.map((signal, i) => (
-                  <View key={i} className="flex-row gap-2 mb-2">
-                    <Text className="text-red-300">•</Text>
-                    <Text className="text-red-300/80 text-[14px] flex-1 leading-[20px]">{signal}</Text>
-                  </View>
-                ))}
-              </Animated.View>
-            )}
-
-            <View className="h-24" />
+              <Text className="text-[8px] font-bold text-on-surface-variant uppercase tracking-widest">Confidence</Text>
+              <Text className="text-base font-extrabold text-on-surface">{aiPlan.confidenceScore}%</Text>
+            </View>
           </View>
-        </ScrollView>
+        </Animated.View>
 
-        <View className="absolute bottom-0 left-0 right-0 p-6 bg-background/80" style={{ backdropFilter: 'blur(20px)' }}>
-          <PrimaryButton
-            title="Unlock My Full Plan"
-            onPress={onContinue}
-            icon={<ArrowRight size={20} color="#FFF" />}
-          />
+        {/* Summary Bento Grid */}
+        <View className="flex-col gap-6 mb-12">
+          {/* Main Objective Card */}
+          <Animated.View
+            entering={FadeInDown.delay(100).duration(600)}
+            className="bg-surface-container-lowest p-8 rounded-[40px] shadow-sm relative overflow-hidden border border-white"
+          >
+            <View className="relative z-10">
+              <View className="bg-[#e6f1f0] px-4 py-1.5 rounded-full self-start mb-6">
+                <Text className="text-secondary text-[10px] font-bold uppercase tracking-[2px]">Primary Objective</Text>
+              </View>
+              <Text className="text-3xl font-extrabold text-on-surface tracking-tight mb-2">{aiPlan.objective}</Text>
+              <Text className="text-on-surface-variant text-sm font-medium leading-[20px] max-w-[240px]">
+                {aiPlan.objectiveDesc}
+              </Text>
+
+              <View className="mt-10 flex-row items-baseline gap-2">
+                <Text className="text-[32px] font-extrabold text-primary tracking-tighter shrink">{aiPlan.targetResult}</Text>
+              </View>
+            </View>
+
+            {/* Decor Glow */}
+            <View className="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+          </Animated.View>
+
+          {/* AI Insight Card */}
+          <Animated.View
+            entering={FadeInDown.delay(200).duration(600)}
+            className="bg-[#f0f4ff] p-8 rounded-[40px] border border-tertiary/10 flex-row gap-4"
+          >
+            <View className="w-12 h-12 bg-[#dce9ff] rounded-2xl items-center justify-center">
+              <Brain color="#005ac2" size={24} />
+            </View>
+            <View className="flex-1">
+              <Text className="text-lg font-extrabold text-on-tertiary-container tracking-tight">AI Insight</Text>
+              <Text className="text-on-tertiary-container text-sm leading-relaxed font-bold mt-1">
+                {aiPlan.insight}
+              </Text>
+            </View>
+          </Animated.View>
         </View>
-      </SafeAreaView>
-    </ScreenWrapper>
+
+        {/* What's Included Section */}
+        <View className="mb-12">
+          <View className="flex-row items-center gap-4 mb-8">
+            <Text className="text-xl font-extrabold text-on-surface tracking-tight">What's Included</Text>
+            <View className="h-[1px] flex-1 bg-surface-container-highest" />
+          </View>
+
+          <View className="flex-row flex-wrap justify-between gap-y-4">
+            <FeatureCard
+              icon={Dumbbell}
+              title={aiPlan.workout_type}
+              desc="Dynamic routines that adapt daily."
+              color="#006e2f"
+              delay={300}
+            />
+            <FeatureCard
+              icon={Utensils}
+              title={aiPlan.diet_type}
+              desc="Chef-curated macros for your bio-markers."
+              color="#006b5f"
+              delay={400}
+            />
+            <FeatureCard
+              icon={Headset}
+              title="1-on-1 Support"
+              desc="Direct access to human expertise."
+              color="#005ac2"
+              delay={500}
+            />
+            <FeatureCard
+              icon={Zap}
+              title="24/7 AI Coach"
+              desc="Instant responses to your health q's."
+              color="#006f64"
+              delay={600}
+            />
+          </View>
+        </View>
+
+        {/* Roadmap Section */}
+        <Animated.View
+          entering={FadeInDown.delay(700).duration(600)}
+          className="bg-surface-container-low rounded-[40px] p-8 md:p-12 mb-10"
+        >
+          <Text className="text-2xl font-extrabold text-on-surface tracking-tight mb-10">Your 12-Week Roadmap</Text>
+
+          <RoadmapStep
+            num={1}
+            title="Foundation"
+            desc="Weeks 1-4. Focus on mobility, habit stacking, and metabolic priming."
+            active
+          />
+          <View className="h-4" />
+          <RoadmapStep
+            num={2}
+            title="Intensification"
+            desc="Weeks 5-8. Peak metabolic load with compound strength training."
+          />
+          <View className="h-4" />
+          <RoadmapStep
+            num={3}
+            title="Sustainability"
+            desc="Weeks 9-12. Transitioning to long-term maintenance protocols."
+          />
+        </Animated.View>
+
+      </ScrollView>
+
+      {/* CTA Section */}
+      <View className="absolute bottom-0 left-0 w-full p-8 bg-surface-bright">
+        <TouchableOpacity
+          className="rounded-[28px] overflow-hidden shadow-md"
+          onPress={onContinue}
+          activeOpacity={0.9}
+        >
+          <LinearGradient
+            colors={['#006e2f', '#006b5f']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            className="w-full py-6 items-center justify-center flex-row gap-3"
+          >
+            <Text className="text-white font-extrabold text-xl tracking-tight">Start My Plan</Text>
+            <ArrowRight color="white" size={24} />
+          </LinearGradient>
+        </TouchableOpacity>
+        <Text className="text-center text-on-surface-variant text-[11px] font-bold mt-6 uppercase tracking-widest">
+          Risk-free 7-day adjustment period included.
+        </Text>
+      </View>
+    </View>
   );
 }
 
-function MacroCard({ icon: Icon, label, value, color, delay }: { icon: any, label: string, value: string, color: string, delay: number }) {
+function FeatureCard({ icon: Icon, title, desc, color, delay }: any) {
   return (
     <Animated.View
-      entering={FadeInDown.delay(delay).duration(600).springify()}
-      className="bg-surface rounded-[24px] p-5 w-[47%] border border-white/5"
+      entering={FadeInDown.delay(delay).duration(500).springify()}
+      className="w-[48%] bg-surface-container-lowest p-6 rounded-[32px] border border-white shadow-sm"
     >
-      <View style={{ backgroundColor: `${color}20` }} className="p-2 rounded-xl self-start mb-3">
-        <Icon size={18} color={color} />
+      <View style={{ backgroundColor: `${color}10` }} className="w-12 h-12 rounded-2xl items-center justify-center mb-6">
+        <Icon color={color} size={24} />
       </View>
-      <Text className="text-textSecondary text-[13px] font-medium mb-1">{label}</Text>
-      <Text className="text-textPrimary text-[18px] font-black">{value}</Text>
+      <Text className="text-on-surface font-extrabold text-base tracking-tight leading-tight">{title}</Text>
+      <Text className="text-on-surface-variant text-[11px] font-bold leading-[16px] mt-2">{desc}</Text>
     </Animated.View>
+  );
+}
+
+function RoadmapStep({ num, title, desc, active = false }: any) {
+  return (
+    <View className="flex-row gap-5">
+      <View className="items-center">
+        {active ? (
+          <LinearGradient
+            colors={['#006e2f', '#006b5f']}
+            className="w-10 h-10 rounded-full items-center justify-center shadow-md"
+          >
+            <Text className="text-white font-black text-lg">{num}</Text>
+          </LinearGradient>
+        ) : (
+          <View className="w-10 h-10 rounded-full bg-surface-container-highest border-2 border-[#e6f0ea] items-center justify-center">
+            <Text className="text-primary font-black text-lg">{num}</Text>
+          </View>
+        )}
+        <View className="w-[2px] flex-1 bg-[#e6f0ea] my-2" />
+      </View>
+      <View className="flex-1 pt-1">
+        <Text className="text-on-surface font-extrabold text-lg tracking-tight">{title}</Text>
+        <Text className="text-on-surface-variant text-[13px] font-medium leading-[20px] mt-1">{desc}</Text>
+      </View>
+    </View>
   );
 }

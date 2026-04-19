@@ -1,5 +1,6 @@
 import React, { Component, ReactNode } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
 
 interface Props {
@@ -40,7 +41,7 @@ export class ErrorBoundary extends Component<Props, State> {
           <View style={styles.content}>
             <Text style={styles.title}>Something went wrong</Text>
             <Text style={styles.subtitle}>Please restart the app or try again.</Text>
-            
+
             <TouchableOpacity style={styles.button} onPress={this.handleRetry} activeOpacity={0.8}>
               <Text style={styles.buttonText}>Reload</Text>
             </TouchableOpacity>

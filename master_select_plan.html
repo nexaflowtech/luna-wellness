@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#d8e2ff",
+                        "tertiary": "#005ac2",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#004b1e",
+                        "on-tertiary-container": "#003d88",
+                        "inverse-primary": "#4ae176",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary-fixed": "#001a42",
+                        "surface-dim": "#cbdbf5",
+                        "surface-tint": "#006e2f",
+                        "primary-fixed": "#6bff8f",
+                        "tertiary-container": "#82abff",
+                        "surface-bright": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "inverse-surface": "#213145",
+                        "secondary-container": "#6df5e1",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#adc6ff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "on-primary-fixed-variant": "#005321",
+                        "background": "#f8f9ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "outline-variant": "#bccbb9",
+                        "outline": "#6d7b6c",
+                        "inverse-on-surface": "#eaf1ff",
+                        "error-container": "#ffdad6",
+                        "secondary": "#006b5f",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#005048",
+                        "on-background": "#0b1c30",
+                        "primary-container": "#22c55e",
+                        "on-primary-fixed": "#002109",
+                        "on-secondary-fixed": "#00201c",
+                        "primary": "#006e2f",
+                        "secondary-fixed": "#71f8e4",
+                        "on-tertiary-fixed-variant": "#004395",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "on-secondary-container": "#006f64",
+                        "on-surface-variant": "#3d4a3d",
+                        "surface-container": "#e5eeff",
+                        "surface": "#f8f9ff",
+                        "primary-fixed-dim": "#4ae176",
+                        "secondary-fixed-dim": "#4fdbc8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .vitality-gradient {
+            background: linear-gradient(135deg, #006e2f 0%, #006b5f 100%);
+        }
+        .glow-chip-success {
+            background-color: rgba(34, 197, 94, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-background selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<nav class="bg-[#f8f9ff]/80 dark:bg-slate-950/80 backdrop-blur-xl fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Close-up portrait of a professional man with a kind expression, soft natural indoor lighting, premium editorial style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV_N2iHnJ8LkIgDUX5Kvc8V5ZqS3L27OMaXbY1KmtA1dtgQW5RhMfYbl68t5Azk02B53Z8dK5jtf0bLx8tsaVohFIae2uSZuTP07bI3_UrRiR6gVkSbYjnfaWPkVPmPJwCruyRZGmA0I_2I-s5g5i1Soy_vmG_ZA34g0_qtdeC_2o14LDzgv1wz6yEXcVteJ5h5Pur-3PECTOwCbP7Y2uLtYPRIYXqtc508ENOx_cZ4xW7ypuSTvIm0kPA9mJ00kxwBfYi_ej-5e8M"/>
+</div>
+<span class="font-['Manrope'] font-bold tracking-tight text-xl text-[#0b1c30] dark:text-white tracking-tighter">Luna Wellness</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-[#f8f9ff]/50 dark:hover:bg-slate-800/50 transition-all duration-300">
+<span class="material-symbols-outlined text-[#006e2f] dark:text-[#22C55E]">notifications</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-32 px-6 max-w-7xl mx-auto">
+<!-- Hero Section: Urgency Timer -->
+<header class="mb-12 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-on-surface mb-2">Choose Your Vitality Path</h1>
+<p class="text-on-surface-variant text-lg max-w-xl">Invest in yourself today. Each plan is designed to transform your physical and mental wellbeing.</p>
+</div>
+<div class="bg-tertiary-container/30 border border-tertiary-container/20 rounded-2xl p-4 inline-flex flex-col items-center md:items-end gap-1 backdrop-blur-sm">
+<span class="text-on-tertiary-container font-semibold text-sm uppercase tracking-widest">Special Offer ends in</span>
+<div class="flex gap-2 items-center">
+<span class="material-symbols-outlined text-tertiary animate-pulse">timer</span>
+<span class="text-3xl font-black text-on-tertiary-container tabular-nums">12:45</span>
+</div>
+</div>
+</header>
+<!-- Pricing Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+<!-- Monthly Plan -->
+<section class="bg-surface-container-lowest rounded-3xl p-8 transition-transform hover:scale-[1.02] duration-300 flex flex-col shadow-[0_12px_40px_rgba(11,28,48,0.03)] border border-outline-variant/10">
+<div class="mb-8">
+<h2 class="text-xl font-bold text-on-surface mb-1">Monthly Focus</h2>
+<p class="text-on-surface-variant text-sm">Kickstart your journey</p>
+</div>
+<div class="mb-8 flex items-baseline gap-1">
+<span class="text-4xl font-black text-on-surface">$29</span>
+<span class="text-on-surface-variant font-medium">/month</span>
+</div>
+<div class="flex-grow space-y-5 mb-10">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary scale-90">check_circle</span>
+<span class="text-on-surface-variant text-sm">Zumba Studio Access (Limited)</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary scale-90">check_circle</span>
+<span class="text-on-surface-variant text-sm">Standard Diet Blueprint</span>
+</div>
+<div class="flex items-start gap-3 opacity-40">
+<span class="material-symbols-outlined scale-90">cancel</span>
+<span class="text-on-surface-variant text-sm line-through">1-on-1 Health Coach</span>
+</div>
+<div class="flex items-start gap-3 opacity-40">
+<span class="material-symbols-outlined scale-90">cancel</span>
+<span class="text-on-surface-variant text-sm line-through">AI Performance Insights</span>
+</div>
+</div>
+<button class="w-full py-4 rounded-2xl bg-surface-container-highest text-primary font-bold transition-all hover:brightness-95">
+                    Start Trial
+                </button>
+</section>
+<!-- Annual Plan (Featured) -->
+<section class="relative bg-surface-container-lowest rounded-3xl p-8 flex flex-col shadow-[0_20px_50px_rgba(0,110,47,0.12)] border-2 border-primary scale-105 z-10">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 vitality-gradient text-white px-6 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-lg">
+                    Best Value
+                </div>
+<div class="mb-8">
+<h2 class="text-2xl font-black text-on-surface mb-1">Annual Mastery</h2>
+<p class="text-on-surface-variant text-sm">Total transformation</p>
+</div>
+<div class="mb-8 flex items-baseline gap-1">
+<span class="text-5xl font-black text-on-surface">$14</span>
+<span class="text-on-surface-variant font-medium">/month</span>
+<span class="ml-auto text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded-md">Save 50%</span>
+</div>
+<div class="flex-grow space-y-5 mb-10">
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full vitality-gradient flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[16px]" style="font-variation-settings: 'FILL' 1;">done</span>
+</div>
+<span class="text-on-surface font-semibold text-sm">Unlimited Zumba Live Classes</span>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full vitality-gradient flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[16px]" style="font-variation-settings: 'FILL' 1;">done</span>
+</div>
+<span class="text-on-surface font-semibold text-sm">Personalized AI-Driven Diet</span>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full vitality-gradient flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[16px]" style="font-variation-settings: 'FILL' 1;">done</span>
+</div>
+<span class="text-on-surface font-semibold text-sm">Dedicated Wellness Coach</span>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full vitality-gradient flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[16px]" style="font-variation-settings: 'FILL' 1;">done</span>
+</div>
+<span class="text-on-surface font-semibold text-sm">24/7 AI Health Assistant</span>
+</div>
+</div>
+<button class="w-full py-5 rounded-2xl vitality-gradient text-white font-black text-lg shadow-xl hover:shadow-2xl transition-all active:scale-95">
+                    Unlock Premium Now
+                </button>
+</section>
+<!-- Quarterly Plan -->
+<section class="bg-surface-container-lowest rounded-3xl p-8 transition-transform hover:scale-[1.02] duration-300 flex flex-col shadow-[0_12px_40px_rgba(11,28,48,0.03)] border border-outline-variant/10">
+<div class="mb-8">
+<h2 class="text-xl font-bold text-on-surface mb-1">Quarterly Momentum</h2>
+<p class="text-on-surface-variant text-sm">Build lasting habits</p>
+</div>
+<div class="mb-8 flex items-baseline gap-1">
+<span class="text-4xl font-black text-on-surface">$22</span>
+<span class="text-on-surface-variant font-medium">/month</span>
+</div>
+<div class="flex-grow space-y-5 mb-10">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary scale-90">check_circle</span>
+<span class="text-on-surface-variant text-sm">Weekly Zumba Sessions</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary scale-90">check_circle</span>
+<span class="text-on-surface-variant text-sm">Advanced Diet Planner</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary scale-90">check_circle</span>
+<span class="text-on-surface-variant text-sm">Monthly Coach Check-in</span>
+</div>
+<div class="flex items-start gap-3 opacity-40">
+<span class="material-symbols-outlined scale-90">cancel</span>
+<span class="text-on-surface-variant text-sm line-through">24/7 AI Health Assistant</span>
+</div>
+</div>
+<button class="w-full py-4 rounded-2xl bg-surface-container-low text-on-surface font-bold transition-all hover:bg-surface-container-high">
+                    Choose Quarterly
+                </button>
+</section>
+</div>
+<!-- Trust & Payment Section -->
+<div class="mt-20 max-w-2xl mx-auto text-center">
+<div class="flex flex-wrap justify-center gap-8 mb-10">
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container rounded-full">
+<span class="material-symbols-outlined text-primary scale-90" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Secure Checkout</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container rounded-full">
+<span class="material-symbols-outlined text-primary scale-90" style="font-variation-settings: 'FILL' 1;">google_guarantee</span>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Money-back Guarantee</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container rounded-full">
+<span class="material-symbols-outlined text-primary scale-90" style="font-variation-settings: 'FILL' 1;">encrypted</span>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">SSL Encrypted</span>
+</div>
+</div>
+<!-- Detailed Inclusions Bento -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+<div class="bg-surface-container-low p-6 rounded-2xl text-center">
+<span class="material-symbols-outlined text-primary mb-3 block text-3xl">fitness_center</span>
+<h4 class="font-bold text-sm mb-1">Zumba</h4>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Live Classes</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-2xl text-center">
+<span class="material-symbols-outlined text-primary mb-3 block text-3xl">restaurant</span>
+<h4 class="font-bold text-sm mb-1">Diet</h4>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Meal Plans</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-2xl text-center">
+<span class="material-symbols-outlined text-primary mb-3 block text-3xl">psychology</span>
+<h4 class="font-bold text-sm mb-1">Coach</h4>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Human Support</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-2xl text-center">
+<span class="material-symbols-outlined text-primary mb-3 block text-3xl">smart_toy</span>
+<h4 class="font-bold text-sm mb-1">AI</h4>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Daily Analytics</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="p-[2px] rounded-3xl vitality-gradient inline-block w-full max-w-md">
+<button class="w-full py-5 rounded-[22px] bg-white text-on-surface font-black text-xl hover:bg-transparent hover:text-white transition-all">
+                        Pay Now
+                    </button>
+</div>
+<p class="text-on-surface-variant text-sm">Cancel anytime. No hidden fees. Payments handled via Stripe.</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-[#f8f9ff]/70 dark:bg-slate-900/70 backdrop-blur-lg fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 shadow-[0_-12px_40px_rgba(11,28,48,0.05)] rounded-t-3xl">
+<a class="flex flex-col items-center justify-center text-[#3d4a3d] dark:text-slate-400 px-4 py-2 hover:scale-105 transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Manrope'] text-[10px] font-semibold uppercase tracking-widest mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#3d4a3d] dark:text-slate-400 px-4 py-2 hover:scale-105 transition-all" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-['Manrope'] text-[10px] font-semibold uppercase tracking-widest mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#006e2f]/10 dark:bg-[#22C55E]/10 text-[#006e2f] dark:text-[#22C55E] rounded-2xl px-4 py-2 hover:scale-105 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">spa</span>
+<span class="font-['Manrope'] text-[10px] font-semibold uppercase tracking-widest mt-1">We Care</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#3d4a3d] dark:text-slate-400 px-4 py-2 hover:scale-105 transition-all" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-['Manrope'] text-[10px] font-semibold uppercase tracking-widest mt-1">Records</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#3d4a3d] dark:text-slate-400 px-4 py-2 hover:scale-105 transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Manrope'] text-[10px] font-semibold uppercase tracking-widest mt-1">Profile</span>
+</a>
+</nav>
+</body></html>
