@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Animated, { FadeInDown, FadeIn } from 'react-native-reanimated';
+// Reanimated removed - plain View used instead
 import { LucideIcon, Sparkles, ArrowRight, Brain, Timer, Zap, Dumbbell, Utensils, Headset } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -63,7 +63,7 @@ export default function AiPlanResultScreen() {
         showsVerticalScrollIndicator={false}
       >
         {/* Hero Section */}
-        <Animated.View entering={FadeInDown.duration(600).springify()} className="mt-4 mb-10">
+        <View>
           <View className="flex-row items-center justify-between gap-4">
             <View className="flex-1">
               <Text className="text-[40px] font-extrabold text-on-surface tracking-tighter leading-[48px]">
@@ -83,15 +83,12 @@ export default function AiPlanResultScreen() {
               <Text className="text-base font-extrabold text-on-surface">{aiPlan.confidenceScore}%</Text>
             </View>
           </View>
-        </Animated.View>
+        </View>
 
         {/* Summary Bento Grid */}
         <View className="flex-col gap-6 mb-12">
           {/* Main Objective Card */}
-          <Animated.View
-            entering={FadeInDown.delay(100).duration(600)}
-            className="bg-surface-container-lowest p-8 rounded-[40px] shadow-sm relative overflow-hidden border border-white"
-          >
+          <View>
             <View className="relative z-10">
               <View className="bg-[#e6f1f0] px-4 py-1.5 rounded-full self-start mb-6">
                 <Text className="text-secondary text-[10px] font-bold uppercase tracking-[2px]">Primary Objective</Text>
@@ -108,13 +105,10 @@ export default function AiPlanResultScreen() {
 
             {/* Decor Glow */}
             <View className="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-          </Animated.View>
+          </View>
 
           {/* AI Insight Card */}
-          <Animated.View
-            entering={FadeInDown.delay(200).duration(600)}
-            className="bg-[#f0f4ff] p-8 rounded-[40px] border border-tertiary/10 flex-row gap-4"
-          >
+          <View>
             <View className="w-12 h-12 bg-[#dce9ff] rounded-2xl items-center justify-center">
               <Brain color="#005ac2" size={24} />
             </View>
@@ -124,7 +118,7 @@ export default function AiPlanResultScreen() {
                 {aiPlan.insight}
               </Text>
             </View>
-          </Animated.View>
+          </View>
         </View>
 
         {/* What's Included Section */}
@@ -167,10 +161,7 @@ export default function AiPlanResultScreen() {
         </View>
 
         {/* Roadmap Section */}
-        <Animated.View
-          entering={FadeInDown.delay(700).duration(600)}
-          className="bg-surface-container-low rounded-[40px] p-8 md:p-12 mb-10"
-        >
+        <View>
           <Text className="text-2xl font-extrabold text-on-surface tracking-tight mb-10">Your 12-Week Roadmap</Text>
 
           <RoadmapStep
@@ -191,7 +182,7 @@ export default function AiPlanResultScreen() {
             title="Sustainability"
             desc="Weeks 9-12. Transitioning to long-term maintenance protocols."
           />
-        </Animated.View>
+        </View>
 
       </ScrollView>
 
@@ -222,16 +213,13 @@ export default function AiPlanResultScreen() {
 
 function FeatureCard({ icon: Icon, title, desc, color, delay }: any) {
   return (
-    <Animated.View
-      entering={FadeInDown.delay(delay).duration(500).springify()}
-      className="w-[48%] bg-surface-container-lowest p-6 rounded-[32px] border border-white shadow-sm"
-    >
+    <View>
       <View style={{ backgroundColor: `${color}10` }} className="w-12 h-12 rounded-2xl items-center justify-center mb-6">
         <Icon color={color} size={24} />
       </View>
       <Text className="text-on-surface font-extrabold text-base tracking-tight leading-tight">{title}</Text>
       <Text className="text-on-surface-variant text-[11px] font-bold leading-[16px] mt-2">{desc}</Text>
-    </Animated.View>
+    </View>
   );
 }
 

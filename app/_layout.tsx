@@ -3,7 +3,7 @@ import { Stack, useSegments, useRouter } from 'expo-router';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Updates from 'expo-updates';
-import 'react-native-reanimated';
+// react-native-reanimated removed — use plain RN Animated for Expo Go compatibility
 import '../global.css';
 
 import { AuthProvider, useAuth } from '@/src/context/AuthContext';

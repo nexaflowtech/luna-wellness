@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, ActivityIndicator, View, Image } from 'react-native';
+import { Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, ActivityIndicator, View, Image, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { ArrowLeft, RefreshCw, CheckSquare, Square, Sparkles } from 'lucide-react-native';
-import Animated, { FadeInDown, FadeIn } from 'react-native-reanimated';
+import { ArrowLeft, RefreshCw, Sparkles } from 'lucide-react-native';
+// Reanimated removed — plain View used instead
 import { FirebaseRecaptchaVerifierModal } from 'expo-firebase-recaptcha';
 
 import { sendPhoneOtp, verifyPhoneOtp } from '@/src/services/authService';
@@ -44,7 +44,9 @@ export default function LoginScreen() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const { onboardingComplete, onboardingStep } = useAuth();
+  // Note: We do NOT use onboardingComplete from context for navigation.
+  // Context can be stale right after OTP verify. We use fresh Firestore read instead.
+  const { onboardingStep } = useAuth();
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -109,18 +111,32 @@ export default function LoginScreen() {
     setIsLoading(true);
     setErrorMsg(null);
     try {
-      await verifyPhoneOtp(verificationId, codeToVerify);
-      navigateAfterAuth();
+      // verifyPhoneOtp now returns { user, isNewUser } from a fresh Firestore read
+      // This avoids the race condition with stale AuthContext state
+      const { isNewUser } = await verifyPhoneOtp(verificationId, codeToVerify);
+      navigateAfterAuth(isNewUser);
     } catch (e: any) {
       console.error('Verify OTP Error:', e);
-      setErrorMsg('Invalid code. Please try again.');
+      const code = (e as any)?.code ?? '';
+      if (code === 'auth/invalid-verification-code') {
+        setErrorMsg('Invalid OTP. Please check and try again.');
+      } else if (code === 'auth/code-expired') {
+        setErrorMsg('OTP expired. Please request a new code.');
+        setPhoneStep('phone');
+      } else if (code === 'auth/too-many-requests') {
+        setErrorMsg('Too many attempts. Please wait a moment and try again.');
+      } else {
+        setErrorMsg(e?.message || 'Verification failed. Please try again.');
+      }
     } finally {
       setIsLoading(false);
     }
   };
 
-  const navigateAfterAuth = () => {
-    if (!onboardingComplete) {
+  // isNewUser: fresh from Firestore — no race condition with AuthContext snapshot
+  const navigateAfterAuth = (isNewUser: boolean) => {
+    if (isNewUser) {
+      // Resume from last saved onboarding step or start from gender
       const resumeStep = onboardingStep || '/(onboarding)/gender';
       router.replace(resumeStep as any);
     } else {
@@ -158,7 +174,7 @@ export default function LoginScreen() {
               </View>
 
               {phoneStep === 'phone' && (
-                <Animated.View entering={FadeIn.duration(600)}>
+                <View>
                   <View className="w-full">
                     {/* Transformation Carousel */}
                     <ScrollView
@@ -183,7 +199,7 @@ export default function LoginScreen() {
                       </Text>
                     </View>
                   </View>
-                </Animated.View>
+                </View>
               )}
 
               <View className="px-8 pb-8 space-y-6">
@@ -248,7 +264,7 @@ export default function LoginScreen() {
                     </View>
                   </View>
                 ) : (
-                  <Animated.View entering={FadeIn.duration(400)}>
+                  <View>
                     <TouchableOpacity onPress={resetPhoneStep} className="flex-row items-center mb-6">
                       <ArrowLeft color="#006e2f" size={18} />
                       <Text className="text-primary font-bold ml-2">Change Number</Text>
@@ -285,7 +301,7 @@ export default function LoginScreen() {
                         </TouchableOpacity>
                       )}
                     </View>
-                  </Animated.View>
+                  </View>
                 )}
               </View>
 

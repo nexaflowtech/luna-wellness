@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+// Reanimated removed - plain View used instead
 import { LinearGradient } from 'expo-linear-gradient';
 import { Sparkles, ArrowLeft, ArrowRight, ChevronLeft } from 'lucide-react-native';
 
@@ -63,7 +63,7 @@ export default function ProfileDetailsScreen() {
       }).catch(e => console.error('profile-details write failed:', e));
     }
 
-    setBodyMetrics(data.heightCm, data.weightKg, Number(bmi));
+    setBodyMetrics(data.heightCm, data.weightKg, Number(bmi), localBmiCategory);
 
     setTimeout(() => {
       setIsSubmitting(false);

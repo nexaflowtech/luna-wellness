@@ -1,13 +1,9 @@
 import * as React from 'react';
 import { useMemo, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Animated, {
-    useSharedValue,
-    useAnimatedStyle,
-    withTiming,
-    withSequence,
-} from 'react-native-reanimated';
+import { View, Text, Image, StyleSheet, Animated } from 'react-native';
 import Svg, { Ellipse, Rect, Circle, Path } from 'react-native-svg';
+
+// react-native-reanimated removed — uses plain RN Animated API for Expo Go compatibility
 
 export interface BmiCharacterProps {
     gender: 'male' | 'female';
@@ -16,14 +12,12 @@ export interface BmiCharacterProps {
 
 type BmiCategory = 'lean' | 'fit' | 'bulky';
 
-// Color palette per BMI category using the strict Luna Wellness design system
 const CATEGORY_COLORS: Record<BmiCategory, { body: string; accent: string; glow: string }> = {
     lean: { body: '#60A5FA', accent: '#3B82F6', glow: '#1D4ED8' },
     fit: { body: '#22C55E', accent: '#10B981', glow: '#065F46' },
     bulky: { body: '#EF4444', accent: '#FCA5A5', glow: '#7F1D1D' },
 };
 
-// 3D Animated GIF Assets (Placeholders for now) -> Updated to Static Local PNGs from Stitch
 const CHARACTER_ASSETS: Record<'male' | 'female', Record<BmiCategory, any>> = {
     male: {
         lean: require('../../../assets/characters/male_lean.png'),
@@ -50,8 +44,9 @@ export const BmiCharacter: React.FC<BmiCharacterProps> = ({ gender, bmi }) => {
         return 'bulky';
     }, [bmi]);
 
-    const opacity = useSharedValue(1);
-    const scale = useSharedValue(1);
+    // Plain RN Animated values (worklets-free)
+    const opacity = useRef(new Animated.Value(1)).current;
+    const scale = useRef(new Animated.Value(1)).current;
 
     const prevCategoryRef = useRef(category);
     const prevGenderRef = useRef(gender);
@@ -61,22 +56,19 @@ export const BmiCharacter: React.FC<BmiCharacterProps> = ({ gender, bmi }) => {
             prevCategoryRef.current = category;
             prevGenderRef.current = gender;
 
-            // Smoother morph transition sequence
-            opacity.value = withSequence(
-                withTiming(0.4, { duration: 150 }),
-                withTiming(1, { duration: 350 })
-            );
-            scale.value = withSequence(
-                withTiming(0.95, { duration: 150 }),
-                withTiming(1, { duration: 350 })
-            );
+            // Morph transition: fade out → in
+            Animated.sequence([
+                Animated.parallel([
+                    Animated.timing(opacity, { toValue: 0.4, duration: 150, useNativeDriver: true }),
+                    Animated.timing(scale, { toValue: 0.95, duration: 150, useNativeDriver: true }),
+                ]),
+                Animated.parallel([
+                    Animated.timing(opacity, { toValue: 1, duration: 350, useNativeDriver: true }),
+                    Animated.timing(scale, { toValue: 1, duration: 350, useNativeDriver: true }),
+                ]),
+            ]).start();
         }
     }, [category, gender]);
-
-    const animatedStyle = useAnimatedStyle(() => ({
-        opacity: opacity.value,
-        transform: [{ scale: scale.value }],
-    }));
 
     const colors = CATEGORY_COLORS[category];
     const fitnessLabel = FITNESS_LABELS[category];
@@ -84,11 +76,11 @@ export const BmiCharacter: React.FC<BmiCharacterProps> = ({ gender, bmi }) => {
 
     return (
         <View style={styles.wrapper}>
-            <Animated.View style={[styles.characterWrap, animatedStyle]}>
+            <Animated.View style={[styles.characterWrap, { opacity, transform: [{ scale }] }]}>
                 {/* Glow Backdrop */}
                 <View style={[styles.glow, { backgroundColor: colors.glow }]} />
 
-                <Animated.Image
+                <Image
                     source={assetUrl}
                     style={styles.characterImage}
                     resizeMode="contain"

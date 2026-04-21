@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+// Reanimated removed — plain View used instead
 import { ScreenWrapper } from '@/src/components/ui/ScreenWrapper';
 import { Header } from '@/src/components/ui/Header';
 import { ProgressIndicator } from '@/src/components/onboarding/ProgressIndicator';
@@ -99,38 +99,38 @@ export default function LifestyleScreen() {
             </View>
 
             <ScrollView className="flex-1 px-6" contentContainerStyle={{ paddingBottom: 140, paddingTop: 12 }} showsVerticalScrollIndicator={false}>
-              <Animated.Text entering={FadeInDown.duration(500).springify()} className="text-text-primary text-[32px] leading-[40px] font-extrabold mb-3">
+              <Text className="text-text-primary text-[32px] leading-[40px] font-extrabold mb-3">
                 Daily Habits
-              </Animated.Text>
-              <Animated.Text entering={FadeInDown.delay(100).duration(500)} className="text-text-secondary text-[16px] leading-[24px] mb-8">
+              </Text>
+              <Text className="text-text-secondary text-[16px] leading-[24px] mb-8">
                 We use this data to accurately calculate your metabolic maintenance load.
-              </Animated.Text>
+              </Text>
 
-              <Animated.View entering={FadeInDown.delay(200).duration(500)}>
+              <View>
                 <Text className="text-text-secondary text-[13px] font-bold uppercase tracking-widest mb-4 ml-2">Activity Level</Text>
                 {renderSelector(ACTIVITY_OPTIONS, activity, setActivity)}
-              </Animated.View>
+              </View>
 
               <View className="h-10" />
 
-              <Animated.View entering={FadeInDown.delay(300).duration(500)}>
+              <View>
                 <Text className="text-text-secondary text-[13px] font-bold uppercase tracking-widest mb-4 ml-2">Dietary Preference</Text>
                 {renderSelector(DIET_OPTIONS, diet, setDiet)}
-              </Animated.View>
+              </View>
 
               <View className="h-10" />
 
-              <Animated.View entering={FadeInDown.delay(350).duration(500)}>
+              <View>
                 <Text className="text-text-secondary text-[13px] font-bold uppercase tracking-widest mb-4 ml-2">Average Sleep</Text>
                 {renderSelector(SLEEP_OPTIONS, sleep, setSleep)}
-              </Animated.View>
+              </View>
 
               <View className="h-10" />
 
-              <Animated.View entering={FadeInDown.delay(400).duration(500)}>
+              <View>
                 <Text className="text-text-secondary text-[13px] font-bold uppercase tracking-widest mb-4 ml-2">Daily Stress Level</Text>
                 {renderSelector(STRESS_OPTIONS, stress, setStress)}
-              </Animated.View>
+              </View>
             </ScrollView>
 
             {/* Luna AI companion bubble — reacts to lifestyle selections */}
@@ -150,11 +150,11 @@ export default function LifestyleScreen() {
               subMessage={isComplete ? "Tap Generate Plan to have me build your protocol." : undefined}
             />
 
-            <Animated.View entering={FadeInDown.delay(500).duration(500)} className="absolute bottom-0 left-0 right-0 px-6 py-8 bg-background border-t border-white/5">
+            <View className="absolute bottom-0 left-0 right-0 px-6 py-8 bg-background border-t border-white/5">
               <View className={`${isComplete ? 'opacity-100' : 'opacity-40'}`} pointerEvents={isComplete ? 'auto' : 'none'}>
                 <PrimaryButton title="Generate Plan" onPress={handleNext} />
               </View>
-            </Animated.View>
+            </View>
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>

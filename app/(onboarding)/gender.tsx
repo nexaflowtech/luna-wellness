@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 import { User2, Users, Sparkles, Check } from 'lucide-react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+// Reanimated removed for Expo Go compatibility
 import { LinearGradient } from 'expo-linear-gradient';
 import { useAuth } from '@/src/context/AuthContext';
 import { updateUserDoc } from '@/src/services/authService';
@@ -143,7 +143,7 @@ interface GenderCardProps {
 
 function GenderCard({ title, desc, icon, isSelected, onSelect, delay, accentColor }: GenderCardProps) {
   return (
-    <Animated.View pointerEvents="box-none" entering={FadeInDown.delay(delay).duration(500).springify()} style={styles.cardWrapper}>
+    <View style={styles.cardWrapper}>
       <TouchableOpacity
         activeOpacity={0.9}
         onPress={onSelect}
@@ -160,7 +160,7 @@ function GenderCard({ title, desc, icon, isSelected, onSelect, delay, accentColo
           {isSelected && <Check color="white" size={14} strokeWidth={4} />}
         </View>
       </TouchableOpacity>
-    </Animated.View>
+    </View>
   );
 }
 

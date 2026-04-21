@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import Animated, { FadeInDown, FadeIn } from 'react-native-reanimated';
+// Reanimated removed - plain View used instead
 import { LinearGradient } from 'expo-linear-gradient';
 import { Leaf, Scale, HeartPulse, Dumbbell, Sparkles, Check, ChevronLeft, ArrowRight } from 'lucide-react-native';
 
@@ -72,7 +72,10 @@ export default function GoalPhysiqueScreen() {
 
   const isComplete = selectedGoal && activity && diet && sleep && stress;
 
-  const currentGoals = gender === 'male' ? MALE_GOALS : gender === 'other' ? OTHER_GOALS : FEMALE_GOALS;
+  // Prefer store gender (set during gender screen) over AuthContext (may be null if Firestore snapshot is delayed)
+  const { gender: storeGender } = useOnboardingStore();
+  const resolvedGender = storeGender || gender;
+  const currentGoals = resolvedGender === 'male' ? MALE_GOALS : resolvedGender === 'other' ? OTHER_GOALS : FEMALE_GOALS;
 
   const handleNext = async () => {
     if (!isComplete) return;
